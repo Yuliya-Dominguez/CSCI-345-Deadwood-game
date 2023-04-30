@@ -1,6 +1,6 @@
 public class Acting {
-    private String playerRole;
-    private int shotsFinished;
+    public String playerRole;
+    public int shotsFinished;
 
 
     public void successMainRole() {
