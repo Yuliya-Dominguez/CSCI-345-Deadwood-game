@@ -11,6 +11,20 @@ public class Deadwood {
 
     }
 
-    
+    public void validate() {
+
+    }
+
+    public String displayStats() {
+        return null;
+    }
+
+    public int scoring() {
+        return (Integer) null;
+    }
+
+    public String decideWinner() {
+        return null;
+    }
 
 }
