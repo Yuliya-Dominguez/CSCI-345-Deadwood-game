@@ -9,8 +9,4 @@ public class LocationManager {
     public void updateLocation() {
 
     }
-
-    public void turnCards() {
-
-    }
 }
