@@ -1,10 +1,10 @@
 public class Player {
 
-    private String name;
-    private String playerRole;
-    private int rank;
-    private int dollarCount;
-    private int creditCount;
+    public String name;
+    public String playerRole;
+    public int rank;
+    public int dollarCount;
+    public int creditCount;
 
     public int rollDice() {
         return (Integer) null;
