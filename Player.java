@@ -38,7 +38,7 @@ public class Player {
 
     }
 
-    private int checkBalance() {
+    private int checkInfo() {
         return (Integer) null;
     }
 
