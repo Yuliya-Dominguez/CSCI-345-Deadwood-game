@@ -1,6 +1,6 @@
 public class Store {
 
-    public int[][] rankUpgradeValues;
+    public int[][] rankUpgradeValues = new int[2][5];
 
     Player player = new Player();
     Dice dice = new Dice();
@@ -38,6 +38,7 @@ public class Store {
     }
 
     public void calcBonus() {
+        dice.readBonus();
         if (sceneCards.cardRoles.length == 3) {
             int i = 0;
             while (i < sceneCards.cardRoleRank) {
@@ -60,11 +61,37 @@ public class Store {
         }
     }
 
-    public void validatePayment() {
-
+    public void setRankPrices() {
+        rankUpgradeValues[0][0] = 4;
+        rankUpgradeValues[0][1] = 10; 
+        rankUpgradeValues[0][2] = 18; 
+        rankUpgradeValues[0][3] = 28; 
+        rankUpgradeValues[0][4] = 40; 
+        rankUpgradeValues[1][0] = 5; 
+        rankUpgradeValues[1][1] = 10; 
+        rankUpgradeValues[1][2] = 15; 
+        rankUpgradeValues[1][3] = 20; 
+        rankUpgradeValues[1][4] = 25;  
     }
 
-    public void upgradeRank() {
-
+    public void upgradeRank(int rankLevel, String paymentType) {
+        if (paymentType.equals("dollar")) {
+            if(player.dollarCount >= rankUpgradeValues[0][rankLevel - 2]) {
+                player.dollarCount-= rankUpgradeValues[0][rankLevel - 2];
+                player.rank = (rankLevel + 2);
+            }
+            else {
+                System.out.println("Sorry, you do not have enough dollars to upgrade to this rank.");
+            }
+        }
+        else if (paymentType.equals("credit")) {
+            if(player.creditCount >= rankUpgradeValues[1][rankLevel - 2]) {
+                player.creditCount-= rankUpgradeValues[1][rankLevel - 2];
+                player.rank = (rankLevel + 2);
+            }
+            else {
+                System.out.println("Sorry, you do not have enough credits to upgrade to this rank.");
+            }
+        }
     }
 }
