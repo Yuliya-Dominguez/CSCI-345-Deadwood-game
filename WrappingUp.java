@@ -3,17 +3,25 @@ public class WrappingUp {
     public boolean mainActorRoleFilled;
     public int playerRank;
 
+    Store store = new Store();
+
     private boolean checkMainRoleFilled() {
         return mainActorRoleFilled;
     }
 
     public void playerMainBonus() {
         System.out.println("End of Scene!");
-        
+        store.payBonus();
     }
 
     public void playerExtraBonus() {
-
+        System.out.println("End of Scene!");
+        if (checkMainRoleFilled()) {
+            store.payBonus();
+        }
+        else {
+            System.out.println("No actor on card, so no bonus.");
+        }
     }
 
 }
