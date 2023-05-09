@@ -91,11 +91,7 @@ public class BoardXMLparser {
                             Element takeElem = (Element) take;
                             int takeNum = Integer.parseInt(takeElem.getAttribute("number"));
                             System.out.println("Take #: " + takeNum);
-                            /*
-                             * int takeNum =
-                             * Integer.parseInt(take.getAttributes().getNamedItem("number").getNodeValue());
-                             * System.out.println("Take #: " + takeNum);
-                             */
+                            
 
                             // take area
                             NodeList takeChildren = take.getChildNodes();
@@ -130,11 +126,7 @@ public class BoardXMLparser {
                             String partName = partElem.getAttribute("name");
                             int partLVL = Integer.parseInt(partElem.getAttribute("level"));
                             System.out.println("Part name: " + partName + ", Level: " + partLVL);
-                            /*
-                             * String partName = part.getAttributes().getNamedItem("name").getNodeValue();
-                             * int partLVL =
-                             * Integer.parseInt(part.getAttributes().getNamedItem("level").getNodeValue());
-                             */
+                            
 
                             // upgrade area
                             NodeList partChildren = part.getChildNodes();
