@@ -6,9 +6,6 @@ public class Dice {
     private int gameDice;
     private int[] bonusDice;
 
-    public void moveDice() {
-
-    }
 
     public void readDice() {
 
