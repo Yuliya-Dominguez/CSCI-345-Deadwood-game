@@ -34,7 +34,12 @@ public class Deadwood {
     }
 
     public String decideWinner() {
-        return null;
+        int winner = 0;
+        String winningPlayer;
+        for (int i = 0; i < players.length; i++) {
+            //Code here to figure out highest score.
+        }
+        return ("The winner is player " );
     }
 
 }
