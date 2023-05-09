@@ -2,6 +2,7 @@ public class Player {
 
     public String name;
     public String playerRole;
+    public int playerRolePosition;
     public int rank;
     public int dollarCount;
     public int creditCount;
