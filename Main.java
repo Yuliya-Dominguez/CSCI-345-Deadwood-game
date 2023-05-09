@@ -35,9 +35,10 @@ public static void main(String[] args) {
 
 
             int i = 0;
+            
             while (i < playerNum) {
-                System.out.println(("What is Player ") + i + (" name? \n"));
-                String inputName = input.nextLine();
+                System.out.println(("What is Player ") + (i + 1) + (" name? \n"));
+                String inputName = input.next();
                 for(Player player:gamePlayers) {
                     player.name = inputName;
                 }
