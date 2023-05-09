@@ -14,7 +14,6 @@ public class Main {
     Dice dice = new Dice();
 
 public static void main(String[] args) {
-    System.out.print("Hello. This is a Deadwood game."); //temporary welcome message
     Scanner input = new Scanner(System.in);
         System.out.println("Welcome to Deadwood! Please enter the number of players: ");
         int playerNum = input.nextInt();

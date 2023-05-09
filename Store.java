@@ -9,7 +9,7 @@ public class Store {
     public void payForShot() {
         //Change this to detect for actor on scene card role.
         if (player.playerRole.equals("Main")) {
-
+            
         }
         else {
 

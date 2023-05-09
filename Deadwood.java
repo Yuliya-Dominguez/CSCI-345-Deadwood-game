@@ -10,6 +10,7 @@ public class Deadwood {
     private int[] gageStats;
 
     Player player = new Player();
+    LocationManager locManager = new LocationManager();
 
     public void gamePrep() {
         
