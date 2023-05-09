@@ -28,6 +28,7 @@ public class BoardXMLparser {
         }
     }
 
+    //Parse board.xml
     public void readBoardData(Document d) {
 
         Element root = d.getDocumentElement();

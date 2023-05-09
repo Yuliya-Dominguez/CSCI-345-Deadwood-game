@@ -1,4 +1,4 @@
-// Code for parsing XML file
+// Code for parsing Board XML file
 // Taken from Dr. Moushumi Sharmin example, slightly modified
 
 import org.w3c.dom.Document;
