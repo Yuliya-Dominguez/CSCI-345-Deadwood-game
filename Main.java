@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.io.*;
 
 public class Main {
@@ -13,8 +14,12 @@ public class Main {
     LocationManager locManager = new LocationManager();
     Acting acting = new Acting();
     Dice dice = new Dice();
+    
+
 
 public static void main(String[] args) {
+    List<Player> gamePlayers = new ArrayList<Player>();
+
     Scanner input = new Scanner(System.in);
         System.out.println("Welcome to Deadwood! Please enter the number of players: ");
         int playerNum = input.nextInt();
@@ -23,14 +28,24 @@ public static void main(String[] args) {
             System.out.println("Error. Please enter a number between 2 and 8.");
         }
         else {
+            for(int a = 0; a < playerNum; a++) {
+                Player player1 = new Player();
+                gamePlayers.add(player1);
+            }
+
+
             int i = 0;
             while (i < playerNum) {
                 System.out.println(("What is Player ") + i + (" name? \n"));
-                //Something here to keep track of player names and store them from input.
+                String inputName = input.nextLine();
+                for(Player player:gamePlayers) {
+                    player.name = inputName;
+                }
                 i++;
-            }
-            
+            } 
         }
+
+    System.out.println("Thank you! We are still working on the rest, so stay tuned!");
     input.close();
 }
 
