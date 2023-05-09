@@ -28,7 +28,6 @@ public class CardsXMLparser {
         }
     }
 
-    //Parse cards.xml
     public void readCardsData(Document d) {
 
         Element root = d.getDocumentElement();

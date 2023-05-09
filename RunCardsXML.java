@@ -1,4 +1,4 @@
-// Code for parsing Cards XML file
+// Code for parsing XML file
 // Taken from Dr. Moushumi Sharmin example, slightly modified
 
 import org.w3c.dom.Document;
