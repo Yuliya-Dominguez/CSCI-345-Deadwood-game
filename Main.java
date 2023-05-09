@@ -26,6 +26,7 @@ public static void main(String[] args) {
             int i = 0;
             while (i < playerNum) {
                 System.out.println(("What is Player ") + i + (" name? \n"));
+                //Something here to keep track of player names and store them from input.
                 i++;
             }
             
