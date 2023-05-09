@@ -12,14 +12,6 @@ public class Deadwood {
     Player player = new Player();
     LocationManager locManager = new LocationManager();
 
-    public void gamePrep() {
-        
-    }
-
-    public void validate() {
-
-    }
-
     public String displayStats() {
         String stats = ("Name: " + player.name + "\n" + "Role: " + 
         player.playerRole + "\n" + "Rank: " + player.rank + "\n" +

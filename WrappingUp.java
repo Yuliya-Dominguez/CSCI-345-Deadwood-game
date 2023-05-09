@@ -8,7 +8,8 @@ public class WrappingUp {
     }
 
     public void playerMainBonus() {
-
+        System.out.println("End of Scene!");
+        
     }
 
     public void playerExtraBonus() {
