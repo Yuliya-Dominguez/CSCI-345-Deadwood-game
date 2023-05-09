@@ -6,13 +6,6 @@ public class Player {
     public int dollarCount;
     public int creditCount;
 
-    public int rollDice() {
-        return (Integer) null;
-    }
-
-    public int[] rollBonus() {
-        return null;
-    }
 
     public String move() {
         return null;
