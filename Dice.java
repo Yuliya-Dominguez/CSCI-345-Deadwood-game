@@ -3,7 +3,7 @@ import java.lang.Math;
 public class Dice {
 
     private int gameDice;
-    private int[] bonusDice;
+    public int[] bonusDice;
 
     SceneCards sceneCards = new SceneCards();
 
