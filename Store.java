@@ -9,6 +9,14 @@ public class Store {
     public int cardRolePayment2 = 0;
     public int cardRolePayment3 = 0;
 
+    private static Store instance = new Store();
+
+    private Store(){}
+
+    public static Store getStoreInstance() {
+        return instance;
+    }
+
     public void payForShot() {
         if (player.playerRole.equals("Main")) {
             player.creditCount+= 2;
@@ -37,7 +45,7 @@ public class Store {
         }
     }
 
-    public void calcBonus() {
+    private void calcBonus() {
         dice.readBonus();
         if (sceneCards.cardRoles.length == 3) {
             int i = 0;
@@ -61,7 +69,7 @@ public class Store {
         }
     }
 
-    public void setRankPrices() {
+    private void setRankPrices() {
         rankUpgradeValues[0][0] = 4;
         rankUpgradeValues[0][1] = 10; 
         rankUpgradeValues[0][2] = 18; 
@@ -75,6 +83,7 @@ public class Store {
     }
 
     public void upgradeRank(int rankLevel, String paymentType) {
+        setRankPrices();
         if (paymentType.equals("dollar")) {
             if(player.dollarCount >= rankUpgradeValues[0][rankLevel - 2]) {
                 player.dollarCount-= rankUpgradeValues[0][rankLevel - 2];

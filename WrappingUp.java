@@ -3,7 +3,7 @@ public class WrappingUp {
     public boolean mainActorRoleFilled;
     public int playerRank;
 
-    Store store = new Store();
+    Store store = Store.getStoreInstance();
 
     private boolean checkMainRoleFilled() {
         return mainActorRoleFilled;

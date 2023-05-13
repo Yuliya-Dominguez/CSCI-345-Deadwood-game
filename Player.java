@@ -9,10 +9,12 @@ public class Player {
     public int rehearseCounter;
 
     Dice dice = new Dice();
-    Store store = new Store();
+    Board board = new Board();
     LocationManager locManager = new LocationManager();
     SceneCards scene = new SceneCards();
     Acting act = new Acting();
+
+    Store store = Store.getStoreInstance();
 
     public String move() {
         //Need location man and board probably for this, and XML.
@@ -28,6 +30,7 @@ public class Player {
             }
             else {
                 act.failureExtraRole();
+                dollarCount++;
             }
         }
         else if (playerRole.equals("Main")) {

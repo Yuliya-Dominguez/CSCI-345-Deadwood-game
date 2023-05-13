@@ -1,6 +1,6 @@
 public class Day {
     public int numOfPlayers;
-    public int dayCount;
+    public int dayCount = 0;
 
 
     public void endDay() {

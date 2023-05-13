@@ -2,8 +2,8 @@ public class Acting {
     public String playerRole;
     public int shotsFinished;
 
-    Player player = new Player();
-    Store store = new Store();
+    //Player player = new Player();
+    Store store = Store.getStoreInstance();
 
     public void successMainRole() {
         System.out.println("Success! Gain two credits.");
@@ -24,6 +24,5 @@ public class Acting {
 
     public void failureExtraRole() {
         System.out.println("Failure. Dollar gained.");
-        player.dollarCount++;
     }
 }

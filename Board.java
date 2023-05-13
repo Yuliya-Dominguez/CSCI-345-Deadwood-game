@@ -1,7 +1,6 @@
 
 public class Board {
 
-    Player player = new Player();
 
     private int[] mapLayout;
     public String playerPosition;
