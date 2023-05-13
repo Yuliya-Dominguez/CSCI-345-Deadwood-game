@@ -54,7 +54,7 @@ public class Player {
     }
 
     public void takeRole() {
-
+        //Probably a parameter needed to take in name of the role.
     }
 
     public void checkInfo() {
