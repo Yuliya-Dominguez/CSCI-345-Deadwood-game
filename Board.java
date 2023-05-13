@@ -1,4 +1,8 @@
+
 public class Board {
+
+    Player player = new Player();
+
     private int[] mapLayout;
     public String playerPosition;
 
@@ -6,7 +10,8 @@ public class Board {
 
     }
 
-    public String showPlayerPos() {
+    public String setPlayerPos() {
+        //Change to set player position to spot on board.s
         return playerPosition;
     }
 } 
