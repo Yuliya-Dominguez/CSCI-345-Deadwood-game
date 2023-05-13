@@ -70,16 +70,16 @@ public static void main(String[] args) {
                         System.out.println("'endturn': Ends current Player's turn. ");
                         System.out.println("'quit': Quits the game.\n");
                     }
-                    
+                    //If 'move' was chosen, prompt the player for which neighbor location they want to move to.
                     else if (action.equals("move")){
                         System.out.println("This command is still in progress."); //delete later!
                         break;
                     }
-
+                    //If 'scenestats' was chosen, display information about the scene card on the location the player is at currently.
                     else if (action.equals("scenestats")){
                         System.out.println("This command is still in progress."); //delete later!
                     }
-
+                    //If 'boardstats' was chosen, display information about the board location the player is at currently.
                     else if (action.equals("boardstats")){
                         System.out.println("This command is still in progress."); //delete later!
                     }
