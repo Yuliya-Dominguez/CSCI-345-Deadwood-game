@@ -14,4 +14,8 @@ public class Set {
       public String partName;
       public int partLevel;
     }
+
+    public int getSceneNumber() {
+        return sceneNumber;
+    }
 }

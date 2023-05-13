@@ -11,7 +11,11 @@ public class Location {
 
 
     public class Scene {
-      public String partName;
-      public int partLevel;
+      public String locationName;
+      public int locationLevel;
+    }
+
+    public int getBoardNumber() {
+        return boardNumber;
     }
 }
