@@ -59,7 +59,12 @@ public class Player {
 
     public void checkInfo() {
         System.out.println("Name: " + name);
-        System.out.println("Role: " + playerRole);
+        if ( playerRole == null){
+            System.out.println("Role: None");
+        }
+        else {
+            System.out.println("Role: " + playerRole);    
+        }
         System.out.println("Role Position: " + playerRolePosition);
         System.out.println("Rank: " + rank);
         System.out.println("Dollars:" + dollarCount);
