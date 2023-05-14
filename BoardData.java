@@ -4,8 +4,10 @@ import org.w3c.dom.Document;
 
 public class BoardData {
 
-    private BoardXMLparser parser;//
-    private static ArrayList<Set> setList;//
+    private BoardXMLparser parser;
+    private static ArrayList<Set> setList;
+    private static ArrayList<Trailer> trailerList;
+    private static ArrayList<Office> officeList;
     private static int sceneIndex;
 
     public BoardData() {
@@ -14,6 +16,8 @@ public class BoardData {
         try {
             doc = parser.getDocFromFile("board.xml");
             setList = parser.readBoardData(doc);
+            trailerList = parser.readTrailerData(doc);
+            officeList = parser.readOfficeData(doc);
         } catch (Exception e) {
             System.out.println("Error = " + e);
         }
@@ -107,32 +111,39 @@ public class BoardData {
         sceneIndex = index;
         return sceneIndex;
      }
-  
-    /*private String name;
-    private List<Set> sets;
+     
+     public static List<Neighbors> getTrailerNeighbors() {//list of neighbors
 
-    public BoardData(String name) {
-        this.name = name;
-        sets = new ArrayList<>();
-    }
-    
-    public void addSet(Set set) {
-        sets.add(set);
-    }
+        Trailer trailer = trailerList.get(0);
+        List<Neighbors> neighborsList = trailer.getNeighbors();
+        return neighborsList;
+     }
 
-    public List<Set> getSets() {
-        return sets;
-    }
-
-    public void setSets(List<Set> sets) {
-        this.sets = sets;
-    }
-
-    public String getBoardName() {
+     public static String getTrailNeighbor(int neighborIndex) {//name of a neighbor
+        Trailer trailer = trailerList.get(0);
+        List<Neighbors> neighborsList = trailer.getNeighbors();
+        Neighbors neighbors = neighborsList.get(neighborIndex);
+        String name = neighbors.getName();
         return name;
-    }
-
-    public void setBoardName(String name) {
-        this.name = name;
-    }*/
+     }
+  
+     //here we will need trailer's area
+  
+     public static List<Neighbors> getOfficeNeighbors() {//list of neighbors
+  
+        Office office = officeList.get(0);
+        List<Neighbors> neighborsList = office.getNeighbors();
+        return neighborsList;
+     }
+  
+     //here we will need office area
+  
+     public static String getOffNeighbor(int neighborIndex) {//name of a neighbor
+        Office office = officeList.get(0);
+        List<Neighbors> neighborsList = office.getNeighbors();
+        Neighbors neighbors = neighborsList.get(neighborIndex);
+        String name = neighbors.getName();
+        return name;
+     }
+    
 }

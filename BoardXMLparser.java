@@ -172,8 +172,15 @@ public class BoardXMLparser {
             //boardData.addSet(setData);
             boardList.add(setData);
         }
+    return boardList;
+    }
 
+    public ArrayList<Trailer> readTrailerData(Document d) {
+        ArrayList<Trailer> trailerList = new ArrayList<Trailer>();
+
+        Element root = d.getDocumentElement();
         // trailer
+        Trailer trailerData = new Trailer();//
         NodeList trailers = root.getElementsByTagName("trailer");
         //System.out.println("Trailer");
 
@@ -200,6 +207,8 @@ public class BoardXMLparser {
                         Element trailNeighborElem = (Element) trailNeighbor;
                         String trailNeighborName = trailNeighborElem.getAttributes().getNamedItem("name")
                                 .getNodeValue();
+                        Neighbors neighborsData = new Neighbors(trailNeighborName);//
+                        trailerData.addNeighbors(neighborsData);
                         //System.out.println("Neighbor #" + (c + 1) + ": " + trailNeighborName);
                     }
                 }
@@ -210,9 +219,19 @@ public class BoardXMLparser {
                 int trY = Integer.parseInt(trailerArea.getAttribute("y"));
                 int trH = Integer.parseInt(trailerArea.getAttribute("h"));
                 int trW = Integer.parseInt(trailerArea.getAttribute("w"));
+                Area area = new Area(trX, trY, trH, trW);//
+                trailerData.setArea(area);
                 //System.out.println("x: " + trX + ", y: " + trY + ", h: " + trH + ", w: " + trW);
             }
+            trailerList.add(trailerData);
         }
+        return trailerList;
+    }
+
+    public ArrayList<Office> readOfficeData(Document d) {
+        ArrayList<Office> officeList = new ArrayList<Office>();
+        Element root = d.getDocumentElement();
+        Office officeData = new Office();//
 
         // office
         NodeList officeLoc = root.getElementsByTagName("office");
@@ -240,6 +259,8 @@ public class BoardXMLparser {
                         Element officeNeighborElem = (Element) officeNeighbor;
                         String officeNeighborName = officeNeighborElem.getAttributes().getNamedItem("name")
                                 .getNodeValue();
+                        Neighbors neighborsData = new Neighbors(officeNeighborName);//
+                        officeData.addNeighbors(neighborsData);
                         //System.out.println("Neighbor #" + (c + 1) + ": " + officeNeighborName);
                     }
                 }
@@ -250,6 +271,8 @@ public class BoardXMLparser {
                 int ofY = Integer.parseInt(officeArea.getAttribute("y"));
                 int ofH = Integer.parseInt(officeArea.getAttribute("h"));
                 int ofW = Integer.parseInt(officeArea.getAttribute("w"));
+                Area area = new Area(ofX, ofY, ofH, ofW);//
+                officeData.setArea(area);
                 //System.out.println("x: " + ofX + ", y: " + ofY + ", h: " + ofH + ", w: " + ofW);
             } else if ("upgrades".equals(child.getNodeName())) { // upgrades
 
@@ -286,7 +309,8 @@ public class BoardXMLparser {
                     }
                 }
             }
+            officeList.add(officeData);
         }
-        return boardList;
+        return officeList;
     }
 }

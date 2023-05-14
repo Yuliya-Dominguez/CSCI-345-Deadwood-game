@@ -10,6 +10,8 @@ import org.w3c.dom.Document;
 public class RunBoardXML{
 
    private static ArrayList<Set> setList;
+   private static ArrayList<Trailer> trailerList;//
+   private static ArrayList<Office> officeList;//
 
    public static void main(String args[]){
    
@@ -18,7 +20,9 @@ public class RunBoardXML{
       try{
       
          doc = parsing.getDocFromFile("board.xml");
-         setList = parsing.readBoardData(doc);
+         setList = parsing.readBoardData(doc);//
+         trailerList = parsing.readTrailerData(doc);//
+         officeList = parsing.readOfficeData(doc);//
       
       }catch (Exception e){
       
@@ -26,19 +30,13 @@ public class RunBoardXML{
       
       }
 
-      getSetName(7);
-      getNeighborsList(7);
-      getNeighborName(7,0);
-      getNeighborName(7,2);
-      getTakesList(7);
-      getTakesNum(7,0);
-      getPartName(7,0);
-      getPartName(7,2);
-      getPartLevel(7,1);
-      getPartLevel(8,0);
-      getPartArea(8,0);
-      getPartLine(7,2);
-      getPartLine(8,0);
+      getTrailerNeighbors();
+      getOfficeNeighbors();
+      getTrailNeighbor(0);
+      getTrailNeighbor(1);
+      getOffNeighbor(0);
+      getOffNeighbor(1);
+
    }
 
    public static String getSetName(int index) {
@@ -140,6 +138,60 @@ public class RunBoardXML{
       String line = part.getLine();
       System.out.println("part line = " + line);
       return line;
+   }
+
+   public static List<Neighbors> getTrailerNeighbors() {
+
+      Trailer trailer = trailerList.get(0);
+      List<Neighbors> neighborsList = trailer.getNeighbors();
+      Neighbors neighbors = null;
+      String name = null;
+
+      for (int i = 0; i < neighborsList.size(); i++) {
+         neighbors = neighborsList.get(i);
+         name = neighbors.getName();
+
+         System.out.println("Neighbor " + i + ":");
+         System.out.println("\tName: " + name);
+      }
+      return neighborsList;
+   }
+
+   //here we will need trailer's area
+
+   public static List<Neighbors> getOfficeNeighbors() {
+
+      Office office = officeList.get(0);
+      List<Neighbors> neighborsList = office.getNeighbors();
+      Neighbors neighbors = null;
+      String name = null;
+
+      for (int i = 0; i < neighborsList.size(); i++) {
+         neighbors = neighborsList.get(i);
+         name = neighbors.getName();
+
+         System.out.println("Neighbor " + i + ":");
+         System.out.println("\tName: " + name);
+      }
+      return neighborsList;
+   }
+
+   //here we will need office area
+
+   public static String getTrailNeighbor(int neighborIndex) {
+      Trailer trailer = trailerList.get(0);
+      List<Neighbors> neighborsList = trailer.getNeighbors();
+      Neighbors neighbors = neighborsList.get(neighborIndex);
+      String name = neighbors.getName();
+      return name;
+   }
+
+   public static String getOffNeighbor(int neighborIndex) {
+      Office office = officeList.get(0);
+      List<Neighbors> neighborsList = office.getNeighbors();
+      Neighbors neighbors = neighborsList.get(neighborIndex);
+      String name = neighbors.getName();
+      return name;
    }
 
 }
