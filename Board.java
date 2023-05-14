@@ -5,6 +5,8 @@ public class Board {
     private int[] mapLayout;
     public String playerPosition;
 
+    SceneCards sceneCards = new SceneCards();
+
     public void setMapLayout() {
 
     }

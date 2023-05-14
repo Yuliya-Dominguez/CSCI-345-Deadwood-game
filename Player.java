@@ -2,6 +2,7 @@ public class Player {
 
     public String name;
     public String playerRole;
+    public String playerRoleName;
     public int playerRolePosition;
     public int rank;
     public int dollarCount;
@@ -24,7 +25,7 @@ public class Player {
     public void act() {
         int roll = dice.readDice();
         if (playerRole.equals("Extra")) {
-            if ((roll + rehearseCounter) >= scene.boardRoleRank) {
+            if ((roll + rehearseCounter) >= scene.getCardBudget()) {
                 act.successExtraRole();
                 rehearseCounter = 0;
             }
@@ -34,7 +35,7 @@ public class Player {
             }
         }
         else if (playerRole.equals("Main")) {
-            if (roll + rehearseCounter >= scene.cardRoleRank) {
+            if (roll + rehearseCounter >= scene.getCardBudget()) {
                 act.successMainRole();
                 rehearseCounter = 0;
             }
@@ -54,7 +55,7 @@ public class Player {
     }
 
     public void takeRole() {
-        //Probably a parameter needed to take in name of the role.
+        
     }
 
     public void checkInfo() {
@@ -63,7 +64,7 @@ public class Player {
             System.out.println("Role: None");
         }
         else {
-            System.out.println("Role: " + playerRole);    
+            System.out.println("Role: " + playerRoleName);    
         }
         System.out.println("Role Position: " + playerRolePosition);
         System.out.println("Rank: " + rank);

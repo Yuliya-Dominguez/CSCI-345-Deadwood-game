@@ -5,6 +5,7 @@ public class Store {
     Player player = new Player();
     Dice dice = new Dice();
     SceneCards sceneCards = new SceneCards();
+    Board boad = new Board();
     public int cardRolePayment1 = 0;
     public int cardRolePayment2 = 0;
     public int cardRolePayment3 = 0;

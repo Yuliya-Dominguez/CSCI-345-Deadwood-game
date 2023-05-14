@@ -95,16 +95,4 @@ public class SceneCards {
         return line;
      }
 
-    public void removeShot() {
-
-    }
-
-    public void hideCard() {
-
-    }
-
-    public void revealCard() {
-
-    }
-
 }

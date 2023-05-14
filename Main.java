@@ -7,7 +7,7 @@ public class Main {
     Store store = Store.getStoreInstance();
     Board board = new Board();
     WrappingUp wrapUp = new WrappingUp();
-    SceneCards sceneCards = new SceneCards();
+    
     LocationManager locManager = new LocationManager();
     Acting acting = new Acting();
     Dice dice = new Dice();
@@ -18,6 +18,7 @@ public static void main(String[] args) {
 
     List<Player> gamePlayers = new ArrayList<Player>();
     Day day = new Day();
+    SceneCards sceneCards = new SceneCards();
 
     Scanner input = new Scanner(System.in);
         System.out.println("Welcome to Deadwood! Please enter the number of players: ");
@@ -77,6 +78,15 @@ public static void main(String[] args) {
                     }
                     //If 'scenestats' was chosen, display information about the scene card on the location the player is at currently.
                     else if (action.equals("scenestats")){
+                        System.out.println("\n" + "Scene Name: " + sceneCards.getName());
+                        System.out.println("Scene number: " + sceneCards.getSceneNumber());
+                        System.out.println("Scene budget: " + sceneCards.getCardBudget());
+                        System.out.println("Scene description: " + sceneCards.getSceneDescription());
+                        
+                        //for loop here to loop through all parts attached to scene.
+                        System.out.println("Scene part " +/*index_value + */ " name: " + sceneCards.getPartName(, ));
+                        System.out.println("Scene part " +/*index_value + */ " level: " + sceneCards.getPartLevel(, ));
+                        System.out.println("Scene part " +/*index_value + */ " line: " + sceneCards.getPartLine(, ));
                         System.out.println("This command is still in progress."); //delete later!
                     }
                     //If 'boardstats' was chosen, display information about the board location the player is at currently.

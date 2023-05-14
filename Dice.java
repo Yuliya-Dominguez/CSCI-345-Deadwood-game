@@ -6,6 +6,7 @@ public class Dice {
     public int[] bonusDice;
 
     SceneCards sceneCards = new SceneCards();
+    Board board = new Board();
 
     public int readDice() {
         gameDice = ((int) Math.random() * (6 - 1) + 1);
@@ -15,8 +16,8 @@ public class Dice {
 
     public void readBonus() {
         int i = 0;
-        bonusDice = new int[sceneCards.cardRoleRank];
-        while (i < sceneCards.cardRoleRank) {
+        bonusDice = new int[sceneCards.getCardBudget()];
+        while (i < sceneCards.getCardBudget()) {
             int roll = readDice();
             bonusDice[i] = roll;
             i++;
