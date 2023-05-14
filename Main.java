@@ -65,7 +65,7 @@ public static void main(String[] args) {
                         System.out.println("'scenestats': Shows scene card's information that player is currently on/next to. ");
                         System.out.println("'boardstats': Shows location player is on, including available board roles and neighboring locations.");
                         System.out.println("'day': Shows current day in game.");
-                        System.out.println("'takerole': Takes the role that you specified with [roleName]. Only works if your rank is equal to or higher than the role's rank.");
+                        System.out.println("'takerole': Takes the role that you specify. Only works if your rank is equal to or higher than the role's rank.");
                         System.out.println("'upgrade': Upgrade your rank level (only works if you are at location 'Casting Office').");
                         System.out.println("'act': Act your role (only works if you have taken a role in a scene).");
                         System.out.println("'endturn': Ends current Player's turn. ");
@@ -96,8 +96,10 @@ public static void main(String[] args) {
 
                     //If 'takerole' was chosen, have player choose their role from the scene they are on or board they are on.
                     else if (action.equals("takerole")){
-                        System.out.println("Which role will you take? (Type in name of role) \n");
-                        String roleToTake = input.next();
+                        System.out.println("\n" + "Will you take a scene part or board part?");
+                        String roleSection = input.next();
+                        System.out.println("Which part number will you take? (Type in number of part) \n");
+                        String partToTake = input.next();
                         //Code here to detect if role is from board or scene card.
                         //Code here to print success or failure message.
                         //player.takeRole();
