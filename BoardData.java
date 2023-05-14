@@ -6,6 +6,7 @@ public class BoardData {
 
     private BoardXMLparser parser;//
     private static ArrayList<Set> setList;//
+    private static int sceneIndex;
 
     public BoardData() {
         Document doc = null;
@@ -100,6 +101,11 @@ public class BoardData {
         Parts part = partsList.get(partIndex);
         String line = part.getLine();
         return line;
+     }
+
+     public static int getSceneIndex(int index) {
+        sceneIndex = index;
+        return sceneIndex;
      }
   
     /*private String name;
