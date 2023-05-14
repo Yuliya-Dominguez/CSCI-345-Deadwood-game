@@ -100,7 +100,7 @@ public static void main(String[] args) {
                         
                         //Iterates through all parts contained in the scene card.
                         for (int i = 0; i < SceneCards.getPartsList().size(); i++) {
-                        System.out.println("Scene part " +/*index_value + */ " name: " + SceneCards.getPartName(,i ));
+                        System.out.println("Scene part " +/*index_value + */ " name: " + SceneCards.getPartName(, i));
                         System.out.println("Scene part " +/*index_value + */ " level: " + SceneCards.getPartLevel(, i));
                         System.out.println("Scene part " +/*index_value + */ " line: " + SceneCards.getPartLine(, i));
                         }
