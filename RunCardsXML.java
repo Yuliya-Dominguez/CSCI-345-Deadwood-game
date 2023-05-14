@@ -38,6 +38,7 @@ public class RunCardsXML{
       getPartArea(5,2);
       getPartLine(5,0);
       getPartLine(5,2);
+      getPartsList(5);
 
    }
 
@@ -71,7 +72,8 @@ public class RunCardsXML{
       return description;
   }
 
-  /*public static void getPartsList(int index) {
+  //public static int[] getPartsList(int index) {
+  public static List<Parts> getPartsList(int index) {
 
       Card card = cardsList.get(index);
       List<Parts> partsList = card.getParts();
@@ -81,6 +83,8 @@ public class RunCardsXML{
       Area area = null;
       String line = null;
 
+      //int[] indices = new int[partsList.size()];
+
       for (int i = 0; i < partsList.size(); i++) {
          part = partsList.get(i);
          name = part.getName();
@@ -88,14 +92,17 @@ public class RunCardsXML{
          area = part.getArea();
          line = part.getLine();
 
-         System.out.println("Part " + i + ":");
+         System.out.println("Here are all available parts:\nPart " + i + ":");
          System.out.println("\tName: " + name);
          System.out.println("\tLevel: " + level);
          System.out.println("\tArea: " + area.getX() + ", " + area.getY() + ", " + area.getH() + ", " + area.getW());
          System.out.println("\tLine: " + line);
+         
+         //indices[i] = i;
       }
-      //partsList.stream().map(Parts::toString).forEach(System.out::println);
-}*/
+      //return indices;
+      return partsList;
+}
 
 public static String getPartName(int cardIndex, int partIndex) {
    Card card = cardsList.get(cardIndex);

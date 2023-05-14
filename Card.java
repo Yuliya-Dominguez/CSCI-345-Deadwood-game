@@ -61,10 +61,6 @@ public class Card {
         this.parts = parts;
     }
 
-    /*public Parts getPart() {
-        return parts;
-    }*/
-
     public static Card getInstance(String cardName, String img, int budget) {
         if (instance == null) {
             instance = new Card(cardName, img, budget);
