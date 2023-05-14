@@ -4,6 +4,7 @@ public class Player {
     public String playerRole;
     public String playerRoleName;
     public int playerRolePosition;
+    public int sceneIndexNumber;
     public int rank;
     public int dollarCount;
     public int creditCount;
@@ -25,7 +26,7 @@ public class Player {
     public void act() {
         int roll = dice.readDice();
         if (playerRole.equals("Extra")) {
-            if ((roll + rehearseCounter) >= scene.getCardBudget()) {
+            if ((roll + rehearseCounter) >= ) { //board budget here.
                 act.successExtraRole();
                 rehearseCounter = 0;
             }
@@ -54,17 +55,38 @@ public class Player {
         store.upgradeRank(rankWanted, paymentType);
     }
 
-    public void takeRole() {
-        
+    public int takeRole(String sceneOrBoard, int partIndex) {
+        if (sceneOrBoard.equals("scene")) {
+            playerRole = "Main";
+            playerRoleName = SceneCards.getPartName(, partIndex);
+            playerRolePosition = partIndex;
+            sceneIndexNumber = ; //get from board.
+            return 1;
+        }
+        else if(sceneOrBoard.equals("board")) {
+            playerRole = "Extra";
+            playerRoleName = ;//board part name here.
+            playerRolePosition = partIndex;
+            return 1;
+        }
+        else {
+            return 0;
+        }
     }
 
     public void checkInfo() {
         System.out.println("Name: " + name);
+        if ( playerRoleName == null){
+            System.out.println("Role Name: None");
+        }
+        else {
+            System.out.println("Role: " + playerRoleName);    
+        }
         if ( playerRole == null){
             System.out.println("Role: None");
         }
         else {
-            System.out.println("Role: " + playerRoleName);    
+            System.out.println("Role: " + playerRole);    
         }
         System.out.println("Role Position: " + playerRolePosition);
         System.out.println("Rank: " + rank);
@@ -72,9 +94,4 @@ public class Player {
         System.out.println("Credits: " + creditCount);
         System.out.println("Reheases: " + rehearseCounter);
     }
-
-    public void endTurn() {
-        
-    }
-
 }

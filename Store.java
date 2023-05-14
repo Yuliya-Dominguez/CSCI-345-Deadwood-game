@@ -41,16 +41,16 @@ public class Store {
             }
         }
         else {
-            int payment = sceneCards.boardRoleRank;
+            int payment = //board part level here.;
             player.dollarCount+= payment;
         }
     }
 
     private void calcBonus() {
         dice.readBonus();
-        if (sceneCards.cardRoles.length == 3) {
+        if (SceneCards.getPartsList(player.sceneIndexNumber).size() == 3) {
             int i = 0;
-            while (i < sceneCards.cardRoleRank) {
+            while (i < sceneCards.getCardBudget(player.sceneIndexNumber)) {
                 cardRolePayment1+= dice.bonusDice[i];
                 i++;
                 cardRolePayment2+= dice.bonusDice[i];
@@ -61,7 +61,7 @@ public class Store {
         }
         else {
             int i = 0;
-            while (i < sceneCards.cardRoleRank) {
+            while (i < sceneCards.getCardBudget(player.sceneIndexNumber)) {
                 cardRolePayment1+= dice.bonusDice[i];
                 i++;
                 cardRolePayment2+= dice.bonusDice[i];
