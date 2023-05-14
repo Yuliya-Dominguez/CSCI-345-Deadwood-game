@@ -6,6 +6,7 @@ public class Board {
     public String playerPosition;
 
     SceneCards sceneCards = new SceneCards();
+    BoardData boardData = new BoardData();
 
     public void setMapLayout() {
 
