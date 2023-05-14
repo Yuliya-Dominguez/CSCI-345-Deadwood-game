@@ -30,7 +30,6 @@ public class CardsXMLparser {
     }
 
     //Parse cards.xml
-    //public void readCardsData(Document d) {
     public ArrayList<Card> readCardsData(Document d) {
         ArrayList<Card> cardsList = new ArrayList<Card>();
 

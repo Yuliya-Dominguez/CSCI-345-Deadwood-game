@@ -47,7 +47,7 @@ public class RunCardsXML{
       int budget = card.getBudget();
       System.out.println("budget = "+ budget);
       return budget;
-  }
+   }
 
    public static String getName(int index) {
       Card card = cardsList.get(index);

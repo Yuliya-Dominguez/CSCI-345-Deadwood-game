@@ -7,6 +7,8 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BoardXMLparser {
 
@@ -29,23 +31,26 @@ public class BoardXMLparser {
     }
 
     //Parse board.xml
-    public void readBoardData(Document d) {
+    public ArrayList<Set> readBoardData(Document d) {
+        ArrayList<Set> boardList = new ArrayList<Set>();
 
         Element root = d.getDocumentElement();
         String boardName = root.getAttribute("name");
-        System.out.println("Board Name: " + boardName);
+        //System.out.println("Board Name: " + boardName);
+        //BoardData boardData = new BoardData(boardName);
 
         // sets
         NodeList sets = root.getElementsByTagName("set");
 
         for (int i = 0; i < sets.getLength(); i++) {
 
-            System.out.println("This is a set # " + (i + 1));
+            //System.out.println("This is a set # " + (i + 1));
 
             Node set = sets.item(i);
 
             String setName = set.getAttributes().getNamedItem("name").getNodeValue();
-            System.out.println("Set name: " + setName);
+            //System.out.println("Set name: " + setName);
+            Set setData = new Set(setName);//
 
             // set children
             NodeList setChildren = set.getChildNodes();
@@ -56,7 +61,7 @@ public class BoardXMLparser {
                 if ("neighbors".equals(setChild.getNodeName())) {
 
                     NodeList setNeighbors = setChild.getChildNodes();
-                    System.out.println("Neighbors:");
+                    //System.out.println("Neighbors:");
 
                     for (int j = 0; j < setNeighbors.getLength(); j++) {
 
@@ -65,7 +70,9 @@ public class BoardXMLparser {
                         if ("neighbor".equals(setNeighbor.getNodeName())) {
 
                             String neighborName = setNeighbor.getAttributes().getNamedItem("name").getNodeValue();
-                            System.out.println("Neighbor #" + (j + 1) + ": " + neighborName);
+                            //System.out.println("Neighbor #" + (j + 1) + ": " + neighborName);
+                            Neighbors neighborsData = new Neighbors(neighborName);//
+                            setData.addNeighbors(neighborsData);//
                         }
                     }
 
@@ -76,12 +83,14 @@ public class BoardXMLparser {
                     int y = Integer.parseInt(setArea.getAttribute("y"));
                     int h = Integer.parseInt(setArea.getAttribute("h"));
                     int w = Integer.parseInt(setArea.getAttribute("w"));
-                    System.out.println("Area = x: " + x + ", y: " + y + ", h: " + h + ", w: " + w);
+                    //System.out.println("Area = x: " + x + ", y: " + y + ", h: " + h + ", w: " + w);
+                    Area area = new Area(x, y, h, w);//
+                    setData.setArea(area);//
 
                 } else if ("takes".equals(setChild.getNodeName())) { // takes
 
                     NodeList takes = setChild.getChildNodes();
-                    System.out.println("Takes:");
+                    //System.out.println("Takes:");
 
                     for (int p = 0; p < takes.getLength(); p++) {
 
@@ -91,8 +100,7 @@ public class BoardXMLparser {
 
                             Element takeElem = (Element) take;
                             int takeNum = Integer.parseInt(takeElem.getAttribute("number"));
-                            System.out.println("Take #: " + takeNum);
-                            
+                            //System.out.println("Take #: " + takeNum);
 
                             // take area
                             NodeList takeChildren = take.getChildNodes();
@@ -100,13 +108,17 @@ public class BoardXMLparser {
                             for (int tc = 0; tc < takeChildren.getLength(); tc++) {
                                 Node takeChild = takeChildren.item(tc);
                                 if ("area".equals(takeChild.getNodeName())) {
-
+                                    
                                     Element takeArea = (Element) takeChild;
                                     int tx = Integer.parseInt(takeArea.getAttribute("x"));
                                     int ty = Integer.parseInt(takeArea.getAttribute("y"));
                                     int th = Integer.parseInt(takeArea.getAttribute("h"));
                                     int tw = Integer.parseInt(takeArea.getAttribute("w"));
-                                    System.out.println("x: " + tx + ", y: " + ty + ", h: " + th + ", w: " + tw);
+                                    //System.out.println("x: " + tx + ", y: " + ty + ", h: " + th + ", w: " + tw);
+                                    Area area = new Area(tx, ty, th, tw);//
+                                    Takes takesData = new Takes(takeNum, area);//
+                                    //takesData.setArea(area);
+                                    setData.addTakes(takesData);
                                 }
                             }
                         }
@@ -114,7 +126,7 @@ public class BoardXMLparser {
                 } else if ("parts".equals(setChild.getNodeName())) { // parts
 
                     NodeList parts = setChild.getChildNodes();
-                    System.out.println("Parts:");
+                    //System.out.println("Parts:");
 
                     for (int q = 0; q < parts.getLength(); q++) {
 
@@ -126,11 +138,12 @@ public class BoardXMLparser {
                             Element partElem = (Element) part;
                             String partName = partElem.getAttribute("name");
                             int partLVL = Integer.parseInt(partElem.getAttribute("level"));
-                            System.out.println("Part name: " + partName + ", Level: " + partLVL);
+                            //System.out.println("Part name: " + partName + ", Level: " + partLVL);
                             
 
                             // upgrade area
                             NodeList partChildren = part.getChildNodes();
+                            Area pArea = null;
 
                             for (int r = 0; r < partChildren.getLength(); r++) {
                                 Node partChild = partChildren.item(r);
@@ -141,29 +154,34 @@ public class BoardXMLparser {
                                     int py = Integer.parseInt(partArea.getAttribute("y"));
                                     int ph = Integer.parseInt(partArea.getAttribute("h"));
                                     int pw = Integer.parseInt(partArea.getAttribute("w"));
-                                    System.out.println("x: " + px + ", y: " + py + ", h: " + ph + ", w: " + pw);
+                                    //System.out.println("x: " + px + ", y: " + py + ", h: " + ph + ", w: " + pw);
+                                    pArea = new Area(px, py, ph, pw);//
                                 } else if ("line".equals(partChild.getNodeName())) {
 
                                     Element partLine = (Element) partChild;
                                     String line = partLine.getTextContent();
-                                    System.out.println("Line: \"" + line + "\"");
+                                    //System.out.println("Line: \"" + line + "\"");
+                                    Parts newPart = new Parts(partName, partLVL, pArea, line);//
+                                    setData.addPart(newPart);//
                                 }
                             }
                         }
                     }
                 }
             }
+            //boardData.addSet(setData);
+            boardList.add(setData);
         }
 
         // trailer
         NodeList trailers = root.getElementsByTagName("trailer");
-        System.out.println("Trailer");
+        //System.out.println("Trailer");
 
         Node trailer = trailers.item(0);
 
         // trailer children
         NodeList trailChildren = trailer.getChildNodes();
-        System.out.println("Trailer Neighbors:");
+        //System.out.println("Trailer Neighbors:");
 
         for (int l = 0; l < trailChildren.getLength(); l++) {
 
@@ -182,7 +200,7 @@ public class BoardXMLparser {
                         Element trailNeighborElem = (Element) trailNeighbor;
                         String trailNeighborName = trailNeighborElem.getAttributes().getNamedItem("name")
                                 .getNodeValue();
-                        System.out.println("Neighbor #" + (c + 1) + ": " + trailNeighborName);
+                        //System.out.println("Neighbor #" + (c + 1) + ": " + trailNeighborName);
                     }
                 }
             } else if ("area".equals(trailChild.getNodeName())) { // trailer area
@@ -192,19 +210,19 @@ public class BoardXMLparser {
                 int trY = Integer.parseInt(trailerArea.getAttribute("y"));
                 int trH = Integer.parseInt(trailerArea.getAttribute("h"));
                 int trW = Integer.parseInt(trailerArea.getAttribute("w"));
-                System.out.println("x: " + trX + ", y: " + trY + ", h: " + trH + ", w: " + trW);
+                //System.out.println("x: " + trX + ", y: " + trY + ", h: " + trH + ", w: " + trW);
             }
         }
 
         // office
         NodeList officeLoc = root.getElementsByTagName("office");
-        System.out.println("Office:");
+        //System.out.println("Office:");
 
         Node office = officeLoc.item(0);
 
         // office children
         NodeList officeChildren = office.getChildNodes();
-        System.out.println("Office Neighbors:");
+        //System.out.println("Office Neighbors:");
 
         for (int m = 0; m < officeChildren.getLength(); m++) {
 
@@ -222,7 +240,7 @@ public class BoardXMLparser {
                         Element officeNeighborElem = (Element) officeNeighbor;
                         String officeNeighborName = officeNeighborElem.getAttributes().getNamedItem("name")
                                 .getNodeValue();
-                        System.out.println("Neighbor #" + (c + 1) + ": " + officeNeighborName);
+                        //System.out.println("Neighbor #" + (c + 1) + ": " + officeNeighborName);
                     }
                 }
             } else if ("area".equals(child.getNodeName())) { // office area
@@ -232,11 +250,11 @@ public class BoardXMLparser {
                 int ofY = Integer.parseInt(officeArea.getAttribute("y"));
                 int ofH = Integer.parseInt(officeArea.getAttribute("h"));
                 int ofW = Integer.parseInt(officeArea.getAttribute("w"));
-                System.out.println("x: " + ofX + ", y: " + ofY + ", h: " + ofH + ", w: " + ofW);
+                //System.out.println("x: " + ofX + ", y: " + ofY + ", h: " + ofH + ", w: " + ofW);
             } else if ("upgrades".equals(child.getNodeName())) { // upgrades
 
                 NodeList upgrades = child.getChildNodes();
-                System.out.println("Upgrades:");
+                //System.out.println("Upgrades:");
 
                 for (int u = 0; u < upgrades.getLength(); u++) {
 
@@ -249,7 +267,7 @@ public class BoardXMLparser {
                         int level = Integer.parseInt(upgradeElem.getAttribute("level"));
                         String currency = upgradeElem.getAttribute("currency");
                         int amt = Integer.parseInt(upgradeElem.getAttribute("amt"));
-                        System.out.println("Level " + level + " Currency: " + currency + " Amount: " + amt);
+                        //System.out.println("Level " + level + " Currency: " + currency + " Amount: " + amt);
 
                         // upgrade area
                         NodeList upgradeChildren = upgrade.getChildNodes();
@@ -262,12 +280,13 @@ public class BoardXMLparser {
                                 int upY = Integer.parseInt(upgradeArea.getAttribute("y"));
                                 int upH = Integer.parseInt(upgradeArea.getAttribute("h"));
                                 int upW = Integer.parseInt(upgradeArea.getAttribute("w"));
-                                System.out.println("x: " + upX + ", y: " + upY + ", h: " + upH + ", w: " + upW);
+                                //System.out.println("x: " + upX + ", y: " + upY + ", h: " + upH + ", w: " + upW);
                             }
                         }
                     }
                 }
             }
         }
+        return boardList;
     }
 }
