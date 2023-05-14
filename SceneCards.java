@@ -28,16 +28,16 @@ public class SceneCards {
     public int getCardBudget(int index) {
         Card card = cardsList.get(index);
         int budget = card.getBudget();
-        System.out.println("budget = "+ budget);
+        System.out.println("budget = " + budget);
         return budget;
     }
 
     public static String getName(int index) {
         Card card = cardsList.get(index);
         String name = card.getCardName();
-        System.out.println("name = "+ name);
+        System.out.println("name = " + name);
         return name;
-     }
+    }
 
     public int getSceneNumber(int index) {
         Card card = cardsList.get(index);
@@ -55,6 +55,34 @@ public class SceneCards {
         return description;
     }
 
+    // public static int[] getPartsList(int index) {
+    public static List<Parts> getPartsList(int index) {
+
+        Card card = cardsList.get(index);
+        List<Parts> partsList = card.getParts();
+        /*
+         * Parts part = null;
+         * String name = null;
+         * int level = 0;
+         * Area area = null;
+         * String line = null;
+         * 
+         * int[] indices = new int[partsList.size()];
+         * 
+         * for (int i = 0; i < partsList.size(); i++) {
+         * part = partsList.get(i);
+         * name = part.getName();
+         * level = part.getLevel();
+         * area = part.getArea();
+         * line = part.getLine();
+         * 
+         * indices[i] = i;
+         * }
+         * return indices;
+         */
+        return partsList;
+    }
+
     public static String getPartName(int cardIndex, int partIndex) {
         Card card = cardsList.get(cardIndex);
         List<Parts> partsList = card.getParts();
@@ -62,18 +90,18 @@ public class SceneCards {
         String name = part.getName();
         System.out.println("part name = " + name);
         return name;
-     }
-     
-     public static int getPartLevel(int cardIndex, int partIndex) {
+    }
+
+    public static int getPartLevel(int cardIndex, int partIndex) {
         Card card = cardsList.get(cardIndex);
         List<Parts> partsList = card.getParts();
         Parts part = partsList.get(partIndex);
         int level = part.getLevel();
         System.out.println("part level = " + level);
         return level;
-     }
-     
-     public static Area getPartArea(int cardIndex, int partIndex) {
+    }
+
+    public static Area getPartArea(int cardIndex, int partIndex) {
         Card card = cardsList.get(cardIndex);
         List<Parts> partsList = card.getParts();
         Parts part = partsList.get(partIndex);
@@ -84,15 +112,15 @@ public class SceneCards {
         int w = area.getW();
         System.out.println("part area: x= " + x + ", y=" + y + ", h=" + h + ", w=" + w);
         return area;
-     }
-     
-     public static String getPartLine(int cardIndex, int partIndex) {
+    }
+
+    public static String getPartLine(int cardIndex, int partIndex) {
         Card card = cardsList.get(cardIndex);
         List<Parts> partsList = card.getParts();
         Parts part = partsList.get(partIndex);
         String line = part.getLine();
         System.out.println("part line = " + line);
         return line;
-     }
+    }
 
 }
