@@ -7,13 +7,11 @@ public class Acting {
 
     public void successMainRole() {
         System.out.println("Success! Gain two credits.");
-        shotsFinished++;
         store.payForShot();
     }
 
     public void successExtraRole() {
         System.out.println("Success! Gain a credit and dollar!");
-        shotsFinished++;
         store.payForShot();
     }
 

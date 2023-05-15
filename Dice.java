@@ -14,10 +14,10 @@ public class Dice {
         return gameDice;
     }
 
-    public void readBonus() {
+    public void readBonus(int sceneIndex) {
         int i = 0;
-        bonusDice = new int[sceneCards.getCardBudget()];
-        while (i < sceneCards.getCardBudget()) {
+        bonusDice = new int[sceneCards.getCardBudget(sceneIndex)];
+        while (i < sceneCards.getCardBudget(sceneIndex)) {
             int roll = readDice();
             bonusDice[i] = roll;
             i++;

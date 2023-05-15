@@ -17,7 +17,7 @@ public class WrappingUp {
     public void playerExtraBonus() {
         System.out.println("End of Scene!");
         if (checkMainRoleFilled()) {
-            store.payBonus();
+            store.payBonusExtra();
         }
         else {
             System.out.println("No actor on card, so no bonus.");

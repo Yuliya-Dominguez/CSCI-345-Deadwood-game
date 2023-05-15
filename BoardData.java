@@ -107,8 +107,11 @@ public class BoardData {
         return line;
      }
 
-     public static int getSceneIndex(int index) {
+     public void takeSceneIndex(int index) {
         sceneIndex = index;
+     }
+
+     public int getSceneIndex() {
         return sceneIndex;
      }
      

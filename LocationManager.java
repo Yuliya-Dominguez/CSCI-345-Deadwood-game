@@ -1,6 +1,7 @@
 public class LocationManager {
 
-    Board board = new Board();
+    //Board board = new Board();
+    Player player = new Player();
 
     public String[] playerLocations;
     public String[] sceneNames;
@@ -9,7 +10,7 @@ public class LocationManager {
         return true;
     }
 
-    public void updateLocation() {
-        board.setPlayerPos();
-    }
+    public void updateLocation(int location) {
+        player.playerLocation = location;
+    } 
 }

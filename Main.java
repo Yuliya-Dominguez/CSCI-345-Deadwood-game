@@ -4,10 +4,10 @@ import java.util.*;
 public class Main {
 
     Deadwood deadwood = new Deadwood();
-    Store store = Store.getStoreInstance();
-    Board board = new Board();
+    //Store store = Store.getStoreInstance();
     WrappingUp wrapUp = new WrappingUp();
     
+    Board board = new Board();
     LocationManager locManager = new LocationManager();
     Acting acting = new Acting();
     Dice dice = new Dice();
@@ -18,8 +18,8 @@ public static void main(String[] args) {
 
     List<Player> gamePlayers = new ArrayList<Player>();
     Day day = new Day();
+    BoardData boardData = new BoardData();
     SceneCards sceneCards = new SceneCards();
-    
     
 
     Scanner input = new Scanner(System.in);
@@ -48,10 +48,22 @@ public static void main(String[] args) {
                 System.out.println(("What is Player ") + (i + 1) + (" name? \n"));
                 String inputName = input.next();
                 player.name = inputName;
+                player.move(9);
+                //0 = Train Station
+                //1 = Secret Hideout
+                //2 = Church
+                //3 = Hotel
+                //4 = Main Street
+                //5 = Jail
+                //6 = General Store
+                //7 = Ranch
+                //8 = Bank
+                //9 = Saloon
+                //10 = 
                 i++;
                 
             }
-
+            day.setUp();
             System.out.println("Game is set up! \n"); 
 
         }
@@ -77,32 +89,50 @@ public static void main(String[] args) {
                         System.out.println("'takerole': Takes the role that you specify. Only works if your rank is equal to or higher than the role's rank.");
                         System.out.println("'upgrade': Upgrade your rank level (only works if you are at location 'Casting Office').");
                         System.out.println("'act': Act your role (only works if you have taken a role in a scene).");
+                        System.out.println("'rehearse': Rehearse your role. Add a token to your acting roll.");
                         System.out.println("'endturn': Ends current Player's turn. ");
                         System.out.println("'quit': Quits the game.\n");
                     }
 
 
                     //If 'move' was chosen, prompt the player for which neighbor location they want to move to.
-                    else if (action.equals("move")){
-                        
+                    else if (action.equals("move")) {
+
+                        System.out.println("\nWhich neighbor will you move to? (Enter neighbor's number (1,2,etc.)");
+                        int neighborMove = input.nextInt();
+                        int moveSuccess = 0;
+
+                        for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
+                            if (BoardData.getNeighborName(player.playerLocation, a).equals(BoardData.getNeighborName(player.playerLocation, neighborMove))){
+                                player.move(neighborMove);
+                                System.out.println("Moved to " + BoardData.getSetName(player.playerLocation));
+                                moveSuccess = 1;
+                            }
+                        }
+                        if (moveSuccess == 1) {
+                            break;
+                        }
+                        else {
+                            System.out.println("Sorry, that move is invalid. Choose a different neighbor.");
+                        }
                         System.out.println("This command is still in progress."); //delete later!
-                        break;
                     }
 
 
                     //If 'scenestats' was chosen, display information about the scene card on the location the player is at currently.
                     else if (action.equals("scenestats")){
 
-                        System.out.println("\n" + "Scene Name: " + SceneCards.getName());
-                        System.out.println("Scene number: " + SceneCards.getSceneNumber());
-                        System.out.println("Scene budget: " + SceneCards.getCardBudget());
-                        System.out.println("Scene description: " + SceneCards.getSceneDescription());
+                        System.out.println("\n" + "Scene Name: " + SceneCards.getName(player.sceneIndexNumber));
+                        System.out.println("Scene Number: " + sceneCards.getSceneNumber(player.sceneIndexNumber));
+                        System.out.println("Scene Budget: " + sceneCards.getCardBudget(player.sceneIndexNumber));
+                        System.out.println("Scene Description: " + sceneCards.getSceneDescription(player.sceneIndexNumber));
                         
                         //Iterates through all parts contained in the scene card.
-                        for (int i = 0; i < SceneCards.getPartsList().size(); i++) {
-                        System.out.println("Scene part " +/*index_value + */ " name: " + SceneCards.getPartName(, i));
-                        System.out.println("Scene part " +/*index_value + */ " level: " + SceneCards.getPartLevel(, i));
-                        System.out.println("Scene part " +/*index_value + */ " line: " + SceneCards.getPartLine(, i));
+                        for (int i = 0; i < SceneCards.getPartsList(player.sceneIndexNumber).size(); i++) {
+                            System.out.println("Scene Part " + (i + 1));
+                            System.out.println("\t Name: " + SceneCards.getPartName(player.sceneIndexNumber, i));
+                            System.out.println("\t Level: " + SceneCards.getPartLevel(player.sceneIndexNumber, i));
+                            System.out.println("\t Line: " + SceneCards.getPartLine(player.sceneIndexNumber, i) + "\n");
                         }
                         System.out.println("This command is still in progress."); //delete later!
                     }
@@ -111,6 +141,21 @@ public static void main(String[] args) {
                     //If 'boardstats' was chosen, display information about the board location the player is at currently.
                     else if (action.equals("boardstats")){
 
+                        System.out.println("\nBoard Name: " + BoardData.getSetName(player.playerLocation));
+                        System.out.println("Number of Board Takes: " + BoardData.getTakesList(player.playerLocation).size());
+                        System.out.println("Scene Index number: " + boardData.getSceneIndex());
+                        
+                        for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
+                            System.out.println("Board Neighbor " + (a+1) + "'s Name: " + BoardData.getNeighborName(player.playerLocation, a));
+                            
+                        }
+
+                        for (int i = 0; i < BoardData.getPartsList(player.playerLocation).size(); i++) {
+                            System.out.println("Board Part " + (i + 1));
+                            System.out.println("\t Name: " + BoardData.getPartName(player.playerLocation, i));
+                            System.out.println("\t Level: " + BoardData.getPartLevel(player.playerLocation, i));
+                            System.out.println("\t Line: " + BoardData.getPartLine(player.playerLocation, i) + "\n");
+                        }
 
                         System.out.println("This command is still in progress."); //delete later!
                     }
@@ -167,6 +212,18 @@ public static void main(String[] args) {
                             System.out.println("Error. Player needs to have taken a role from a scene before they can act.");
                             System.out.println("This command is still in progress."); //delete later!
                         }
+                    }
+
+                    //If 'rehearse' was chosen, add a rehearse counter to player if they have a role chosen.
+                    else if (action.equals("rehearse")) {
+                        if (player.playerRole != null){
+                            player.rehearse();
+                            break;
+                        }
+                        else {
+                            System.out.println("Error. Cannot take this action without a role chosen.");
+                        }
+                        
                     }
 
 

@@ -5,7 +5,7 @@ public class Store {
     Player player = new Player();
     Dice dice = new Dice();
     SceneCards sceneCards = new SceneCards();
-    Board boad = new Board();
+    BoardData boardData = new BoardData();
     public int cardRolePayment1 = 0;
     public int cardRolePayment2 = 0;
     public int cardRolePayment3 = 0;
@@ -28,7 +28,6 @@ public class Store {
         }
     }
     public void payBonus() {
-        if (player.playerRole.equals("Main")) {
             calcBonus();
             if (player.playerRolePosition == 1) {
                 player.dollarCount+= cardRolePayment1;
@@ -39,18 +38,19 @@ public class Store {
             else {
                 player.dollarCount+= cardRolePayment3;
             }
-        }
-        else {
-            int payment = //board part level here.;
-            player.dollarCount+= payment;
-        }
+        
+    }
+
+    public void payBonusExtra() {
+        int payment = BoardData.getPartLevel(player.playerLocation, player.playerRolePosition);
+        player.dollarCount+= payment;
     }
 
     private void calcBonus() {
-        dice.readBonus();
+        dice.readBonus(player.sceneIndexNumber);
         if (SceneCards.getPartsList(player.sceneIndexNumber).size() == 3) {
             int i = 0;
-            while (i < sceneCards.getCardBudget(player.sceneIndexNumber)) {
+            while (i < sceneCards.getCardBudget(sceneCards.cardRoleRank)) {
                 cardRolePayment1+= dice.bonusDice[i];
                 i++;
                 cardRolePayment2+= dice.bonusDice[i];
@@ -61,7 +61,7 @@ public class Store {
         }
         else {
             int i = 0;
-            while (i < sceneCards.getCardBudget(player.sceneIndexNumber)) {
+            while (i < sceneCards.getCardBudget(sceneCards.cardRoleRank)) {
                 cardRolePayment1+= dice.bonusDice[i];
                 i++;
                 cardRolePayment2+= dice.bonusDice[i];
