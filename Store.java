@@ -18,8 +18,8 @@ public class Store {
         return instance;
     }
 
-    public void payForShot() {
-        if (player.playerRole.equals("Main")) {
+    public int payForShot(String role) {
+        if (role.equals("Main")) {
             player.creditCount+= 2;
         }
         else {

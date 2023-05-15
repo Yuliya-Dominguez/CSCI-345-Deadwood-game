@@ -5,6 +5,7 @@ public class Board {
 
     //private int[] mapLayout;
     //public String playerPosition;
+    public  int takesLeft;
 
     SceneCards sceneCards = new SceneCards();
     //LocationManager locManager = new LocationManager();
@@ -30,6 +31,14 @@ public class Board {
         return sets;
     }
 
+    /*public int getTakesLeft() {
+        return takesLeft;
+    }
+
+    public void setTakesLeft(int takes) {
+        takesLeft = takes;
+    }
+    */
     //public void setPlayerPos(int location) {
     //    locManager.updateLocation(location);
     //}

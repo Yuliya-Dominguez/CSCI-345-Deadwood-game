@@ -2,16 +2,14 @@ import java.lang.Math;
 
 public class Dice {
 
-    private int gameDice;
+    //private int gameDice;
     public int[] bonusDice;
 
     SceneCards sceneCards = new SceneCards();
     Board board = new Board();
 
     public int readDice() {
-        gameDice = ((int) Math.random() * (6 - 1) + 1);
-
-        return gameDice;
+        return ((int) Math.floor(Math.random() * (6 - 1 + 1) + 1));
     }
 
     public void readBonus(int sceneIndex) {

@@ -6,11 +6,11 @@ public class Main {
     Deadwood deadwood = new Deadwood();
     //Store store = Store.getStoreInstance();
     WrappingUp wrapUp = new WrappingUp();
-    
-    Board board = new Board();
+    Dice dice = new Dice();
+   
     LocationManager locManager = new LocationManager();
     Acting acting = new Acting();
-    Dice dice = new Dice();
+    
     
     static int DAY_MAX = 1;
 
@@ -21,6 +21,7 @@ public static void main(String[] args) {
     BoardData boardData = new BoardData();
     SceneCards sceneCards = new SceneCards();
     
+    Board board = new Board();
 
     Scanner input = new Scanner(System.in);
         System.out.println("Welcome to Deadwood! Please enter the number of players: ");
@@ -142,7 +143,7 @@ public static void main(String[] args) {
                     else if (action.equals("boardstats")){
 
                         System.out.println("\nBoard Name: " + BoardData.getSetName(player.playerLocation));
-                        System.out.println("Number of Board Takes: " + BoardData.getTakesList(player.playerLocation).size());
+                        System.out.println("Number of Board Takes Left: " + (BoardData.getTakesList(player.playerLocation).size() - board.takesLeft));
                         System.out.println("Scene Index number: " + boardData.getSceneIndex());
                         
                         for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
@@ -202,8 +203,10 @@ public static void main(String[] args) {
                     //If 'act' was chosen, have the player act out their role if they have taken one.
                     else if (action.equals("act")){
 
+                        //need a check in here to wrap up based on the shot counter.
                         if (player.playerRole != null) {
                             System.out.println("Rolling for acting...");
+                            //int roll = dice.readDice();
                             player.act();
                             break;
                         }
@@ -268,6 +271,8 @@ public static void main(String[] args) {
                         System.out.println("\n" + 
                         "Sorry, that command is not available. Please type 'options' to see the list of available options. \n");
                     }
+
+                    //Need a check down here to see how many scenes are left on the board, then call endDay().
                     
                 }
             }

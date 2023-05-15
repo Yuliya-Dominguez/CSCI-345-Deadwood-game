@@ -16,7 +16,7 @@ public class Player {
     Dice dice = new Dice();
     Board board = new Board();
     SceneCards scene = new SceneCards();
-    //Acting act = new Acting();
+    Acting act = new Acting();
 
     Store store = Store.getStoreInstance();
     public List<BoardData> boardLocations = Board.getBoardLoactions();
@@ -32,27 +32,36 @@ public class Player {
 
     public void act() {
         //BoardData currentSet = boardLocations.get(playerLocation);
+        Dice dice = new Dice();
         int roll = dice.readDice();
         //BoardData currentSet = boardLocations.get(playerLocation);
+
         if (playerRole.equals("Extra")) {
             if ((roll + rehearseCounter) >= scene.getCardBudget(sceneIndexNumber)) {
+                //act.successExtraRole();
                 System.out.println("Success! Gain a credit and dollar!");
-                //store.payForShot();
+                dollarCount++;
+                creditCount++;
+                //store.payForShot(playerRole);
                 
                 rehearseCounter = 0;
             }
             else {
+                //act.failureExtraRole();
                 System.out.println("Failure. Dollar gained.");
                 dollarCount++;
             }
         }
         else if (playerRole.equals("Main")) {
             if (roll + rehearseCounter >= scene.getCardBudget(sceneIndexNumber)) {
+                //act.successMainRole();
                 System.out.println("Success! Gain two credits.");
-                //store.payForShot();
+                creditCount+= 2;
+                //store.payForShot(playerRole);
                 rehearseCounter = 0;
             }
             else {
+                //act.failureMainRole();
                 System.out.println("Failure. Nothing gained.");
             }
         }
