@@ -148,5 +148,49 @@ public class BoardData {
         String name = neighbors.getName();
         return name;
      }
+
+     //upgrades
+     public static List<Upgrade> getUpgradesList() {
+
+        Office upgrade = officeList.get(0);
+        List<Upgrade> upList = upgrade.getUpgrade();
+        return upList;
+     }
+  
+     public static int getUpgradeLevel(int upIndex) {
+        Office office = officeList.get(0);
+        List<Upgrade> upList = office.getUpgrade();
+        Upgrade upgrade = upList.get(upIndex);
+        int level = upgrade.getLevel();
+        return level;
+     }
+  
+     public static String getUpgradeCurrency(int upIndex) {
+        Office office = officeList.get(0);
+        List<Upgrade> upList = office.getUpgrade();
+        Upgrade upgrade = upList.get(upIndex);
+        String currency = upgrade.getCurrency();
+        return currency;
+     }
+  
+     public static int getUpgradeAmt(int upIndex) {
+        Office office = officeList.get(0);
+        List<Upgrade> upList = office.getUpgrade();
+        Upgrade upgrade = upList.get(upIndex);
+        int amt = upgrade.getAmt();
+        return amt;
+     }
+  
+     public static Area getUpgradeArea(int upIndex) {
+        Office office = officeList.get(0);
+        List<Upgrade> upList = office.getUpgrade();
+        Upgrade upgrade = upList.get(upIndex);
+        Area area = upgrade.getArea();
+        int x = area.getX();
+        int y = area.getY();
+        int h = area.getH();
+        int w = area.getW();
+        return area;
+     }
     
 }

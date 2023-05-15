@@ -30,12 +30,29 @@ public class RunBoardXML{
       
       }
 
-      getTrailerNeighbors();
+      /*getTrailerNeighbors();
       getOfficeNeighbors();
       getTrailNeighbor(0);
       getTrailNeighbor(1);
       getOffNeighbor(0);
-      getOffNeighbor(1);
+      getOffNeighbor(1);*/
+      getUpgradesList();
+
+      getUpgradeLevel(0);
+      getUpgradeLevel(3);
+      getUpgradeLevel(9);
+
+      getUpgradeCurrency(0);
+      getUpgradeCurrency(5);
+      getUpgradeCurrency(8);
+
+      getUpgradeAmt(2);
+      getUpgradeAmt(4);
+      getUpgradeAmt(7);
+
+      getUpgradeArea(0);
+      getUpgradeArea(3);
+      getUpgradeArea(7);
 
    }
 
@@ -192,6 +209,72 @@ public class RunBoardXML{
       Neighbors neighbors = neighborsList.get(neighborIndex);
       String name = neighbors.getName();
       return name;
+   }
+
+   public static List<Upgrade> getUpgradesList() {
+
+      Office upgrade = officeList.get(0);
+      List<Upgrade> upList = upgrade.getUpgrade();
+      /*Upgrade up = null;
+      int level = 0;
+      Area area = null;
+      String currency = null;
+      int amt = 0;
+
+      for (int i = 0; i < upList.size(); i++) {
+         up = upList.get(i);
+         level = up.getLevel();
+         area = up.getArea();
+         currency = up.getCurrency();
+         amt = up.getAmt();
+
+         System.out.println("Upgrade " + i + ":");
+         System.out.println("\tLevel: " + level);
+         System.out.println("\tCurrency: " + currency);
+         System.out.println("\tAmount: " + amt);
+         System.out.println("\tArea: " + area.getX() + ", " + area.getY() + ", " + area.getH() + ", " + area.getW());
+      }*/
+      return upList;
+   }
+
+   public static int getUpgradeLevel(int upIndex) {
+      Office office = officeList.get(0);
+      List<Upgrade> upList = office.getUpgrade();
+      Upgrade upgrade = upList.get(upIndex);
+      int level = upgrade.getLevel();
+      //System.out.println("upgrade level = " + level);
+      return level;
+   }
+
+   public static String getUpgradeCurrency(int upIndex) {
+      Office office = officeList.get(0);
+      List<Upgrade> upList = office.getUpgrade();
+      Upgrade upgrade = upList.get(upIndex);
+      String currency = upgrade.getCurrency();
+      //System.out.println("upgrade currency = " + currency);
+      return currency;
+   }
+
+   public static int getUpgradeAmt(int upIndex) {
+      Office office = officeList.get(0);
+      List<Upgrade> upList = office.getUpgrade();
+      Upgrade upgrade = upList.get(upIndex);
+      int amt = upgrade.getAmt();
+      //System.out.println("upgrade amt = " + amt);
+      return amt;
+   }
+
+   public static Area getUpgradeArea(int upIndex) {
+      Office office = officeList.get(0);
+      List<Upgrade> upList = office.getUpgrade();
+      Upgrade upgrade = upList.get(upIndex);
+      Area area = upgrade.getArea();
+      int x = area.getX();
+      int y = area.getY();
+      int h = area.getH();
+      int w = area.getW();
+      //System.out.println("part area: x= " + x + ", y=" + y + ", h=" + h + ", w=" + w);
+      return area;
    }
 
 }

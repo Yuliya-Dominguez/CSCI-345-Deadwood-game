@@ -4,11 +4,13 @@ import java.util.List;
 public class Office {
     private List<Neighbors> neighbors;
     private Area area;
+    private List<Upgrade> upgrades;
     
     private static Office instance = null;
 
     Office() {
         this.neighbors = new ArrayList<Neighbors>();
+        this.upgrades = new ArrayList<Upgrade>();
     }
   
     public static Office getInstance() {
@@ -37,4 +39,16 @@ public class Office {
     public void setArea(Area area) {
         this.area = area;
     }
+
+    public void addUpgrade(Upgrade upgrade) {
+        this.upgrades.add(upgrade);
+      }
+  
+      public List<Upgrade> getUpgrade() {
+          return upgrades;
+      }
+  
+      public void setUpgrade(List<Upgrade> upgrades) {
+          this.upgrades = upgrades;
+      }
 }

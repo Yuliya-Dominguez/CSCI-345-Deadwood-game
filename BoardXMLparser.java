@@ -294,6 +294,7 @@ public class BoardXMLparser {
 
                         // upgrade area
                         NodeList upgradeChildren = upgrade.getChildNodes();
+                        Area uArea = null;
 
                         for (int uc = 0; uc < upgradeChildren.getLength(); uc++) {
                             Node upgradeChild = upgradeChildren.item(uc);
@@ -303,7 +304,10 @@ public class BoardXMLparser {
                                 int upY = Integer.parseInt(upgradeArea.getAttribute("y"));
                                 int upH = Integer.parseInt(upgradeArea.getAttribute("h"));
                                 int upW = Integer.parseInt(upgradeArea.getAttribute("w"));
+                                uArea = new Area(upX, upY, upH, upW);
                                 //System.out.println("x: " + upX + ", y: " + upY + ", h: " + upH + ", w: " + upW);
+                                Upgrade newUpgrade = new Upgrade(level, currency, amt, uArea);//
+                                officeData.addUpgrade(newUpgrade);
                             }
                         }
                     }
