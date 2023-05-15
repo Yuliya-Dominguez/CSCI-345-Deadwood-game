@@ -123,17 +123,17 @@ public static void main(String[] args) {
                     //If 'scenestats' was chosen, display information about the scene card on the location the player is at currently.
                     else if (action.equals("scenestats")){
 
-                        System.out.println("\n" + "Scene Name: " + SceneCards.getName(player.sceneIndexNumber));
-                        System.out.println("Scene Number: " + sceneCards.getSceneNumber(player.sceneIndexNumber));
-                        System.out.println("Scene Budget: " + sceneCards.getCardBudget(player.sceneIndexNumber));
-                        System.out.println("Scene Description: " + sceneCards.getSceneDescription(player.sceneIndexNumber));
+                        System.out.println("\n" + "Scene Name: " + SceneCards.getName(boardData.getSceneIndex()));
+                        System.out.println("Scene Number: " + sceneCards.getSceneNumber(boardData.getSceneIndex()));
+                        System.out.println("Scene Budget: " + sceneCards.getCardBudget(boardData.getSceneIndex()));
+                        System.out.println("Scene Description: " + sceneCards.getSceneDescription(boardData.getSceneIndex()));
                         
                         //Iterates through all parts contained in the scene card.
-                        for (int i = 0; i < SceneCards.getPartsList(player.sceneIndexNumber).size(); i++) {
+                        for (int i = 0; i < SceneCards.getPartsList(boardData.getSceneIndex()).size(); i++) {
                             System.out.println("Scene Part " + (i + 1));
-                            System.out.println("\t Name: " + SceneCards.getPartName(player.sceneIndexNumber, i));
-                            System.out.println("\t Level: " + SceneCards.getPartLevel(player.sceneIndexNumber, i));
-                            System.out.println("\t Line: " + SceneCards.getPartLine(player.sceneIndexNumber, i) + "\n");
+                            System.out.println("\t Name: " + SceneCards.getPartName(boardData.getSceneIndex(), i));
+                            System.out.println("\t Level: " + SceneCards.getPartLevel(boardData.getSceneIndex(), i));
+                            System.out.println("\t Line: " + SceneCards.getPartLine(boardData.getSceneIndex(), i) + "\n");
                         }
                         System.out.println("This command is still in progress."); //delete later!
                     }
@@ -144,7 +144,7 @@ public static void main(String[] args) {
 
                         System.out.println("\nBoard Name: " + BoardData.getSetName(player.playerLocation));
                         System.out.println("Number of Board Takes Left: " + (BoardData.getTakesList(player.playerLocation).size() - board.takesLeft));
-                        System.out.println("Scene Index number: " + boardData.getSceneIndex());
+                        System.out.println("Scene: " + SceneCards.getName(boardData.getSceneIndex()) + "\tIndex: " + boardData.getSceneIndex());
                         
                         for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
                             System.out.println("Board Neighbor " + (a+1) + "'s Name: " + BoardData.getNeighborName(player.playerLocation, a));
