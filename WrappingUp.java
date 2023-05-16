@@ -10,17 +10,17 @@ public class WrappingUp {
     }
 
     public void playerMainBonus() {
-        System.out.println("End of Scene!");
+        System.out.println("That's a wrap! End of Scene!");
         store.payBonus();
     }
 
     public void playerExtraBonus() {
-        System.out.println("End of Scene!");
+        System.out.println("That's a wrap! End of Scene!");
         if (checkMainRoleFilled()) {
             store.payBonusExtra();
         }
         else {
-            System.out.println("No actor on card, so no bonus.");
+            System.out.println("That's a wrap! End of Scene! \tNo actor on card, so no bonus.");
         }
     }
 

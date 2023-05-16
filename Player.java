@@ -32,7 +32,7 @@ public class Player {
     }
 
 
-    public void act() {
+    public int act() {
         //BoardData currentSet = boardLocations.get(playerLocation);
         Dice dice = new Dice();
         int roll = dice.readDice();
@@ -47,26 +47,32 @@ public class Player {
                 //store.payForShot(playerRole);
                 
                 rehearseCounter = 0;
+                return 1;
             }
             else {
                 //act.failureExtraRole();
                 System.out.println("Failure. Dollar gained.");
                 dollarCount++;
+                return 0;
             }
         }
         else if (playerRole.equals("Main")) {
-            if (roll + rehearseCounter >= scene.getCardBudget(sceneIndexNumber)) {
+            if ((roll + rehearseCounter) >= scene.getCardBudget(sceneIndexNumber)) {
                 //act.successMainRole();
                 System.out.println("Success! Gain two credits.");
                 creditCount+= 2;
                 //store.payForShot(playerRole);
                 rehearseCounter = 0;
+                return 1;
             }
             else {
                 //act.failureMainRole();
                 System.out.println("Failure. Nothing gained.");
+                return 0;
             }
+            
         }
+        return 0;
     }
 
     public void rehearse() {

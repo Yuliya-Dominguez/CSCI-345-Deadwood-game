@@ -31,14 +31,16 @@ public class Store {
             calcBonus();
             if (player.playerRolePosition == 1) {
                 player.dollarCount+= cardRolePayment1;
+                System.out.println("Gained " + cardRolePayment1 + " dollars!");
             }
             else if (player.playerRolePosition == 2) {
                 player.dollarCount+= cardRolePayment2;
+                System.out.println("Gained " + cardRolePayment2 + " dollars!");
             }
             else {
                 player.dollarCount+= cardRolePayment3;
+                System.out.println("Gained " + cardRolePayment3 + " dollars!");
             }
-        
     }
 
     public void payBonusExtra() {
@@ -50,7 +52,7 @@ public class Store {
         dice.readBonus(player.sceneIndexNumber);
         if (SceneCards.getPartsList(player.sceneIndexNumber).size() == 3) {
             int i = 0;
-            while (i < sceneCards.getCardBudget(sceneCards.cardRoleRank)) {
+            while (i < sceneCards.getCardBudget(player.sceneIndexNumber) - 1) {
                 cardRolePayment1+= dice.bonusDice[i];
                 i++;
                 cardRolePayment2+= dice.bonusDice[i];

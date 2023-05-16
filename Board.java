@@ -5,7 +5,7 @@ public class Board {
 
     //private int[] mapLayout;
     //public String playerPosition;
-    public  int takesLeft;
+    public int takesLeft;
 
     SceneCards sceneCards = new SceneCards();
     //LocationManager locManager = new LocationManager();

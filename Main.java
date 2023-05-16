@@ -5,7 +5,7 @@ public class Main {
 
     Deadwood deadwood = new Deadwood();
     //Store store = Store.getStoreInstance();
-    WrappingUp wrapUp = new WrappingUp();
+    
     Dice dice = new Dice();
    
     LocationManager locManager = new LocationManager();
@@ -20,7 +20,7 @@ public static void main(String[] args) {
     Day day = new Day();
     BoardData boardData = new BoardData();
     SceneCards sceneCards = new SceneCards();
-    
+    WrappingUp wrapUp = new WrappingUp();
     Board board = new Board();
 
     Scanner input = new Scanner(System.in);
@@ -70,13 +70,18 @@ public static void main(String[] args) {
             System.out.println("Game is set up! \n"); 
 
         }
+
         int playerturn = 1;
+        int scenesFinished = 0;
         //Whole game, doesn't end until all days are up.
         while (day.dayCount <= DAY_MAX) {
+
             //Loop to iterate through every player's turn.
             for (Player player:gamePlayers) {
+
                 //Check to keep turn on player if action they take doesn't end their turn.
                 while(playerturn > 0){
+
                     //Accepting player input of commands. Recommends 'options' for player to see what they can type.
                     System.out.println("Your turn Player " + player.name + "! " + "Please type in your command, or 'options' for a list of available commands.\n");
                     String action = input.next(); 
@@ -102,7 +107,7 @@ public static void main(String[] args) {
                     else if (action.equals("move")) {
 
                         //Prompt user about which neighbor to move to.
-                        System.out.println("\nWhich neighbor will you move to? (Enter neighbor's number (0,1,2,etc.)");
+                        System.out.println("\nWhich neighbor will you move to? (Enter neighbor's number (1,2,3,etc.)");
                         int neighborMove = input.nextInt();
                         int moveSuccess = 0;
 
@@ -198,6 +203,9 @@ public static void main(String[] args) {
                         if ((player.isInTrailer == true) || (player.isInOffice == true)) {
                             System.out.println("There is no scene attached to this location. \n");
                         }
+                        else if (Board.getBoardLoactions().get(player.playerLocation).getSceneIndex() == -1) {
+                            System.out.println("The scene here is completed! Find an open scene on a different set. \n");
+                        }
                         else {
 
                             System.out.println("\n" + "Scene Name: " + SceneCards.getName(boardData.getSceneIndex()));
@@ -238,8 +246,13 @@ public static void main(String[] args) {
 
                             System.out.println("\nBoard Name: " + BoardData.getSetName(player.playerLocation));
                             System.out.println("Number of Board Takes Left: " + (BoardData.getTakesList(player.playerLocation).size() - board.takesLeft));
-                            System.out.println("Scene: " + SceneCards.getName(boardData.getSceneIndex()) + "\tIndex: " + boardData.getSceneIndex());
-                            
+                            if (boardData.getSceneIndex() == -1) {
+                                System.out.println("Scene: Finished ");
+                            }
+                            else {
+                                System.out.println("Scene: " + SceneCards.getName(boardData.getSceneIndex()) + "\tIndex: " + boardData.getSceneIndex());
+                            }
+                
                             for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
                                 System.out.println("Board Neighbor " + (a+1) + "'s Name: " + BoardData.getNeighborName(player.playerLocation, a));
                                 
@@ -289,12 +302,13 @@ public static void main(String[] args) {
                     //If 'upgrade' was chosen, upgrade the player's rank if they have enough credits or dollars.
                     else if (action.equals("upgrade")){
 
+                        //Code here to check if player's location is Casting Office.
                         if (player.isInOffice != true) {
                             System.out.println("There is no upgrade attached to this location. Move to Office to upgrade rank. \n");
                         }
                         else {
 
-                            //Code here to check if player's location is Casting Office.
+                           
                             System.out.println("\n" + "What rank would you like to upgrade to? (enter number between 2 and 6)\n");
                             int rankWanted = input.nextInt();
                             System.out.println("What will you pay with? ('credit' or 'dollar')");
@@ -314,8 +328,28 @@ public static void main(String[] args) {
                         if (player.playerRole != null) {
                             System.out.println("Rolling for acting...");
                             //int roll = dice.readDice();
-                            player.act();
-                            break;
+                            int attempt = player.act();
+                            if (attempt == 1){
+                                board.takesLeft++;
+                                if ((BoardData.getTakesList(player.playerLocation).size() - board.takesLeft) == 0) {
+                                    Board.getBoardLoactions().get(player.playerLocation).takeSceneIndex(-1);
+                                    if (player.playerRole.equals("Main")) {
+                                        wrapUp.playerMainBonus();
+                                        scenesFinished++;
+                                    }
+                                    else {
+                                        wrapUp.playerExtraBonus();
+                                        scenesFinished++;
+                                    }
+                                    //System.out.println("That's a wrap! Scene is over!");
+                                }
+                                break;
+                            }
+
+                            else {
+                                break;
+                            }
+                            
                         }
 
                         else {
@@ -383,7 +417,13 @@ public static void main(String[] args) {
                     
                 }
             }
+            if (scenesFinished == 9) {
+                day.dayCount++;
+            }
+            //If statement here for a counter of scenes left. If scenecounter == 9, increase day.dayCount.
         }
+
+    //Finish the game by calculating the score of each player and declare winner! 
     input.close();
 }
 
