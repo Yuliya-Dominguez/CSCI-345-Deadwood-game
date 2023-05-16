@@ -22,7 +22,7 @@ public class Day {
         scenesDrawn = new int[10];
         int i = 0;
         while(i < 10){
-            scenesDrawn[i] = ((int) Math.floor(Math.random() * (39 - 0 + 1) + 1));
+            scenesDrawn[i] = ((int) Math.floor(Math.random() * (39)));
             i++;
         }
     }

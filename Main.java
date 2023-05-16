@@ -50,6 +50,7 @@ public static void main(String[] args) {
                 String inputName = input.next();
                 player.name = inputName;
                 player.isInTrailer = true;
+                //player.isInOffice = true;
                 //player.move(9);
                 //0 = Train Station
                 //1 = Secret Hideout
@@ -100,48 +101,92 @@ public static void main(String[] args) {
                     //If 'move' was chosen, prompt the player for which neighbor location they want to move to.
                     else if (action.equals("move")) {
 
-                        System.out.println("\nWhich neighbor will you move to? (Enter neighbor's number (1,2,etc.)");
+                        //Prompt user about which neighbor to move to.
+                        System.out.println("\nWhich neighbor will you move to? (Enter neighbor's number (0,1,2,etc.)");
                         int neighborMove = input.nextInt();
                         int moveSuccess = 0;
 
-                        if ((player.isInTrailer == true) || (player.isInOffice == true)) {
+                        //MoveCheck if the player is trying to move from the trailer.
+                        if (player.isInTrailer == true) {
                             if (BoardData.getTrailNeighbor(neighborMove-1).equals("Main Street")) {
                                 player.move(4);
                                 System.out.println("Moved to Main Street.");
                                 player.isInTrailer = false;
+                                moveSuccess = 1;
                             }
                             else if (BoardData.getTrailNeighbor(neighborMove-1).equals("Saloon")) {
                                 player.move(9);
                                 System.out.println("Moved to Saloon.");
                                 player.isInTrailer =false;
+                                moveSuccess = 1;
                             }
                             else if (BoardData.getTrailNeighbor(neighborMove-1).equals("Hotel")) {
                                 player.move(3);
                                 System.out.println("Moved to Hotel.");
                                 player.isInTrailer = false;
+                                moveSuccess = 1;
                             }
                         }
+
+                        //MoveCheck if the player is trying to move from the casting office.
+                        else if (player.isInOffice == true) {
+                            if (BoardData.getOffNeighbor(neighborMove-1).equals("Train Station")) {
+                                player.move(0);
+                                System.out.println("Moved to Train Station.");
+                                player.isInOffice = false;
+                                moveSuccess = 1;
+                            }
+                            else if (BoardData.getOffNeighbor(neighborMove-1).equals("Ranch")) {
+                                player.move(7);
+                                System.out.println("Moved to Ranch.");
+                                player.isInOffice =false;
+                                moveSuccess = 1;
+                            }
+                            else if (BoardData.getOffNeighbor(neighborMove-1).equals("Secret Hideout")) {
+                                player.move(1);
+                                System.out.println("Moved to Secret Hideout.");
+                                player.isInOffice = false;
+                                moveSuccess = 1;
+                            }
+                        }
+
+                        //General check for loactions aside from trailer and casting
                         else {
-
                             for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
-                                if (BoardData.getNeighborName(player.playerLocation, a).equals(BoardData.getNeighborName(player.playerLocation, neighborMove))){
-                                    int loactionToMove;
-                                    //Finish here, need to check for index of location to move player properly!
-                                    for (int i = 0; i < Board.getBoardLoactions().size(); i++) {
 
-                                        if (BoardData.getNeighborName(player.playerLocation, a).equals(BoardData.get))
+                                if (BoardData.getNeighborName(player.playerLocation, a).equals(BoardData.getNeighborName(player.playerLocation, neighborMove))){
+                                    int loactionToMove = 0;
+                                    //Check if player is moving to trailer from another location.
+                                    if (BoardData.getNeighborName(player.playerLocation, neighborMove).equals("trailer")) {
+                                        player.isInTrailer = true;
+                                        moveSuccess = 1;
                                     }
-                                    player.move(loactionToMove);
-                                    System.out.println("Moved to " + BoardData.getSetName(player.playerLocation));
-                                    moveSuccess = 1;
+                                    //Check if player is moving to office from another loaction.
+                                    else if (BoardData.getNeighborName(player.playerLocation, neighborMove).equals("office")) {
+                                        player.isInOffice = true;
+                                        moveSuccess = 1;
+                                    }
+                                    else {
+                                        //Check for index of location to move player properly!
+                                        for (int i = 0; i < 10; i++) {
+
+                                            if (BoardData.getNeighborName(player.playerLocation, neighborMove).equals(BoardData.getSetName(i))) {
+                                                loactionToMove = i;
+                                            }
+                                        }
+                                        player.move(loactionToMove);
+                                        System.out.println("Moved to " + BoardData.getSetName(player.playerLocation));
+                                        moveSuccess = 1;
+                                    }
                                 }
                             }
-                            if (moveSuccess == 1) {
-                                break;
-                            }
-                            else {
-                                System.out.println("Sorry, that move is invalid. Choose a different neighbor.");
-                            }
+                            
+                        }
+                        if (moveSuccess == 1) {
+                            break;
+                        }
+                        else {
+                            System.out.println("Sorry, that move is invalid. Choose a different neighbor.");
                         }
                         System.out.println("This command is still in progress."); //delete later!
                     }
@@ -175,10 +220,17 @@ public static void main(String[] args) {
                     //If 'boardstats' was chosen, display information about the board location the player is at currently.
                     else if (action.equals("boardstats")){
 
-                        if ((player.isInTrailer == true) || (player.isInOffice == true)) {
+                        if (player.isInTrailer == true) {
                             System.out.println("\nBoard Name: Trailer");
                             for (int x = 0; x < BoardData.getTrailerNeighbors().size(); x++){
                                 System.out.println("Neighbor " + (x+1) + "'s Name: " + BoardData.getTrailNeighbor(x));
+                            }
+                            
+                        }
+                        else if (player.isInOffice == true) {
+                            System.out.println("\nBoard Name: Office");
+                            for (int x = 0; x < BoardData.getOfficeNeighbors().size(); x++){
+                                System.out.println("Neighbor " + (x+1) + "'s Name: " + BoardData.getOffNeighbor(x));
                             }
                             
                         }
@@ -215,11 +267,11 @@ public static void main(String[] args) {
 
                             System.out.println("\n" + "Will you take a scene part or board part? (Enter 'scene' or 'board') \n");
                             String roleSection = input.next();
-                            System.out.println("Which part number will you take? (Type in number of part) \n");
+                            System.out.println("Which part number will you take? (Type in 1,2,3, or 4 depending on part number.) \n");
                             int partToTake = input.nextInt();
 
                             //Code here to print success or failure message.
-                            int success = player.takeRole(roleSection, partToTake);
+                            int success = player.takeRole(roleSection, (partToTake-1));
                             System.out.println("This command is still in progress."); //delete later!
 
                             if (success == 1) {

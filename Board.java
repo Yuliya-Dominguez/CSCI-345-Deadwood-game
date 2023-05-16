@@ -21,7 +21,7 @@ public class Board {
             sets.add(boardData);
         }
 
-        for (int i = 0; i < scenesDrawn.length; i++) {
+        for (int i = 0; i < (scenesDrawn.length-1); i++) {
             int sceneIndex = sceneCards.getSceneNumber(scenesDrawn[i]);
             sets.get(i).takeSceneIndex(sceneIndex);
         }
