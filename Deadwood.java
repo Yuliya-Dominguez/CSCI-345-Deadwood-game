@@ -2,12 +2,12 @@
 
 public class Deadwood {
 
-    private String recordRole;
-    private int rehearseCounter;
+    //private String recordRole;
+    //private int rehearseCounter;
     private int score;
-    private int dayCount;
+    //private int dayCount;
     public static String[] players;
-    private int[] gameStats;
+    //private int[] gameStats;
 
     Player player = new Player();
     LocationManager locManager = new LocationManager();
@@ -19,36 +19,36 @@ public class Deadwood {
         return stats;
     }
 
-    public int scoring() {
+    public int scoring(Player player) {
         int result;
         result = player.creditCount + player.dollarCount + (player.rank * 5);
 
         return result;
     }
 
-    public String decideWinner() {
+    public String decideWinner(int[] playerScores, int[] playerRanks, String[] playerNames) {
 
         String winningPlayer = "";
         int highestScore = Integer.MIN_VALUE;
         int highestRank = Integer.MIN_VALUE;
         boolean tie = false;
 
-        for (int i = 0; i < players.length; i++) {
+        for (int i = 0; i < playerScores.length; i++) {
             //figure out highest score.
-            int score = scoring();
+            //int score = scoring();
 
-            if (score > highestScore) {
-                highestScore = score;
-                highestRank = player.rank;
-                winningPlayer = player.name;
+            if (playerScores[i] > highestScore) {
+                highestScore = playerScores[i];
+                highestRank = playerRanks[i];
+                winningPlayer = playerNames[i];
                 tie = false;
 
-            } else if (score == highestScore && player.rank > highestRank) {
-                highestRank = player.rank;
-                winningPlayer = player.name;
+            } else if (playerScores[i] == highestScore && playerRanks[i] > highestRank) {
+                highestRank = playerRanks[i];
+                winningPlayer = playerNames[i];
                 tie = false;
 
-            } else if (score == highestScore && player.rank == highestRank) {
+            } else if (playerScores[i] == highestScore && playerRanks[i] == highestRank) {
                 tie = true;
             }
         }

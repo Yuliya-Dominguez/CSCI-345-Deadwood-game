@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
 
-    Deadwood deadwood = new Deadwood();
+    
     //Store store = Store.getStoreInstance();
     
     Dice dice = new Dice();
@@ -16,6 +16,7 @@ public class Main {
 
 public static void main(String[] args) {
 
+    Deadwood deadwood = new Deadwood();
     List<Player> gamePlayers = new ArrayList<Player>();
     Day day = new Day();
     BoardData boardData = new BoardData();
@@ -418,16 +419,27 @@ public static void main(String[] args) {
                 }
             }
         //If statement here for a counter of scenes left. If scenecounter == 9, increase day.dayCount.
-        if (scenesFinished == 9) {
-            day.endDay();
-            for (Player player:gamePlayers) {
-                player.isInTrailer = true;
-            }
-            day.dayCount++;
-        } 
+            if (scenesFinished == 9) {
+                day.endDay();
+                for (Player player:gamePlayers) {
+                    player.isInTrailer = true;
+                }
+                day.dayCount++;
+            } 
         }
 
     //Finish the game by calculating the score of each player and declare winner! 
+    int[] scores = new int[gamePlayers.size()];
+    int[] ranks = new int[gamePlayers.size()];
+    String[] names = new String[gamePlayers.size()];
+    int c = 0;
+    for (Player player:gamePlayers) {
+        scores[c] = deadwood.scoring(player);
+        ranks[c] = player.rank;
+        names[c] = player.name;
+        c++;
+    }
+    deadwood.decideWinner(scores, ranks, names);
     input.close();
 }
 
