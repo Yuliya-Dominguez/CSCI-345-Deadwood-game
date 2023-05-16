@@ -6,16 +6,17 @@ public class Main {
     
     //Store store = Store.getStoreInstance();
     
-    Dice dice = new Dice();
+    //Dice dice = new Dice();
    
-    LocationManager locManager = new LocationManager();
-    Acting acting = new Acting();
+    //LocationManager locManager = new LocationManager();
+    //Acting acting = new Acting();
     
     
     static int DAY_MAX = 1;
 
 public static void main(String[] args) {
 
+    //Initiallizing the classes to be used in main.
     Deadwood deadwood = new Deadwood();
     List<Player> gamePlayers = new ArrayList<Player>();
     Day day = new Day();
@@ -24,13 +25,18 @@ public static void main(String[] args) {
     WrappingUp wrapUp = new WrappingUp();
     Board board = new Board();
 
+    /*
+     * Beginning of game. Prompt player for input to ender number of players to create player classes and set DAY_MAX.
+     */
     Scanner input = new Scanner(System.in);
         System.out.println("Welcome to Deadwood! Please enter the number of players: ");
         int playerNum = input.nextInt();
 
+        //Check if player does not enter correct number of players.
         if ((playerNum < 2) || (playerNum > 8)) {
             System.out.println("Error. Please enter a number between 2 and 8.");
         }
+        //Set the maximum number of days. Set to 3 if 2-3 players, 4 otherwise.
         else {
             if (playerNum <= 3) {
                 DAY_MAX = 3;
@@ -39,6 +45,7 @@ public static void main(String[] args) {
                 DAY_MAX = 4;
             }
 
+            //Create player classes to go into List gamePlayers.
             for(int a = 0; a < playerNum; a++) {
                 Player player1 = new Player();
                 gamePlayers.add(player1);
@@ -46,13 +53,14 @@ public static void main(String[] args) {
 
             int i = 0;
             
+            //
             for (Player player: gamePlayers) {
                 System.out.println(("What is Player ") + (i + 1) + (" name? \n"));
                 String inputName = input.next();
                 player.name = inputName;
                 player.isInTrailer = true;
-                //player.isInOffice = true;
-                //player.move(9);
+                i++;
+                //Below is index number for all locations excluding Trailer and Office.
                 //0 = Train Station
                 //1 = Secret Hideout
                 //2 = Church
@@ -63,15 +71,15 @@ public static void main(String[] args) {
                 //7 = Ranch
                 //8 = Bank
                 //9 = Saloon
-                //10 = 
-                i++;
                 
             }
+            //Call day.setUp() to draw scenes, set up the board, and fully start the game.
             day.setUp();
             System.out.println("Game is set up! \n"); 
 
         }
-
+        //Extra variables. playerturn checks if it is still the current player's turn, 
+        //  scenesFinished checks how many scenes have been completed.
         int playerturn = 1;
         int scenesFinished = 0;
         //Whole game, doesn't end until all days are up.
@@ -91,15 +99,25 @@ public static void main(String[] args) {
                     if (action.equals("options")) {
 
                         System.out.println("\n" + "'move': Moves player to desired location, if possible.");
+
                         System.out.println("'stats': Shows current player's stats and info.");
+
                         System.out.println("'scenestats': Shows scene card's information that player is currently on/next to. ");
+
                         System.out.println("'boardstats': Shows location player is on, including available board roles and neighboring locations.");
+                        
                         System.out.println("'day': Shows current day in game.");
+                        
                         System.out.println("'takerole': Takes the role that you specify. Only works if your rank is equal to or higher than the role's rank.");
+                        
                         System.out.println("'upgrade': Upgrade your rank level (only works if you are at location 'Casting Office').");
+                        
                         System.out.println("'act': Act your role (only works if you have taken a role in a scene).");
+                        
                         System.out.println("'rehearse': Rehearse your role. Add a token to your acting roll.");
+                        
                         System.out.println("'endturn': Ends current Player's turn. ");
+                        
                         System.out.println("'quit': Quits the game.\n");
                     }
 
@@ -114,18 +132,22 @@ public static void main(String[] args) {
 
                         //MoveCheck if the player is trying to move from the trailer.
                         if (player.isInTrailer == true) {
+
+                            //Move player location to Main Street if they choose 1.
                             if (BoardData.getTrailNeighbor(neighborMove-1).equals("Main Street")) {
                                 player.move(4);
                                 System.out.println("Moved to Main Street.");
                                 player.isInTrailer = false;
                                 moveSuccess = 1;
                             }
+                            //Move player location to Saloon if they choose 2.
                             else if (BoardData.getTrailNeighbor(neighborMove-1).equals("Saloon")) {
                                 player.move(9);
                                 System.out.println("Moved to Saloon.");
                                 player.isInTrailer =false;
                                 moveSuccess = 1;
                             }
+                            //Move player location to Hotel if they choose 3.
                             else if (BoardData.getTrailNeighbor(neighborMove-1).equals("Hotel")) {
                                 player.move(3);
                                 System.out.println("Moved to Hotel.");
@@ -136,18 +158,24 @@ public static void main(String[] args) {
 
                         //MoveCheck if the player is trying to move from the casting office.
                         else if (player.isInOffice == true) {
+
+                            //Move player location to Train Station if they choose 1.
                             if (BoardData.getOffNeighbor(neighborMove-1).equals("Train Station")) {
                                 player.move(0);
                                 System.out.println("Moved to Train Station.");
                                 player.isInOffice = false;
                                 moveSuccess = 1;
                             }
+
+                            //Move player location to Ranch if they choose 2.
                             else if (BoardData.getOffNeighbor(neighborMove-1).equals("Ranch")) {
                                 player.move(7);
                                 System.out.println("Moved to Ranch.");
                                 player.isInOffice =false;
                                 moveSuccess = 1;
                             }
+
+                            //Move player location to Secret Hideout if they choose 3.
                             else if (BoardData.getOffNeighbor(neighborMove-1).equals("Secret Hideout")) {
                                 player.move(1);
                                 System.out.println("Moved to Secret Hideout.");
@@ -162,16 +190,19 @@ public static void main(String[] args) {
 
                                 if (BoardData.getNeighborName(player.playerLocation, a).equals(BoardData.getNeighborName(player.playerLocation, neighborMove))){
                                     int loactionToMove = 0;
+
                                     //Check if player is moving to trailer from another location.
                                     if (BoardData.getNeighborName(player.playerLocation, neighborMove).equals("trailer")) {
                                         player.isInTrailer = true;
                                         moveSuccess = 1;
                                     }
+
                                     //Check if player is moving to office from another loaction.
                                     else if (BoardData.getNeighborName(player.playerLocation, neighborMove).equals("office")) {
                                         player.isInOffice = true;
                                         moveSuccess = 1;
                                     }
+
                                     else {
                                         //Check for index of location to move player properly!
                                         for (int i = 0; i < 10; i++) {
@@ -191,22 +222,25 @@ public static void main(String[] args) {
                         if (moveSuccess == 1) {
                             break;
                         }
+                        
                         else {
                             System.out.println("Sorry, that move is invalid. Choose a different neighbor.");
                         }
-                        System.out.println("This command is still in progress."); //delete later!
                     }
 
 
                     //If 'scenestats' was chosen, display information about the scene card on the location the player is at currently.
                     else if (action.equals("scenestats")){
 
+                        //Check if the player is in the trailer or office, where no scene is assigned.
                         if ((player.isInTrailer == true) || (player.isInOffice == true)) {
                             System.out.println("There is no scene attached to this location. \n");
                         }
+                        //Check if the sceneIndex value is -1, meaning that the scene is completed.
                         else if (Board.getBoardLoactions().get(player.playerLocation).getSceneIndex() == -1) {
                             System.out.println("The scene here is completed! Find an open scene on a different set. \n");
                         }
+                        //Print out scene attached to the loaction player is at currently.
                         else {
 
                             System.out.println("\n" + "Scene Name: " + SceneCards.getName(boardData.getSceneIndex()));
@@ -222,7 +256,6 @@ public static void main(String[] args) {
                                 System.out.println("\t Line: " + SceneCards.getPartLine(boardData.getSceneIndex(), i) + "\n");
                             }
                         }
-                        System.out.println("This command is still in progress."); //delete later!
                     }
 
 
@@ -267,7 +300,6 @@ public static void main(String[] args) {
                             }
                         }
 
-                        System.out.println("This command is still in progress."); //delete later!
                     }
 
 
@@ -286,7 +318,7 @@ public static void main(String[] args) {
 
                             //Code here to print success or failure message.
                             int success = player.takeRole(roleSection, (partToTake-1));
-                            System.out.println("This command is still in progress."); //delete later!
+                            
 
                             if (success == 1) {
                                 System.out.println("Role has been taken!");
@@ -355,7 +387,6 @@ public static void main(String[] args) {
 
                         else {
                             System.out.println("Error. Player needs to have taken a role from a scene before they can act.");
-                            System.out.println("This command is still in progress."); //delete later!
                         }
                     }
 

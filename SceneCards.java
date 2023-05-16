@@ -43,7 +43,7 @@ public class SceneCards {
         Card card = cardsList.get(index);
         Scene scene = card.getScene();
         int number = scene.getNumber();
-        System.out.println("Scene Number:  " + number);
+        //System.out.println("Scene Number:  " + number);
         return number;
     }
 
