@@ -3,7 +3,7 @@ import java.lang.Math;
 public class Day {
     public int numOfPlayers;
     public int dayCount = 0;
-    private int[] scenesDrawn;
+    private int[] scenesDrawn = new int[10];
 
     //BoardData boardData = new BoardData();
     Board board = new Board();
@@ -11,18 +11,25 @@ public class Day {
 
 
     public void endDay() {
-
+        drawScenes();
+        board.setMapLayout(scenesDrawn);
     }
 
     public void finalDay() {
-
+        
     }
 
     private void drawScenes() {
-        scenesDrawn = new int[10];
+        //scenesDrawn = new int[10];
         int i = 0;
         while(i < 10){
-            scenesDrawn[i] = ((int) Math.floor(Math.random() * (39)));
+            int randomScene = ((int) Math.floor(Math.random() * (39)));
+            for (int a = 0; a < 10; a++) {
+                if (scenesDrawn[a] == randomScene) {
+                    randomScene = ((int) Math.floor(Math.random() * (39)));
+                }
+            }
+            scenesDrawn[i] = randomScene;
             i++;
         }
     }

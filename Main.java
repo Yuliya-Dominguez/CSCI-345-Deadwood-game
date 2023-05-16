@@ -417,10 +417,14 @@ public static void main(String[] args) {
                     
                 }
             }
-            if (scenesFinished == 9) {
-                day.dayCount++;
+        //If statement here for a counter of scenes left. If scenecounter == 9, increase day.dayCount.
+        if (scenesFinished == 9) {
+            day.endDay();
+            for (Player player:gamePlayers) {
+                player.isInTrailer = true;
             }
-            //If statement here for a counter of scenes left. If scenecounter == 9, increase day.dayCount.
+            day.dayCount++;
+        } 
         }
 
     //Finish the game by calculating the score of each player and declare winner! 
