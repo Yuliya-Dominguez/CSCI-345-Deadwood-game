@@ -49,7 +49,8 @@ public static void main(String[] args) {
                 System.out.println(("What is Player ") + (i + 1) + (" name? \n"));
                 String inputName = input.next();
                 player.name = inputName;
-                player.move(9);
+                player.isInTrailer = true;
+                //player.move(9);
                 //0 = Train Station
                 //1 = Secret Hideout
                 //2 = Church
@@ -103,18 +104,44 @@ public static void main(String[] args) {
                         int neighborMove = input.nextInt();
                         int moveSuccess = 0;
 
-                        for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
-                            if (BoardData.getNeighborName(player.playerLocation, a).equals(BoardData.getNeighborName(player.playerLocation, neighborMove))){
-                                player.move(neighborMove);
-                                System.out.println("Moved to " + BoardData.getSetName(player.playerLocation));
-                                moveSuccess = 1;
+                        if ((player.isInTrailer == true) || (player.isInOffice == true)) {
+                            if (BoardData.getTrailNeighbor(neighborMove-1).equals("Main Street")) {
+                                player.move(4);
+                                System.out.println("Moved to Main Street.");
+                                player.isInTrailer = false;
+                            }
+                            else if (BoardData.getTrailNeighbor(neighborMove-1).equals("Saloon")) {
+                                player.move(9);
+                                System.out.println("Moved to Saloon.");
+                                player.isInTrailer =false;
+                            }
+                            else if (BoardData.getTrailNeighbor(neighborMove-1).equals("Hotel")) {
+                                player.move(3);
+                                System.out.println("Moved to Hotel.");
+                                player.isInTrailer = false;
                             }
                         }
-                        if (moveSuccess == 1) {
-                            break;
-                        }
                         else {
-                            System.out.println("Sorry, that move is invalid. Choose a different neighbor.");
+
+                            for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
+                                if (BoardData.getNeighborName(player.playerLocation, a).equals(BoardData.getNeighborName(player.playerLocation, neighborMove))){
+                                    int loactionToMove;
+                                    //Finish here, need to check for index of location to move player properly!
+                                    for (int i = 0; i < Board.getBoardLoactions().size(); i++) {
+
+                                        if (BoardData.getNeighborName(player.playerLocation, a).equals(BoardData.get))
+                                    }
+                                    player.move(loactionToMove);
+                                    System.out.println("Moved to " + BoardData.getSetName(player.playerLocation));
+                                    moveSuccess = 1;
+                                }
+                            }
+                            if (moveSuccess == 1) {
+                                break;
+                            }
+                            else {
+                                System.out.println("Sorry, that move is invalid. Choose a different neighbor.");
+                            }
                         }
                         System.out.println("This command is still in progress."); //delete later!
                     }
@@ -123,17 +150,23 @@ public static void main(String[] args) {
                     //If 'scenestats' was chosen, display information about the scene card on the location the player is at currently.
                     else if (action.equals("scenestats")){
 
-                        System.out.println("\n" + "Scene Name: " + SceneCards.getName(boardData.getSceneIndex()));
-                        System.out.println("Scene Number: " + sceneCards.getSceneNumber(boardData.getSceneIndex()));
-                        System.out.println("Scene Budget: " + sceneCards.getCardBudget(boardData.getSceneIndex()));
-                        System.out.println("Scene Description: " + sceneCards.getSceneDescription(boardData.getSceneIndex()));
-                        
-                        //Iterates through all parts contained in the scene card.
-                        for (int i = 0; i < SceneCards.getPartsList(boardData.getSceneIndex()).size(); i++) {
-                            System.out.println("Scene Part " + (i + 1));
-                            System.out.println("\t Name: " + SceneCards.getPartName(boardData.getSceneIndex(), i));
-                            System.out.println("\t Level: " + SceneCards.getPartLevel(boardData.getSceneIndex(), i));
-                            System.out.println("\t Line: " + SceneCards.getPartLine(boardData.getSceneIndex(), i) + "\n");
+                        if ((player.isInTrailer == true) || (player.isInOffice == true)) {
+                            System.out.println("There is no scene attached to this location. \n");
+                        }
+                        else {
+
+                            System.out.println("\n" + "Scene Name: " + SceneCards.getName(boardData.getSceneIndex()));
+                            System.out.println("Scene Number: " + sceneCards.getSceneNumber(boardData.getSceneIndex()));
+                            System.out.println("Scene Budget: " + sceneCards.getCardBudget(boardData.getSceneIndex()));
+                            System.out.println("Scene Description: " + sceneCards.getSceneDescription(boardData.getSceneIndex()));
+                            
+                            //Iterates through all parts contained in the scene card.
+                            for (int i = 0; i < SceneCards.getPartsList(boardData.getSceneIndex()).size(); i++) {
+                                System.out.println("Scene Part " + (i + 1));
+                                System.out.println("\t Name: " + SceneCards.getPartName(boardData.getSceneIndex(), i));
+                                System.out.println("\t Level: " + SceneCards.getPartLevel(boardData.getSceneIndex(), i));
+                                System.out.println("\t Line: " + SceneCards.getPartLine(boardData.getSceneIndex(), i) + "\n");
+                            }
                         }
                         System.out.println("This command is still in progress."); //delete later!
                     }
@@ -142,20 +175,30 @@ public static void main(String[] args) {
                     //If 'boardstats' was chosen, display information about the board location the player is at currently.
                     else if (action.equals("boardstats")){
 
-                        System.out.println("\nBoard Name: " + BoardData.getSetName(player.playerLocation));
-                        System.out.println("Number of Board Takes Left: " + (BoardData.getTakesList(player.playerLocation).size() - board.takesLeft));
-                        System.out.println("Scene: " + SceneCards.getName(boardData.getSceneIndex()) + "\tIndex: " + boardData.getSceneIndex());
-                        
-                        for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
-                            System.out.println("Board Neighbor " + (a+1) + "'s Name: " + BoardData.getNeighborName(player.playerLocation, a));
+                        if ((player.isInTrailer == true) || (player.isInOffice == true)) {
+                            System.out.println("\nBoard Name: Trailer");
+                            for (int x = 0; x < BoardData.getTrailerNeighbors().size(); x++){
+                                System.out.println("Neighbor " + (x+1) + "'s Name: " + BoardData.getTrailNeighbor(x));
+                            }
                             
                         }
+                        else {
 
-                        for (int i = 0; i < BoardData.getPartsList(player.playerLocation).size(); i++) {
-                            System.out.println("Board Part " + (i + 1));
-                            System.out.println("\t Name: " + BoardData.getPartName(player.playerLocation, i));
-                            System.out.println("\t Level: " + BoardData.getPartLevel(player.playerLocation, i));
-                            System.out.println("\t Line: " + BoardData.getPartLine(player.playerLocation, i) + "\n");
+                            System.out.println("\nBoard Name: " + BoardData.getSetName(player.playerLocation));
+                            System.out.println("Number of Board Takes Left: " + (BoardData.getTakesList(player.playerLocation).size() - board.takesLeft));
+                            System.out.println("Scene: " + SceneCards.getName(boardData.getSceneIndex()) + "\tIndex: " + boardData.getSceneIndex());
+                            
+                            for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
+                                System.out.println("Board Neighbor " + (a+1) + "'s Name: " + BoardData.getNeighborName(player.playerLocation, a));
+                                
+                            }
+
+                            for (int i = 0; i < BoardData.getPartsList(player.playerLocation).size(); i++) {
+                                System.out.println("Board Part " + (i + 1));
+                                System.out.println("\t Name: " + BoardData.getPartName(player.playerLocation, i));
+                                System.out.println("\t Level: " + BoardData.getPartLevel(player.playerLocation, i));
+                                System.out.println("\t Line: " + BoardData.getPartLine(player.playerLocation, i) + "\n");
+                            }
                         }
 
                         System.out.println("This command is still in progress."); //delete later!
@@ -165,22 +208,28 @@ public static void main(String[] args) {
                     //If 'takerole' was chosen, have player choose their role from the scene they are on or board they are on.
                     else if (action.equals("takerole")){
 
-                        System.out.println("\n" + "Will you take a scene part or board part? (Enter 'scene' or 'board') \n");
-                        String roleSection = input.next();
-                        System.out.println("Which part number will you take? (Type in number of part) \n");
-                        int partToTake = input.nextInt();
-
-                        //Code here to print success or failure message.
-                        int success = player.takeRole(roleSection, partToTake);
-                        System.out.println("This command is still in progress."); //delete later!
-
-                        if (success == 1) {
-                            System.out.println("Role has been taken!");
-                            break;
+                        if ((player.isInTrailer == true) || (player.isInOffice == true)) {
+                            System.out.println("There is no scene attached to this location. \n");
                         }
+                        else {
 
-                        else if (success == 0){
-                            System.out.println("Error. Invalid set type ('scene' or 'board') or invalid part number. Please try again.");
+                            System.out.println("\n" + "Will you take a scene part or board part? (Enter 'scene' or 'board') \n");
+                            String roleSection = input.next();
+                            System.out.println("Which part number will you take? (Type in number of part) \n");
+                            int partToTake = input.nextInt();
+
+                            //Code here to print success or failure message.
+                            int success = player.takeRole(roleSection, partToTake);
+                            System.out.println("This command is still in progress."); //delete later!
+
+                            if (success == 1) {
+                                System.out.println("Role has been taken!");
+                                break;
+                            }
+
+                            else if (success == 0){
+                                System.out.println("Error. Invalid set type ('scene' or 'board') or invalid part number. Please try again.");
+                            }
                         }
                     }
 
@@ -188,15 +237,21 @@ public static void main(String[] args) {
                     //If 'upgrade' was chosen, upgrade the player's rank if they have enough credits or dollars.
                     else if (action.equals("upgrade")){
 
-                        //Code here to check if player's location is Casting Office.
-                        System.out.println("\n" + "What rank would you like to upgrade to? (enter number between 2 and 6)\n");
-                        int rankWanted = input.nextInt();
-                        System.out.println("What will you pay with? ('credit' or 'dollar')");
+                        if (player.isInOffice != true) {
+                            System.out.println("There is no upgrade attached to this location. Move to Office to upgrade rank. \n");
+                        }
+                        else {
 
-                        String payment = input.next();
-                        player.upgrade(rankWanted, payment);
+                            //Code here to check if player's location is Casting Office.
+                            System.out.println("\n" + "What rank would you like to upgrade to? (enter number between 2 and 6)\n");
+                            int rankWanted = input.nextInt();
+                            System.out.println("What will you pay with? ('credit' or 'dollar')");
 
-                        break;
+                            String payment = input.next();
+                            player.upgrade(rankWanted, payment);
+
+                            break;
+                        }
                     }
 
 
