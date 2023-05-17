@@ -321,12 +321,12 @@ public static void main(String[] args) {
                             
 
                             if (success == 1) {
-                                System.out.println("Role has been taken!");
+                                System.out.println("Role "+ SceneCards.getPartName(player.sceneIndexNumber, (partToTake-1)) + " has been taken!");
                                 break;
                             }
 
-                            else if (success == 0){
-                                System.out.println("Error. Invalid set type ('scene' or 'board') or invalid part number. Please try again.");
+                            else if (success == -1){
+                                System.out.println("Error. Invalid set type ('scene' or 'board') invalid part number. Please try again.");
                             }
                         }
                     }

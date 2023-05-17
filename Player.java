@@ -18,7 +18,7 @@ public class Player {
     //Dice dice = new Dice();
     Board board = new Board();
     SceneCards scene = new SceneCards();
-    Acting act = new Acting();
+    //Acting act = new Acting();
 
     Store store = Store.getStoreInstance();
     public List<BoardData> boardLocations = Board.getBoardLoactions();
@@ -87,20 +87,34 @@ public class Player {
     public int takeRole(String sceneOrBoard, int partIndex) {
         BoardData currentSet = boardLocations.get(playerLocation);
         if (sceneOrBoard.equals("scene")) {
-            playerRole = "Main";
-            playerRoleName = SceneCards.getPartName(sceneIndexNumber, partIndex);
-            playerRolePosition = partIndex;
-            sceneIndexNumber = currentSet.getSceneIndex();
-            return 1;
+            if (rank < SceneCards.getPartLevel(sceneIndexNumber, partIndex)) {
+                System.out.println("Sorry, your rank is not high enough to take this role.");
+                return 0;
+            }
+            else {
+                playerRole = "Main";
+                playerRoleName = SceneCards.getPartName(sceneIndexNumber, partIndex);
+                playerRolePosition = partIndex;
+                sceneIndexNumber = currentSet.getSceneIndex();
+                return 1;
+            }
+            
         }
         else if(sceneOrBoard.equals("board")) {
-            playerRole = "Extra";
-            playerRoleName = BoardData.getPartName(playerLocation, playerRolePosition);
-            playerRolePosition = partIndex;
-            return 1;
+            if (rank < SceneCards.getPartLevel(sceneIndexNumber, partIndex)) {
+                System.out.println("Sorry, your rank is not high enough to take this role.");
+                return 0;
+            }
+            else {
+                 playerRole = "Extra";
+                playerRoleName = BoardData.getPartName(playerLocation, playerRolePosition);
+                playerRolePosition = partIndex;
+                return 1;
+            }
+           
         }
         else {
-            return 0;
+            return -1;
         } 
     } 
 
