@@ -368,10 +368,12 @@ public static void main(String[] args) {
                                     Board.getBoardLoactions().get(player.playerLocation).takeSceneIndex(-1);
                                     if (player.playerRole.equals("Main")) {
                                         wrapUp.playerMainBonus();
+                                        player.playerRole = "None";
                                         scenesFinished++;
                                     }
                                     else {
                                         wrapUp.playerExtraBonus();
+                                        player.playerRole = "None";
                                         scenesFinished++;
                                     }
                                     //System.out.println("That's a wrap! Scene is over!");
@@ -420,7 +422,7 @@ public static void main(String[] args) {
                         System.out.println("Are you sure you want to quit? 'y/n'");
                         String response = input.next();
                         if ((response.equals("yes")) || (response.equals("y"))){
-                            System.out.println("Thank you! We are still working on the rest, so stay tuned!");
+                            System.out.println("Thank you! We hope to see you again!");
                             System.exit(1);
                         }
                         else if ((response.equals("no")) || (response.equals("n"))) {
@@ -460,6 +462,7 @@ public static void main(String[] args) {
         }
 
     //Finish the game by calculating the score of each player and declare winner! 
+    System.out.println("\nGame is over! Calculating scores...\n");
     int[] scores = new int[gamePlayers.size()];
     int[] ranks = new int[gamePlayers.size()];
     String[] names = new String[gamePlayers.size()];

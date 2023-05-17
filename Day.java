@@ -13,10 +13,11 @@ public class Day {
     public void endDay() {
         drawScenes();
         board.setMapLayout(scenesDrawn);
+        System.out.println("\nA new day has started!");
     }
 
     public void finalDay() {
-        
+
     }
 
     private void drawScenes() {
