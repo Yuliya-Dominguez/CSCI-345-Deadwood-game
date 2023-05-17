@@ -186,7 +186,7 @@ public static void main(String[] args) {
 
                         //General check for loactions aside from trailer and casting
                         else {
-                            for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
+                            for (int a = 0; a < (BoardData.getNeighborsList(player.playerLocation).size()+1); a++) {
 
                                 if (BoardData.getNeighborName(player.playerLocation, a).equals(BoardData.getNeighborName(player.playerLocation, neighborMove))){
                                     int loactionToMove = 0;
