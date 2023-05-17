@@ -6,7 +6,7 @@ public class Dice {
     public int[] bonusDice;
 
     SceneCards sceneCards = new SceneCards();
-    Board board = new Board();
+    //Board board = new Board();
 
     public int readDice() {
         return ((int) Math.floor(Math.random() * (6 - 1 + 1) + 1));
