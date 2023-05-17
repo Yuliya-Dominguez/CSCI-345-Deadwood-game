@@ -15,11 +15,11 @@ public class Player {
     public int creditCount;
     public int rehearseCounter;
 
-    Board board = new Board();
+    //Board board = new Board();
     SceneCards scene = new SceneCards();
 
     Store store = Store.getStoreInstance();
-    public List<BoardData> boardLocations = Board.getBoardLoactions();
+    public List<BoardData> boardLocations = Board.getBoardLocations();
     
 
     
@@ -132,7 +132,15 @@ public class Player {
             System.out.println("Role: " + playerRole);    
         }
         System.out.println("Role Position: " + playerRolePosition);
-        System.out.println("Set Location: " + BoardData.getSetName(playerLocation));
+        if (isInTrailer == true) {
+            System.out.println("Set Location: Trailer");
+        }
+        else if (isInOffice == true) {
+            System.out.println("Set Location: Office");
+        }
+        else {
+            System.out.println("Set Location: " + BoardData.getSetName(playerLocation));
+        }
         System.out.println("Rank: " + rank);
         System.out.println("Dollars:" + dollarCount);
         System.out.println("Credits: " + creditCount);

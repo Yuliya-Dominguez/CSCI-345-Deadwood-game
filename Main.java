@@ -186,7 +186,7 @@ public static void main(String[] args) {
 
                         //General check for loactions aside from trailer and casting
                         else {
-                            for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
+                            for (int a = 0; a < (BoardData.getNeighborsList(player.playerLocation).size()+1); a++) {
 
                                 if (BoardData.getNeighborName(player.playerLocation, a).equals(BoardData.getNeighborName(player.playerLocation, neighborMove))){
                                     int loactionToMove = 0;
@@ -237,7 +237,7 @@ public static void main(String[] args) {
                             System.out.println("There is no scene attached to this location. \n");
                         }
                         //Check if the sceneIndex value is -1, meaning that the scene is completed.
-                        else if (Board.getBoardLoactions().get(player.playerLocation).getSceneIndex() == -1) {
+                        else if (Board.getBoardLocations().get(player.playerLocation).getSceneIndex() == -1) {
                             System.out.println("The scene here is completed! Find an open scene on a different set. \n");
                         }
                         //Print out scene attached to the loaction player is at currently.
@@ -365,7 +365,7 @@ public static void main(String[] args) {
                             if (attempt == 1){
                                 board.takesLeft++;
                                 if ((BoardData.getTakesList(player.playerLocation).size() - board.takesLeft) == 0) {
-                                    Board.getBoardLoactions().get(player.playerLocation).takeSceneIndex(-1);
+                                    Board.getBoardLocations().get(player.playerLocation).takeSceneIndex(-1);
                                     if (player.playerRole.equals("Main")) {
                                         wrapUp.playerMainBonus();
                                         player.playerRole = "None";
