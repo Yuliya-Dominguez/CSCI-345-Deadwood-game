@@ -10,7 +10,7 @@ public class Player {
     public boolean isInTrailer;
     public boolean isInOffice;
     public int sceneIndexNumber;
-    public int rank;
+    public int rank = 1;
     public int dollarCount;
     public int creditCount;
     public int rehearseCounter;
@@ -84,8 +84,9 @@ public class Player {
 
     public int takeRole(String sceneOrBoard, int partIndex) {
         BoardData currentSet = boardLocations.get(playerLocation);
+        
         if (sceneOrBoard.equals("scene")) {
-            if (rank < SceneCards.getPartLevel(sceneIndexNumber, partIndex)) {
+            if (rank < SceneCards.getPartLevel(sceneIndexNumber, (partIndex))) {
                 System.out.println("Sorry, your rank is not high enough to take this role.");
                 return 0;
             }
@@ -99,12 +100,12 @@ public class Player {
             
         }
         else if(sceneOrBoard.equals("board")) {
-            if (rank < SceneCards.getPartLevel(sceneIndexNumber, partIndex)) {
+            if (rank < BoardData.getPartLevel(playerLocation, (partIndex))) {
                 System.out.println("Sorry, your rank is not high enough to take this role.");
                 return 0;
             }
             else {
-                 playerRole = "Extra";
+                playerRole = "Extra";
                 playerRoleName = BoardData.getPartName(playerLocation, playerRolePosition);
                 playerRolePosition = partIndex;
                 return 1;
@@ -122,7 +123,7 @@ public class Player {
             System.out.println("Role Name: None");
         }
         else {
-            System.out.println("Role: " + playerRoleName);    
+            System.out.println("Role Name: " + playerRoleName);    
         }
         if ( playerRole == null){
             System.out.println("Role: None");
