@@ -60,26 +60,7 @@ public class SceneCards {
 
         Card card = cardsList.get(index);
         List<Parts> partsList = card.getParts();
-        /*
-         * Parts part = null;
-         * String name = null;
-         * int level = 0;
-         * Area area = null;
-         * String line = null;
-         * 
-         * int[] indices = new int[partsList.size()];
-         * 
-         * for (int i = 0; i < partsList.size(); i++) {
-         * part = partsList.get(i);
-         * name = part.getName();
-         * level = part.getLevel();
-         * area = part.getArea();
-         * line = part.getLine();
-         * 
-         * indices[i] = i;
-         * }
-         * return indices;
-         */
+
         return partsList;
     }
 

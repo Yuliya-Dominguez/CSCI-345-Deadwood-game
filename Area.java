@@ -1,3 +1,4 @@
+//Area class encapsulates area data from xml files
 public class Area {
     private int x;
     private int y;

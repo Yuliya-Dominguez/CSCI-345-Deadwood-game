@@ -2,16 +2,8 @@ import java.util.*;
 
 public class Board {
 
-
-    //private int[] mapLayout;
-    //public String playerPosition;
     public int takesLeft;
-
     SceneCards sceneCards = new SceneCards();
-    //LocationManager locManager = new LocationManager();
-    
-    //Player player = new Player();
-   
     private static List<BoardData> sets = new ArrayList<BoardData>();
 
     public void setMapLayout(int[] scenesDrawn) {
@@ -30,16 +22,4 @@ public class Board {
     public static List<BoardData> getBoardLoactions() {
         return sets;
     }
-
-    /*public int getTakesLeft() {
-        return takesLeft;
-    }
-
-    public void setTakesLeft(int takes) {
-        takesLeft = takes;
-    }
-    */
-    //public void setPlayerPos(int location) {
-    //    locManager.updateLocation(location);
-    //}
 } 
