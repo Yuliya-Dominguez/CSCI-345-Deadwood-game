@@ -19,7 +19,7 @@ public class Player {
     SceneCards scene = new SceneCards();
 
     Store store = Store.getStoreInstance();
-    public List<BoardData> boardLocations = Board.getBoardLoactions();
+    public List<BoardData> boardLocations = Board.getBoardLocations();
     
 
     

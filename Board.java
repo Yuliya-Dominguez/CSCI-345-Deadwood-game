@@ -27,7 +27,7 @@ public class Board {
         }
     }
 
-    public static List<BoardData> getBoardLoactions() {
+    public static List<BoardData> getBoardLocations() {
         return sets;
     }
 
