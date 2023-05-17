@@ -14,10 +14,12 @@ public class Store {
 
     private Store(){}
 
+    //Get instance for a class to get an instance of this class.
     public static Store getStoreInstance() {
         return instance;
     }
 
+    //Payment to be given to a player if they succeded on a roll.
     public void payForShot() {
         if (player.playerRole.equals("Main")) {
             player.creditCount+= 2;
@@ -27,6 +29,7 @@ public class Store {
             player.dollarCount++;
         }
     }
+    //Payment given to actor on scene card, based on their placement.
     public void payBonus() {
             calcBonus();
             if (player.playerRolePosition == 1) {
@@ -43,11 +46,13 @@ public class Store {
             }
     }
 
+    //Payment given to extra, assuming there was a person acting a main role on the same scene.
     public void payBonusExtra() {
         int payment = BoardData.getPartLevel(player.playerLocation, player.playerRolePosition);
         player.dollarCount+= payment;
     }
 
+    //Caculates the total payment each part on the scene cards gets, based on the highest rank 
     private void calcBonus() {
         dice.readBonus(player.sceneIndexNumber);
         if (SceneCards.getPartsList(player.sceneIndexNumber).size() == 3) {

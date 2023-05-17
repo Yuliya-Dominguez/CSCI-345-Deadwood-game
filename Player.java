@@ -23,13 +23,16 @@ public class Player {
     
 
     
-
+    //Move the player to neighborMove's location.
     public void move(int neighborMove) {
         playerLocation = neighborMove;
         //Need location man and board probably for this, and XML.
     }
-
-
+    /*
+     * Rolls dice to generate a roll for the player. roll is then compared to the budget of the scene.
+     * If the roll is high enough then the roll is a success. Pay the according amount based on the role of the player, Main or Extra.
+     * If the roll fails, then give nothing or a dollar based on their role.
+     */
     public int act() {
         //BoardData currentSet = boardLocations.get(playerLocation);
         Dice dice = new Dice();
@@ -73,15 +76,23 @@ public class Player {
         return 0;
     }
 
+    //Add a rehearse token to be used for acting rolls.
     public void rehearse() {
         System.out.println("You've rehearsed! Take one rehearse counter.");
         rehearseCounter++;
     }
 
+    //Calls store.upgradeRank to upgrade the player's rank, if they can pay for it.
     public void upgrade(int rankWanted, String paymentType) {
         store.upgradeRank(rankWanted, paymentType);
     }
 
+    /*
+     * Takes in a string and int. The string represents the player's choice of scene or board. The int is
+     * the part on the scene or board the player wishes to take.
+     * From here the rank of the player is compared to the level of the part. If high enough then success, role is given.
+     * If not high enough, role is not given.
+     */
     public int takeRole(String sceneOrBoard, int partIndex) {
         BoardData currentSet = boardLocations.get(playerLocation);
         
@@ -117,6 +128,7 @@ public class Player {
         } 
     } 
 
+    //Displays all the info about the current player.
     public void checkInfo() {
         System.out.println("Name: " + name);
         if ( playerRoleName == null){
