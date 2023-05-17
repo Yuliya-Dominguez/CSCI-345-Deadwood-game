@@ -15,7 +15,7 @@ public class Player {
     public int creditCount;
     public int rehearseCounter;
 
-    Board board = new Board();
+    //Board board = new Board();
     SceneCards scene = new SceneCards();
 
     Store store = Store.getStoreInstance();
