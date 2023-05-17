@@ -18,7 +18,7 @@ public class Player {
     //Dice dice = new Dice();
     Board board = new Board();
     SceneCards scene = new SceneCards();
-    Acting act = new Acting();
+    //Acting act = new Acting();
 
     Store store = Store.getStoreInstance();
     public List<BoardData> boardLocations = Board.getBoardLoactions();
