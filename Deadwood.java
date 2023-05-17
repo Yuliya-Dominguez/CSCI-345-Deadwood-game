@@ -2,12 +2,8 @@
 
 public class Deadwood {
 
-    //private String recordRole;
-    //private int rehearseCounter;
     private int score;
-    //private int dayCount;
     public static String[] players;
-    //private int[] gameStats;
 
     Player player = new Player();
     LocationManager locManager = new LocationManager();

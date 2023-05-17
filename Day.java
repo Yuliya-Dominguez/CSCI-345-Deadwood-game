@@ -16,10 +16,6 @@ public class Day {
         System.out.println("\nA new day has started!");
     }
 
-    public void finalDay() {
-
-    }
-
     private void drawScenes() {
         //scenesDrawn = new int[10];
         int i = 0;
