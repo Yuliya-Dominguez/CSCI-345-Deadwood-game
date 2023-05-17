@@ -1,3 +1,4 @@
+//Singleton class that provides instances of the data (for sets) from board.xml
 import java.util.ArrayList;
 import java.util.List;
 

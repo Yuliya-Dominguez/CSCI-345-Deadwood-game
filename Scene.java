@@ -1,3 +1,4 @@
+//Encapsulates scenes' data taken from xml files
 public class Scene {
     private int number;
     private String description;

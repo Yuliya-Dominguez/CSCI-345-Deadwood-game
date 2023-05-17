@@ -1,3 +1,4 @@
+//Singleton class that provides instances of the data from cards.xml
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,3 +1,4 @@
+//Parses cards.xml file
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
@@ -38,14 +39,11 @@ public class CardsXMLparser {
 
         for (int i = 0; i < cards.getLength(); i++) {
 
-            //System.out.println("Card # " + (i + 1) + ": \n");
-
             Node card = cards.item(i);
             Element cardElem = (Element) card;
             String cardName = cardElem.getAttribute("name");
             String img = cardElem.getAttribute("img");
             int budget = Integer.parseInt(cardElem.getAttribute("budget"));
-            //System.out.println("Card name: " + cardName + ", image: " + img + ", budget =" +    budget);
 
             Card newCard = new Card(cardName, img, budget);
 
@@ -59,7 +57,6 @@ public class CardsXMLparser {
                     Element scene = (Element) cardChild;
                     int num = Integer.parseInt(scene.getAttribute("number"));
                     String description = scene.getTextContent();
-                    //System.out.println("Scene # " + num + "\nDescription: " + description);
 
                     Scene newScene = new Scene(num, description);
                     newCard.setScene(newScene);
@@ -70,7 +67,6 @@ public class CardsXMLparser {
                     Element partElem = (Element) cardChild;
                     String partName = partElem.getAttribute("name");
                     int partLVL = Integer.parseInt(partElem.getAttribute("level"));
-                    //System.out.println("Part name: " + partName + ", Level: " + partLVL);
 
                     // part area
                     NodeList partChildren = cardChild.getChildNodes();
@@ -85,7 +81,6 @@ public class CardsXMLparser {
                             int py = Integer.parseInt(partArea.getAttribute("y"));
                             int ph = Integer.parseInt(partArea.getAttribute("h"));
                             int pw = Integer.parseInt(partArea.getAttribute("w"));
-                            //System.out.println("x: " + px + ", y: " + py + ", h: " + ph + ", w: " + pw);
                             area = new Area(px, py, ph, pw);
                         } else if ("line".equals(partChild.getNodeName())) {
 
@@ -98,7 +93,6 @@ public class CardsXMLparser {
                     }
                 }
             }
-            //System.out.println();
             cardsList.add(newCard);
         }
         return cardsList;

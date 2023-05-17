@@ -1,3 +1,4 @@
+//Encapsulates upgrades' data taken from xml files
 public class Upgrade {
     private int level;
     private String currency;

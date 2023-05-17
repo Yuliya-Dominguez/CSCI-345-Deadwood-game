@@ -1,3 +1,4 @@
+//Encapsulates neighbors' data taken from xml files
 public class Neighbors {
     private String name;
 

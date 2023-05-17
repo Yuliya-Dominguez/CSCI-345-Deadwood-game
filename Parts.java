@@ -1,3 +1,4 @@
+//Encapsulates parts' data taken from xml files
 public class Parts {
     private String name;
     private int level;

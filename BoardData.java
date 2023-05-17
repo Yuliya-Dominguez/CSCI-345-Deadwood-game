@@ -1,3 +1,4 @@
+//BoardData accesses and controls data from Singletons Set, Trailer, Office classes, and parses the board.xml document
 import java.util.ArrayList;
 import java.util.List;
 import org.w3c.dom.Document;

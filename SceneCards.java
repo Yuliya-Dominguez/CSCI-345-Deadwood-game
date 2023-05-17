@@ -1,3 +1,4 @@
+//SceneCards accesses and controls data from Singleton class Set, and parses the cards.xml document
 import java.util.ArrayList;
 import java.util.List;
 

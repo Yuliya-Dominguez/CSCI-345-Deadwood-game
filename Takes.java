@@ -1,3 +1,4 @@
+//Encapsulates takes' data taken from xml files
 public class Takes {
     private int number;
     private Area area;
