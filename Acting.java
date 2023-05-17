@@ -2,7 +2,6 @@ public class Acting {
     public String playerRole;
     public int shotsFinished;
 
-    //Player player = new Player();
     Store store = Store.getStoreInstance();
 
     public void successMainRole() {
