@@ -222,7 +222,7 @@ public static void main(String[] args) {
                         if (moveSuccess == 1) {
                             break;
                         }
-                        
+
                         else {
                             System.out.println("Sorry, that move is invalid. Choose a different neighbor.");
                         }
