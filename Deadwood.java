@@ -6,7 +6,7 @@ public class Deadwood {
     public static String[] players;
 
     Player player = new Player();
-    LocationManager locManager = new LocationManager();
+    //LocationManager locManager = new LocationManager();
 
     public String displayStats() {
         String stats = ("Name: " + player.name + "\n" + "Role: " + 
