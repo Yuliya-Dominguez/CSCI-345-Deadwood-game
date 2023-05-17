@@ -5,15 +5,18 @@ public class WrappingUp {
 
     Store store = Store.getStoreInstance();
 
+    //Check for if there is an actor on a scene card on the same card.
     private boolean checkMainRoleFilled() {
         return mainActorRoleFilled;
     }
 
+    //Pay bonus for main actor.
     public void playerMainBonus() {
         System.out.println("That's a wrap! End of Scene!");
         store.payBonus();
     }
 
+    //Pay bonus for extra actor.
     public void playerExtraBonus() {
         System.out.println("That's a wrap! End of Scene!");
         if (checkMainRoleFilled()) {

@@ -52,7 +52,8 @@ public class Store {
         player.dollarCount+= payment;
     }
 
-    //Caculates the total payment each part on the scene cards gets, based on the highest rank 
+    //Caculates the total payment each part on the scene cards gets, based on the highest rank getting the most
+    //  and the lowest rank getting the least.
     private void calcBonus() {
         dice.readBonus(player.sceneIndexNumber);
         if (SceneCards.getPartsList(player.sceneIndexNumber).size() == 3) {
@@ -77,6 +78,7 @@ public class Store {
         }
     }
 
+    //Sets the values for upgrading, depending on paying with credits or dollars.
     private void setRankPrices() {
         rankUpgradeValues[0][0] = 4;
         rankUpgradeValues[0][1] = 10; 
@@ -90,12 +92,14 @@ public class Store {
         rankUpgradeValues[1][4] = 25;  
     }
 
+    //Upgrades up to the rank decided by rankLevel, paid for with paymentType. Fails if player does not have neough 
     public void upgradeRank(int rankLevel, String paymentType) {
         setRankPrices();
         if (paymentType.equals("dollar")) {
             if(player.dollarCount >= rankUpgradeValues[0][rankLevel - 2]) {
                 player.dollarCount-= rankUpgradeValues[0][rankLevel - 2];
                 player.rank = (rankLevel + 2);
+                System.out.println("Success! You are now Rank " + player.rank);
             }
             else {
                 System.out.println("Sorry, you do not have enough dollars to upgrade to this rank.");
@@ -105,6 +109,7 @@ public class Store {
             if(player.creditCount >= rankUpgradeValues[1][rankLevel - 2]) {
                 player.creditCount-= rankUpgradeValues[1][rankLevel - 2];
                 player.rank = (rankLevel + 2);
+                System.out.println("Success! You are now Rank " + player.rank);
             }
             else {
                 System.out.println("Sorry, you do not have enough credits to upgrade to this rank.");

@@ -119,7 +119,7 @@ public class Player {
                 playerRole = "Extra";
                 playerRoleName = BoardData.getPartName(playerLocation, playerRolePosition);
                 playerRolePosition = partIndex;
-                return 1;
+                return 2;
             }
            
         }

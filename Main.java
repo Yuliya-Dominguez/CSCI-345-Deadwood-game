@@ -24,6 +24,7 @@ public static void main(String[] args) {
     SceneCards sceneCards = new SceneCards();
     WrappingUp wrapUp = new WrappingUp();
     Board board = new Board();
+    List<BoardData> sets = Board.getBoardLocations();
 
     /*
      * Beginning of game. Prompt player for input to ender number of players to create player classes and set DAY_MAX.
@@ -322,6 +323,11 @@ public static void main(String[] args) {
 
                             if (success == 1) {
                                 System.out.println("Role "+ SceneCards.getPartName(player.sceneIndexNumber, (partToTake-1)) + " has been taken!");
+                                sets.get(player.playerLocation).fillMainRoll(1);
+                                break;
+                            }
+                            else if (success == 2) {
+                                System.out.println("Role "+ SceneCards.getPartName(player.sceneIndexNumber, (partToTake-1)) + " has been taken!");
                                 break;
                             }
 
@@ -372,6 +378,9 @@ public static void main(String[] args) {
                                         scenesFinished++;
                                     }
                                     else {
+                                        if (sets.get(player.playerLocation).isMainRoleFilled() == 1){
+                                            wrapUp.mainActorRoleFilled = true;
+                                        }
                                         wrapUp.playerExtraBonus();
                                         player.playerRole = "None";
                                         scenesFinished++;

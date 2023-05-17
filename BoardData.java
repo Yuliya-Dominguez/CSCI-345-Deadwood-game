@@ -10,6 +10,7 @@ public class BoardData {
     private static ArrayList<Trailer> trailerList;
     private static ArrayList<Office> officeList;
     private static int sceneIndex;
+    private static int mainRoleTaken;
 
     public BoardData() {
         Document doc = null;
@@ -114,6 +115,14 @@ public class BoardData {
 
      public int getSceneIndex() {
         return sceneIndex;
+     }
+
+     public void fillMainRoll(int roleTaken) {
+      mainRoleTaken = roleTaken;
+     }
+
+     public int isMainRoleFilled() {
+         return mainRoleTaken;
      }
      
      public static List<Neighbors> getTrailerNeighbors() {//list of neighbors
