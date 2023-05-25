@@ -1,9 +1,67 @@
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.*;
+import java.util.jar.JarInputStream;
+
+import javax.swing.*;
+
+
 
 
 public class Main {
 
-    
+    public static void createAndShowGUI() {
+        JFrame frame = new JFrame("HelloWorldSwing");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //JLabel label = new JLabel("Deadwood", JLabel.CENTER);
+        //label.setVerticalAlignment(JLabel.TOP);
+        //frame.getContentPane().add(label);
+
+        JLayeredPane window = new JLayeredPane();
+        window.setPreferredSize(new Dimension(600, 400));
+        window.setBorder(BorderFactory.createTitledBorder("Deadwood"));
+
+        JLabel menuTitle = new JLabel("MENU");
+        menuTitle.setBounds(1025, 20, 50, 30);
+        window.add(menuTitle);
+
+        JButton move = new JButton("move");
+        move.setBackground(Color.white);
+        move.setBounds(950, 70, 80, 50);
+        window.add(move);
+
+        JButton role = new JButton("Take Role");
+        role.setBackground(Color.white);
+        role.setBounds(1050, 70, 95, 50);
+        window.add(role);
+
+        JButton act = new JButton("Act");
+        act.setBackground(Color.white);
+        act.setBounds(1050, 120, 95, 50);
+        window.add(act);
+
+        JRadioButton upgrade = new JRadioButton("Upgrade", false);
+        upgrade.setBackground(Color.white);
+        upgrade.setBounds(950, 120, 80, 50);
+        window.add(upgrade);
+
+        JRadioButton endturn = new JRadioButton("End Turn", false);
+        endturn.setBackground(Color.white);
+        endturn.setBounds(950, 180, 80, 50);
+        window.add(endturn);
+
+
+
+        frame.getContentPane().add(window);
+        
+        //move.setBounds();
+        //frame.getContentPane().add(move);
+
+        frame.pack();
+        frame.setVisible(true);
+        frame.setSize(1200, 800);
+    }
     //Store store = Store.getStoreInstance();
     
     //Dice dice = new Dice();
@@ -26,6 +84,12 @@ public static void main(String[] args) {
     Board board = new Board();
     List<BoardData> sets = Board.getBoardLocations();
 
+
+    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        public void run() {
+            createAndShowGUI();
+        }
+    });
     /*
      * Beginning of game. Prompt player for input to ender number of players to create player classes and set DAY_MAX.
      */
