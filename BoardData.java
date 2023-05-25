@@ -47,6 +47,15 @@ public class BoardData {
      }
   
      //here we will need getArea
+     public static Area getSetArea(int index) {
+         Set set = setList.get(index);
+         Area area = set.getArea();
+         int x = area.getX();
+         int y = area.getY();
+         int h = area.getH();
+         int w = area.getW();
+         return area;
+      }
   
      public static List<Takes> getTakesList(int index) {
   
@@ -63,8 +72,19 @@ public class BoardData {
         int num = takes.getNum();
         return num;
      }
-  
-     //here we will have getTakesArea
+
+     public static Area getTakesArea(int setIndex, int takeIndex) {
+         Set set = setList.get(setIndex);
+         List<Takes> takesList = set.getTakes();
+         Takes takes = takesList.get(takeIndex);
+         Area area = takes.getArea();
+         int x = area.getX();
+         int y = area.getY();
+         int h = area.getH();
+         int w = area.getW();
+     
+      return area;
+   }
   
      public static List<Parts> getPartsList(int index) {
   
