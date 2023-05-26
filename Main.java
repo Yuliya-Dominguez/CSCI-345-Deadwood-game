@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.*;
-import java.util.jar.JarInputStream;
 
 import javax.swing.*;
 
