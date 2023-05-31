@@ -166,7 +166,7 @@ public class BoardData {
       int y = area.getY();
       int h = area.getH();
       int w = area.getW();
-      //System.out.println("area: x= " + x + ", y=" + y + ", h=" + h + ", w=" + w);
+
       return area;
    }
   
@@ -184,7 +184,7 @@ public class BoardData {
       int y = area.getY();
       int h = area.getH();
       int w = area.getW();
-      //System.out.println("area: x= " + x + ", y=" + y + ", h=" + h + ", w=" + w);
+
       return area;
    }
   
