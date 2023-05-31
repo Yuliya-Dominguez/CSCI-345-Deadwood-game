@@ -36,6 +36,13 @@ public class RunBoardXML{
       int gx = getTakesArea(0,0).getX();
       System.out.println(gx);
 
+      int tx = getTrailerArea().getY();
+      System.out.println(tx);
+
+      getOfficeArea();
+      int ox = getOfficeArea().getH();
+      System.out.println(ox);
+
       /*getTrailerNeighbors();
       getOfficeNeighbors();
       getTrailNeighbor(0);
@@ -202,7 +209,16 @@ public class RunBoardXML{
       return neighborsList;
    }
 
-   //here we will need trailer's area
+   public static Area getTrailerArea() {
+      Trailer trailer = trailerList.get(0);
+      Area area = trailer.getArea();
+      int x = area.getX();
+      int y = area.getY();
+      int h = area.getH();
+      int w = area.getW();
+      //System.out.println("area: x= " + x + ", y=" + y + ", h=" + h + ", w=" + w);
+      return area;
+   }
 
    public static List<Neighbors> getOfficeNeighbors() {
 
@@ -221,7 +237,16 @@ public class RunBoardXML{
       return neighborsList;
    }
 
-   //here we will need office area
+   public static Area getOfficeArea() {
+      Office office = officeList.get(0);
+      Area area = office.getArea();
+      int x = area.getX();
+      int y = area.getY();
+      int h = area.getH();
+      int w = area.getW();
+      //System.out.println("area: x= " + x + ", y=" + y + ", h=" + h + ", w=" + w);
+      return area;
+   }
 
    public static String getTrailNeighbor(int neighborIndex) {
       Trailer trailer = trailerList.get(0);

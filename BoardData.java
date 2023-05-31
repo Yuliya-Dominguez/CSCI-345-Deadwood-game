@@ -46,7 +46,6 @@ public class BoardData {
         return name;
      }
   
-     //here we will need getArea
      public static Area getSetArea(int index) {
          Set set = setList.get(index);
          Area area = set.getArea();
@@ -159,8 +158,17 @@ public class BoardData {
         String name = neighbors.getName();
         return name;
      }
-  
-     //here we will need trailer's area
+
+     public static Area getTrailerArea() {
+      Trailer trailer = trailerList.get(0);
+      Area area = trailer.getArea();
+      int x = area.getX();
+      int y = area.getY();
+      int h = area.getH();
+      int w = area.getW();
+      //System.out.println("area: x= " + x + ", y=" + y + ", h=" + h + ", w=" + w);
+      return area;
+   }
   
      public static List<Neighbors> getOfficeNeighbors() {//list of neighbors
   
@@ -168,8 +176,17 @@ public class BoardData {
         List<Neighbors> neighborsList = office.getNeighbors();
         return neighborsList;
      }
-  
-     //here we will need office area
+
+     public static Area getOfficeArea() {
+      Office office = officeList.get(0);
+      Area area = office.getArea();
+      int x = area.getX();
+      int y = area.getY();
+      int h = area.getH();
+      int w = area.getW();
+      //System.out.println("area: x= " + x + ", y=" + y + ", h=" + h + ", w=" + w);
+      return area;
+   }
   
      public static String getOffNeighbor(int neighborIndex) {//name of a neighbor
         Office office = officeList.get(0);
