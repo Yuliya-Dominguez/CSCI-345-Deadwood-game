@@ -6,7 +6,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
-import java.awt.Image; 
+import java.awt.Image;
+import java.awt.image.BufferedImage; 
  
 public class View extends JPanel{
 
@@ -33,11 +34,8 @@ public class View extends JPanel{
         //backgroundPanel.setLayout(new BorderLayout());
         backgroundPanel.setLayout(new GridBagLayout());*/
 
-<<<<<<< Updated upstream
         ImageIcon backgroundImage = new ImageIcon("Images/board.jpeg");
-=======
-        ImageIcon backgroundImage = new ImageIcon("sized_board.jpeg");
->>>>>>> Stashed changes
+        //ImageIcon backgroundImage = new ImageIcon("sized_board.jpeg");
         JLabel backgroundLabel = new JLabel();
         backgroundLabel.setIcon(backgroundImage);
         backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
@@ -161,21 +159,34 @@ public class View extends JPanel{
     private void addImage() {
         ImageIcon brd = new ImageIcon("Images/board.jpeg");
         board = brd.getImage();
+        board = getScaledImage(board, 900, 655);
   
         ImageIcon crd1 = new ImageIcon("Images/cards/01.png");
         card1 = crd1.getImage();
+        card1 = getScaledImage(card1, 154, 86);
   
         ImageIcon crd2 = new ImageIcon("Images/cards/01.png");
         card2 = crd2.getImage();
+        card2 = getScaledImage(card2, 154, 86);
     }
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
         g.drawImage(board, 0, 0, this);
-        g.drawImage(card1, 21, 69, this);
-        g.drawImage(card2, 27, 732, this);
+        g.drawImage(card1, 16, 49, this);
+        g.drawImage(card2, 20, 532, this);
+    }
+
+    private Image getScaledImage(Image srcImg, int w, int h){
+        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = resizedImg.createGraphics();
     
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(srcImg, 0, 0, w, h, null);
+        g2.dispose();
+    
+        return resizedImg;
     }
 
 }
