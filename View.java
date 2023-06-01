@@ -3,9 +3,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.GridBagLayout;
 import java.awt.Image; 
  
-public class View extends JFrame{
+public class View{
 
     private static JFrame frame;
     private static JPanel backgroundPanel;
@@ -13,13 +14,21 @@ public class View extends JFrame{
 
     public static void createAndShowGUI() {
         
-        frame = new JFrame("HelloWorldSwing");
+        frame = new JFrame("Deadwood");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 900);
 
         //Create the background panel for the the board image
-        backgroundPanel = new JPanel() {
-            @Override
+        backgroundPanel = new JPanel();
+        //backgroundPanel.setLayout(new BorderLayout());
+        backgroundPanel.setLayout(new GridBagLayout());
+
+        ImageIcon backgroundImage = new ImageIcon("Images/board.jpeg");
+        JLabel backgroundLabel = new JLabel(backgroundImage);
+        //backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
+        backgroundPanel.add(backgroundLabel);
+        
+        /*    @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 // Load and draw the background image
@@ -28,7 +37,7 @@ public class View extends JFrame{
                 g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
             }
         };
-        backgroundPanel.setLayout(new BorderLayout());
+        backgroundPanel.setLayout(new BorderLayout());*/
 
         //Panel for the user functions
         JPanel userFunctionsPanel = new JPanel();
@@ -43,7 +52,10 @@ public class View extends JFrame{
         //Panel for images on top of the background
         imagePanel = new JPanel();
         imagePanel.setOpaque(false);
-        imagePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        imagePanel.setLayout(null);
+        //imagePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+
+        //imagePanel.add(backgroundPanel);//
 
         ImageIcon imageIcon1 = new ImageIcon("Images/cards/01.png");
         ImageIcon imageIcon2 = new ImageIcon("Images/cards/02.png");
@@ -51,25 +63,28 @@ public class View extends JFrame{
         JLabel imageLabel1 = new JLabel(imageIcon1);
         JLabel imageLabel2 = new JLabel(imageIcon2);
 
-        imagePanel.setLayout(null);
+        //imagePanel.setLayout(null);
         imageLabel1.setBounds(21, 69, 205, 115);
         //imageLabel1.setBounds(19, 63, 205, 115);
         //imageLabel2.setBounds(22, 685, 205, 115);
-        imageLabel2.setBounds(27, 732, 205, 115);
-        //imageLabel2.setBounds(27, 532, 205, 115);
+        //imageLabel2.setBounds(27, 732, 205, 115);
+        imageLabel2.setBounds(27, 500, 205, 115);
 
         imagePanel.add(imageLabel1);
         imagePanel.add(imageLabel2);
 
-        backgroundPanel.add(imagePanel, BorderLayout.CENTER);
+        //backgroundPanel.add(imagePanel);
+        //backgroundPanel.add(imagePanel, BorderLayout.CENTER);
 
         //Create the main container panel with a BorderLayout
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.add(backgroundPanel, BorderLayout.CENTER);
+        mainPanel.add(imagePanel, BorderLayout.CENTER);
         mainPanel.add(userFunctionsPanel, BorderLayout.EAST);
 
-        frame.getContentPane().add(mainPanel);
-
+        frame.setContentPane(mainPanel);
+        //frame.getContentPane().add(mainPanel);
+        //frame.pack();
         frame.setVisible(true);
     }
 
