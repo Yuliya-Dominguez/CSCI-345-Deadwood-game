@@ -47,10 +47,14 @@ public class Main {
 
         window.add(imageLabel1, 0);
         window.add(imageLabel2, 1);
-        
+
+        JLayeredPane menu = new JLayeredPane();
+        menu.setBounds(1025, 20, 200, 700);
+        window.add(menu, 0);
+
         JLabel menuTitle = new JLabel("MENU");
-        menuTitle.setBounds(1025, 20, 50, 30);
-        window.add(menuTitle, 0);
+        menuTitle.setBounds(20, 20, 50, 30);
+        menu.add(menuTitle, 0);
         
         //ActionListener showText = new ActionListener();
         TextField sampleText = new TextField(null, 20);
@@ -63,32 +67,32 @@ public class Main {
                 sampleText.setText("AYOoo Puss in Boots x Death x Kitty Softpaws?!?!");
             }
         });
-        window.add(testButton);
+        window.add(testButton, 2);
 
         JButton move = new JButton("move");
         move.setBackground(Color.white);
-        move.setBounds(950, 70, 80, 50);
-        window.add(move, 2);
+        move.setBounds(0, 70, 80, 50);
+        menu.add(move);
 
         JButton role = new JButton("Take Role");
         role.setBackground(Color.white);
-        role.setBounds(1050, 70, 95, 50);
-        window.add(role, 3);
+        role.setBounds(0, 70, 95, 50);
+        menu.add(role, 3);
 
         JButton act = new JButton("Act");
         act.setBackground(Color.white);
-        act.setBounds(1050, 120, 95, 50);
-        window.add(act, 4);
+        act.setBounds(0, 120, 95, 50);
+        menu.add(act, 4);
 
         JRadioButton upgrade = new JRadioButton("Upgrade", false);
         upgrade.setBackground(Color.white);
-        upgrade.setBounds(950, 120, 80, 50);
-        window.add(upgrade, 5);
+        upgrade.setBounds(0, 120, 80, 50);
+        menu.add(upgrade, 4);
 
         JRadioButton endturn = new JRadioButton("End Turn", false);
         endturn.setBackground(Color.white);
-        endturn.setBounds(950, 180, 80, 50);
-        window.add(endturn, 6);
+        endturn.setBounds(0, 100, 80, 50);
+        menu.add(endturn, 5);
 
 
 
