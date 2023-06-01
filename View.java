@@ -53,8 +53,10 @@ public class View extends JFrame{
 
         imagePanel.setLayout(null);
         imageLabel1.setBounds(21, 69, 205, 115);
-        //imageLabel2.setBounds(27, 732, 205, 115);
-        imageLabel2.setBounds(27, 532, 205, 115);
+        //imageLabel1.setBounds(19, 63, 205, 115);
+        //imageLabel2.setBounds(22, 685, 205, 115);
+        imageLabel2.setBounds(27, 732, 205, 115);
+        //imageLabel2.setBounds(27, 532, 205, 115);
 
         imagePanel.add(imageLabel1);
         imagePanel.add(imageLabel2);
