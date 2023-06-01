@@ -26,7 +26,7 @@ public class Main {
 
         ImageIcon backgroundImage = new ImageIcon("sized_board.jpeg");
         JLabel backgroundLabel = new JLabel(backgroundImage);
-        backgroundLabel.setBounds(0, 0, 1200, 900);
+        backgroundLabel.setBounds(-100, -50, 1200, 900);
         //backgroundLabel.setBounds(0, 0, 10, 600);
 
         window.add(backgroundLabel, -1);
