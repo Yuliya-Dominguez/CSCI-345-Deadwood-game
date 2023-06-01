@@ -28,10 +28,11 @@ public class View{
         //backgroundPanel.setLayout(new BorderLayout());
         backgroundPanel.setLayout(new GridBagLayout());*/
 
-        ImageIcon backgroundImage = new ImageIcon("sized_board.jpeg");
-        JLabel backgroundLabel = new JLabel(backgroundImage);
-        //backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
-        backgroundLabel.setBounds(0, 0, 1200, 900);
+        ImageIcon backgroundImage = new ImageIcon("Images/sized_board.jpeg");
+        JLabel backgroundLabel = new JLabel();
+        backgroundLabel.setIcon(backgroundImage);
+        backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
+        //backgroundLabel.setBounds(0, 0, 1200, 900);
         window.add(backgroundLabel, -1);
         //backgroundPanel.add(backgroundLabel);
         
@@ -90,10 +91,10 @@ public class View{
         //Create the main container panel with a BorderLayout
         JPanel mainPanel = new JPanel(new BorderLayout());
         //mainPanel.add(backgroundPanel, BorderLayout.CENTER);
-        mainPanel.add(imagePanel, BorderLayout.CENTER);
-        mainPanel.add(userFunctionsPanel, BorderLayout.EAST);
+        //mainPanel.add(imagePanel, BorderLayout.CENTER);
+        //mainPanel.add(userFunctionsPanel, BorderLayout.EAST);
 
-        window.add(mainPanel);
+        //window.add(mainPanel);
 
         frame.getContentPane().add(window);
         //frame.setContentPane(mainPanel);
