@@ -98,7 +98,7 @@ public class Main {
 
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(1450, 825);
+        frame.setSize(1300, 825);
     }
     //Store store = Store.getStoreInstance();
     
