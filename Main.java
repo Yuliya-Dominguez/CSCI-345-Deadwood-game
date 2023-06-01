@@ -15,6 +15,7 @@ public class Main {
         JFrame frame = new JFrame("HelloWorldSwing");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        
         //JLabel label = new JLabel("Deadwood", JLabel.CENTER);
         //label.setVerticalAlignment(JLabel.TOP);
         //frame.getContentPane().add(label);
@@ -23,14 +24,21 @@ public class Main {
         window.setPreferredSize(new Dimension(600, 400));
         window.setBorder(BorderFactory.createTitledBorder("Deadwood"));
 
+        ImageIcon backgroundImage = new ImageIcon("Images/board.jpeg");
+        JLabel backgroundLabel = new JLabel(backgroundImage);
+        backgroundLabel.setBounds(0, 0, 1200, 900);
+        //backgroundLabel.setBounds(0, 0, 10, 600);
+
+        window.add(backgroundLabel, -1);
+        
         JLabel menuTitle = new JLabel("MENU");
         menuTitle.setBounds(1025, 20, 50, 30);
-        window.add(menuTitle);
+        window.add(menuTitle, 0);
         
         //ActionListener showText = new ActionListener();
         TextField sampleText = new TextField(null, 20);
         sampleText.setBounds(300, 150, 275, 25);
-        window.add(sampleText);
+        window.add(sampleText, 1);
         JButton testButton = new JButton("Click!");
         testButton.setBounds(400, 70, 80, 50);
         testButton.addActionListener(new ActionListener() {
@@ -43,27 +51,27 @@ public class Main {
         JButton move = new JButton("move");
         move.setBackground(Color.white);
         move.setBounds(950, 70, 80, 50);
-        window.add(move);
+        window.add(move, 2);
 
         JButton role = new JButton("Take Role");
         role.setBackground(Color.white);
         role.setBounds(1050, 70, 95, 50);
-        window.add(role);
+        window.add(role, 3);
 
         JButton act = new JButton("Act");
         act.setBackground(Color.white);
         act.setBounds(1050, 120, 95, 50);
-        window.add(act);
+        window.add(act, 4);
 
         JRadioButton upgrade = new JRadioButton("Upgrade", false);
         upgrade.setBackground(Color.white);
         upgrade.setBounds(950, 120, 80, 50);
-        window.add(upgrade);
+        window.add(upgrade, 5);
 
         JRadioButton endturn = new JRadioButton("End Turn", false);
         endturn.setBackground(Color.white);
         endturn.setBounds(950, 180, 80, 50);
-        window.add(endturn);
+        window.add(endturn, 6);
 
 
 
