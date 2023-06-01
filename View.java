@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,11 +8,15 @@ import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.Image; 
  
-public class View{
+public class View extends JPanel{
 
     private static JFrame frame;
     private static JPanel backgroundPanel;
     private static JPanel imagePanel;
+
+    private Image board;
+    private Image card1;
+    private Image card2;
 
     public static void createAndShowGUI() {
         
@@ -28,7 +33,11 @@ public class View{
         //backgroundPanel.setLayout(new BorderLayout());
         backgroundPanel.setLayout(new GridBagLayout());*/
 
+<<<<<<< Updated upstream
         ImageIcon backgroundImage = new ImageIcon("Images/board.jpeg");
+=======
+        ImageIcon backgroundImage = new ImageIcon("sized_board.jpeg");
+>>>>>>> Stashed changes
         JLabel backgroundLabel = new JLabel();
         backgroundLabel.setIcon(backgroundImage);
         backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
@@ -127,8 +136,46 @@ public class View{
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
+        /*SwingUtilities.invokeLater(() -> {
             createAndShowGUI();
-        });
+        });*/
+
+        JFrame f = new JFrame();
+        f.setTitle("Deadwood");
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setSize(1200,900);
+        Container pane = f.getContentPane();
+
+        View p1 = new View();
+
+        pane.add(p1);
+        f.setVisible(true);
     }
+
+    public View() { // a constructor to set up graphics window
+        super();
+        setBackground(Color.WHITE);
+        addImage();
+    }
+
+    private void addImage() {
+        ImageIcon brd = new ImageIcon("Images/board.jpeg");
+        board = brd.getImage();
+  
+        ImageIcon crd1 = new ImageIcon("Images/cards/01.png");
+        card1 = crd1.getImage();
+  
+        ImageIcon crd2 = new ImageIcon("Images/cards/01.png");
+        card2 = crd2.getImage();
+    }
+
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+
+        g.drawImage(board, 0, 0, this);
+        g.drawImage(card1, 21, 69, this);
+        g.drawImage(card2, 27, 732, this);
+    
+    }
+
 }
