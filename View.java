@@ -28,7 +28,7 @@ public class View{
         //backgroundPanel.setLayout(new BorderLayout());
         backgroundPanel.setLayout(new GridBagLayout());*/
 
-        ImageIcon backgroundImage = new ImageIcon("Images/sized_board.jpeg");
+        ImageIcon backgroundImage = new ImageIcon("Images/board.jpeg");
         JLabel backgroundLabel = new JLabel();
         backgroundLabel.setIcon(backgroundImage);
         backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
