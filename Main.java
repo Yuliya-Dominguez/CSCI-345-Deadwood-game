@@ -21,7 +21,7 @@ public class Main {
         //frame.getContentPane().add(label);
 
         JLayeredPane window = new JLayeredPane();
-        window.setPreferredSize(new Dimension(600, 400));
+        window.setPreferredSize(new Dimension(700, 400));
         window.setBorder(BorderFactory.createTitledBorder("Deadwood"));
 
         ImageIcon backgroundImage = new ImageIcon("Images/board.jpeg");
@@ -82,7 +82,7 @@ public class Main {
 
         frame.pack();
         frame.setVisible(true);
-        frame.setSize(1200, 800);
+        frame.setSize(1450, 825);
     }
     //Store store = Store.getStoreInstance();
     
