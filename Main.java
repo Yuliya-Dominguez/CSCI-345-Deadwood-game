@@ -24,9 +24,10 @@ public class Main {
         window.setPreferredSize(new Dimension(700, 400));
         window.setBorder(BorderFactory.createTitledBorder("Deadwood"));
 
-        ImageIcon backgroundImage = new ImageIcon("sized_board.jpeg");
-        JLabel backgroundLabel = new JLabel(backgroundImage);
-        backgroundLabel.setBounds(-100, -50, 1200, 900);
+        ImageIcon backgroundImage = new ImageIcon("Images/board.jpeg");
+        JLabel backgroundLabel = new JLabel();
+        backgroundLabel.setIcon(backgroundImage);
+        backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
         //backgroundLabel.setBounds(0, 0, 10, 600);
 
         window.add(backgroundLabel, -1);
