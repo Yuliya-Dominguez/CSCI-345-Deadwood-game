@@ -30,6 +30,22 @@ public class Main {
         //backgroundLabel.setBounds(0, 0, 10, 600);
 
         window.add(backgroundLabel, -1);
+
+        ImageIcon imageIcon1 = new ImageIcon("Images/cards/01.png");
+        ImageIcon imageIcon2 = new ImageIcon("Images/cards/02.png");
+
+        JLabel imageLabel1 = new JLabel(imageIcon1);
+        JLabel imageLabel2 = new JLabel(imageIcon2);
+
+        //imagePanel.setLayout(null);
+        imageLabel1.setBounds(21, 69, 205, 115);
+        //imageLabel1.setBounds(19, 63, 205, 115);
+        //imageLabel2.setBounds(22, 685, 205, 115);
+        //imageLabel2.setBounds(27, 732, 205, 115);
+        imageLabel2.setBounds(27, 500, 205, 115);
+
+        window.add(imageLabel1, 0);
+        window.add(imageLabel2, 1);
         
         JLabel menuTitle = new JLabel("MENU");
         menuTitle.setBounds(1025, 20, 50, 30);
