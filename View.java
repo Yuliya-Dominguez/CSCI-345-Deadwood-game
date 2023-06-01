@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
@@ -18,15 +19,21 @@ public class View{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 900);
 
+        JLayeredPane window = new JLayeredPane();
+        window.setPreferredSize(new Dimension(600, 400));
+        window.setBorder(BorderFactory.createTitledBorder("Deadwood"));
+/*
         //Create the background panel for the the board image
         backgroundPanel = new JPanel();
         //backgroundPanel.setLayout(new BorderLayout());
-        backgroundPanel.setLayout(new GridBagLayout());
+        backgroundPanel.setLayout(new GridBagLayout());*/
 
-        ImageIcon backgroundImage = new ImageIcon("Images/board.jpeg");
+        ImageIcon backgroundImage = new ImageIcon("sized_board.jpeg");
         JLabel backgroundLabel = new JLabel(backgroundImage);
         //backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
-        backgroundPanel.add(backgroundLabel);
+        backgroundLabel.setBounds(0, 0, 1200, 900);
+        window.add(backgroundLabel, -1);
+        //backgroundPanel.add(backgroundLabel);
         
         /*    @Override
             protected void paintComponent(Graphics g) {
@@ -48,6 +55,8 @@ public class View{
         JButton button2 = new JButton("Button 2");
         userFunctionsPanel.add(button1);
         userFunctionsPanel.add(button2);
+
+        //window.add(userFunctionsPanel, BorderLayout.EAST, 1);
 
         //Panel for images on top of the background
         imagePanel = new JPanel();
@@ -73,16 +82,21 @@ public class View{
         imagePanel.add(imageLabel1);
         imagePanel.add(imageLabel2);
 
+        //window.add(imagePanel, BorderLayout.CENTER, 0);
+
         //backgroundPanel.add(imagePanel);
         //backgroundPanel.add(imagePanel, BorderLayout.CENTER);
 
         //Create the main container panel with a BorderLayout
         JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.add(backgroundPanel, BorderLayout.CENTER);
+        //mainPanel.add(backgroundPanel, BorderLayout.CENTER);
         mainPanel.add(imagePanel, BorderLayout.CENTER);
         mainPanel.add(userFunctionsPanel, BorderLayout.EAST);
 
-        frame.setContentPane(mainPanel);
+        window.add(mainPanel);
+
+        frame.getContentPane().add(window);
+        //frame.setContentPane(mainPanel);
         //frame.getContentPane().add(mainPanel);
         //frame.pack();
         frame.setVisible(true);
