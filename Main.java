@@ -1,18 +1,20 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.*;
-
+import java.util.List;
 import javax.swing.*;
 
-
+import java.awt.*;
+import java.awt.event.*;
 
 
 public class Main {
-
+    
+    
     public static void createAndShowGUI() {
         JFrame frame = new JFrame("HelloWorldSwing");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
         //JLabel label = new JLabel("Deadwood", JLabel.CENTER);
         //label.setVerticalAlignment(JLabel.TOP);
         //frame.getContentPane().add(label);
@@ -24,6 +26,19 @@ public class Main {
         JLabel menuTitle = new JLabel("MENU");
         menuTitle.setBounds(1025, 20, 50, 30);
         window.add(menuTitle);
+        
+        //ActionListener showText = new ActionListener();
+        TextField sampleText = new TextField(null, 20);
+        sampleText.setBounds(300, 150, 275, 25);
+        window.add(sampleText);
+        JButton testButton = new JButton("Click!");
+        testButton.setBounds(400, 70, 80, 50);
+        testButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                sampleText.setText("AYOoo Puss in Boots x Death x Kitty Softpaws?!?!");
+            }
+        });
+        window.add(testButton);
 
         JButton move = new JButton("move");
         move.setBackground(Color.white);
