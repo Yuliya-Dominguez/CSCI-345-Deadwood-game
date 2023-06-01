@@ -51,23 +51,123 @@ public class Main {
         JLayeredPane menu = new JLayeredPane();
         menu.setBounds(1025, 20, 200, 700);
         window.add(menu, 0);
+        menu.setVisible(false);
 
-        JLabel menuTitle = new JLabel("MENU");
-        menuTitle.setBounds(20, 20, 50, 30);
-        menu.add(menuTitle, 0);
-        
-        //ActionListener showText = new ActionListener();
+        JLayeredPane numPlayers = new JLayeredPane();
+        numPlayers.setBounds(1025, 20, 200, 700);
+        numPlayers.setBackground(Color.white);
+        window.add(numPlayers, 1);
+
         TextField sampleText = new TextField(null, 20);
         sampleText.setBounds(300, 150, 275, 25);
         window.add(sampleText, 1);
+
+        JLabel playerSelect = new JLabel("Select Number of Players:");
+        playerSelect.setBounds(0, 20, 300, 30);
+        numPlayers.add(playerSelect, 0);
+
+        JButton player2 = new JButton("2 Players");
+        player2.setBounds(20, 60, 100, 30);
+        player2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                numPlayers.setVisible(false);
+                menu.setVisible(true);
+                sampleText.setText("Player count: 2");
+            }
+        });
+        numPlayers.add(player2);
+
+        JButton player3 = new JButton("3 Players");
+        player3.setBounds(20, 95, 100, 30);
+        player3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                numPlayers.setVisible(false);
+                menu.setVisible(true);
+                sampleText.setText("Player count: 3");
+            }
+        });
+        numPlayers.add(player3);
+
+        JButton player4 = new JButton("4 Players");
+        player4.setBounds(20, 130, 100, 30);
+        player4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                numPlayers.setVisible(false);
+                menu.setVisible(true);
+                sampleText.setText("Player count: 4");
+            }
+        });
+        numPlayers.add(player4);
+
+        JButton player5 = new JButton("5 Players");
+        player5.setBounds(20, 165, 100, 30);
+        player5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                numPlayers.setVisible(false);
+                menu.setVisible(true);
+                sampleText.setText("Player count: 5");
+            }
+        });
+        numPlayers.add(player5);
+
+        JButton player6 = new JButton("6 Players");
+        player6.setBounds(20, 200, 100, 30);
+        player6.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                numPlayers.setVisible(false);
+                menu.setVisible(true);
+                sampleText.setText("Player count: 6");
+            }
+        });
+        numPlayers.add(player6);
+
+        JButton player7 = new JButton("7 Players");
+        player7.setBounds(20, 235, 100, 30);
+        player7.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                numPlayers.setVisible(false);
+                menu.setVisible(true);
+                sampleText.setText("Player count: 7");
+            }
+        });
+        numPlayers.add(player7);
+
+        JButton player8 = new JButton("8 Players");
+        player8.setBounds(20, 270, 100, 30);
+        player8.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                numPlayers.setVisible(false);
+                menu.setVisible(true);
+                sampleText.setText("Player count: 8");
+            }
+        });
+        numPlayers.add(player8);
+
+        JLabel menuTitle = new JLabel("MENU");
+        menuTitle.setBounds(75, 275, 50, 30);
+        menu.add(menuTitle, 0);
+        
+        //ActionListener showText = new ActionListener();
+        
         JButton testButton = new JButton("Click!");
         testButton.setBounds(400, 70, 80, 50);
         testButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                menu.setVisible(true);
                 sampleText.setText("AYOoo Puss in Boots x Death x Kitty Softpaws?!?!");
             }
         });
         window.add(testButton, 2);
+
+        JButton disButton = new JButton("Disappear!");
+        disButton.setBounds(400, 200, 80, 50);
+        disButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                menu.setVisible(false);
+                sampleText.setText("The menu gone?!");
+            }
+        });
+        window.add(disButton, 2);
 
         JButton move = new JButton("move");
         move.setBackground(Color.white);
@@ -76,7 +176,7 @@ public class Main {
 
         JButton role = new JButton("Take Role");
         role.setBackground(Color.white);
-        role.setBounds(0, 70, 95, 50);
+        role.setBounds(100, 70, 95, 50);
         menu.add(role, 3);
 
         JButton act = new JButton("Act");
@@ -86,12 +186,12 @@ public class Main {
 
         JRadioButton upgrade = new JRadioButton("Upgrade", false);
         upgrade.setBackground(Color.white);
-        upgrade.setBounds(0, 120, 80, 50);
+        upgrade.setBounds(100, 120, 80, 50);
         menu.add(upgrade, 4);
 
         JRadioButton endturn = new JRadioButton("End Turn", false);
         endturn.setBackground(Color.white);
-        endturn.setBounds(0, 100, 80, 50);
+        endturn.setBounds(0, 180, 80, 50);
         menu.add(endturn, 5);
 
 
