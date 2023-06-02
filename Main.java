@@ -88,7 +88,6 @@ public class Main {
         playerSelect.setBounds(0, 20, 300, 30);
         numPlayers.add(playerSelect, 0);
 
-        
 
         JButton player2 = new JButton("2 Players");
         player2.setBounds(20, 60, 100, 30);
@@ -256,9 +255,23 @@ public class Main {
         act.setBounds(0, 120, 95, 50);
         menu.add(act, 4);
 
-        JRadioButton upgrade = new JRadioButton("Upgrade", false);
+        String[] currency = {"Rank 2: 4 dollars", "Rank 3: 10 dollars", "Rank 4: 18 dollars", 
+        "Rank 5: 28 dollars", "Rank 6: 40 dollars", "Rank 2: 5 credits", "Rank 3: 10 credits", 
+        "Rank 4: 15 credits", "Rank 5: 20 credits", "Rank 6: 25 credits"};
+        JComboBox upgrades = new JComboBox(currency);
+        upgrades.setBounds(0, 340, 150, 20);
+        upgrades.setVisible(false);
+        menu.add(upgrades, 3);
+
+        JButton upgrade = new JButton("Upgrade");
         upgrade.setBackground(Color.white);
         upgrade.setBounds(100, 120, 80, 50);
+        upgrade.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                upgrades.setVisible(true);
+                sampleText.setText("What rank do you want?");
+            }
+        });
         menu.add(upgrade, 4);
 
         JRadioButton endturn = new JRadioButton("End Turn", false);
