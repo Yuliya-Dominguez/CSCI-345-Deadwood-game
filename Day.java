@@ -35,7 +35,12 @@ public class Day {
         }
     }
 
+    public void setScenesDrawn() {
+        drawScenes();
+    }
+
     public int[] getScenesDrawn() {
+        drawScenes();
         return scenesDrawn;
     }
 

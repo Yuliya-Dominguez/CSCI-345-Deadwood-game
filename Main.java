@@ -144,7 +144,7 @@ public class Main {
         numPlayers.add(player8);
 
         JLabel menuTitle = new JLabel("MENU");
-        menuTitle.setBounds(75, 275, 50, 30);
+        menuTitle.setBounds(75, 0, 50, 30);
         menu.add(menuTitle, 0);
         
         //ActionListener showText = new ActionListener();
