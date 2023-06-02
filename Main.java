@@ -234,20 +234,46 @@ public class Main {
         moveNeighbors.setVisible(false);
         menu.add(moveNeighbors, 3);
 
+        String[] acts = {"card role 1", "Card role 2", "card role 3", "Board role 1", "Board role 2", "Board role 3", "Board role 4"};
+        JComboBox roles =  new JComboBox<>(acts);
+        roles.setBounds(0, 300, 150, 20);
+        roles.setVisible(false);
+        menu.add(roles, 3);
+
+        String[] currency = {"Rank 2: 4 dollars", "Rank 3: 10 dollars", "Rank 4: 18 dollars", 
+        "Rank 5: 28 dollars", "Rank 6: 40 dollars", "Rank 2: 5 credits", "Rank 3: 10 credits", 
+        "Rank 4: 15 credits", "Rank 5: 20 credits", "Rank 6: 25 credits"};
+        JComboBox upgrades = new JComboBox(currency);
+        upgrades.setBounds(0, 300, 150, 20);
+        upgrades.setVisible(false);
+        menu.add(upgrades, 3);
+
         JButton move = new JButton("move");
         move.setBackground(Color.white);
         move.setBounds(0, 70, 80, 50);
         move.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                upgrades.setVisible(false);
+                roles.setVisible(false);
                 moveNeighbors.setVisible(true);
                 sampleText.setText("Move to where?");
             }
         });
         menu.add(move, 3);
 
+        
+
         JButton role = new JButton("Take Role");
         role.setBackground(Color.white);
         role.setBounds(100, 70, 95, 50);
+        role.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                upgrades.setVisible(false);
+                roles.setVisible(true);
+                moveNeighbors.setVisible(false);
+                sampleText.setText("What role do you want?");
+            }
+        });
         menu.add(role, 3);
 
         JButton act = new JButton("Act");
@@ -255,20 +281,21 @@ public class Main {
         act.setBounds(0, 120, 95, 50);
         menu.add(act, 4);
 
-        String[] currency = {"Rank 2: 4 dollars", "Rank 3: 10 dollars", "Rank 4: 18 dollars", 
-        "Rank 5: 28 dollars", "Rank 6: 40 dollars", "Rank 2: 5 credits", "Rank 3: 10 credits", 
-        "Rank 4: 15 credits", "Rank 5: 20 credits", "Rank 6: 25 credits"};
-        JComboBox upgrades = new JComboBox(currency);
-        upgrades.setBounds(0, 340, 150, 20);
-        upgrades.setVisible(false);
-        menu.add(upgrades, 3);
+        JButton rehearse = new JButton("Rehearse");
+        rehearse.setBackground(Color.white);
+        rehearse.setBounds(90, 180, 95, 50);
+        menu.add(rehearse, 4);
+
+        
 
         JButton upgrade = new JButton("Upgrade");
         upgrade.setBackground(Color.white);
-        upgrade.setBounds(100, 120, 80, 50);
+        upgrade.setBounds(100, 120, 95, 50);
         upgrade.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 upgrades.setVisible(true);
+                roles.setVisible(false);
+                moveNeighbors.setVisible(false);
                 sampleText.setText("What rank do you want?");
             }
         });
