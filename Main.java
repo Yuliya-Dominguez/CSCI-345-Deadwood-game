@@ -15,6 +15,15 @@ public class Main {
     static int players_num;
     static int DAY_MAX = 1;
 
+    Deadwood deadwood = new Deadwood();
+    List<Player> gamePlayers = new ArrayList<Player>();
+    Day day = new Day();
+    BoardData boardData = new BoardData();
+    SceneCards sceneCards = new SceneCards();
+    WrappingUp wrapUp = new WrappingUp();
+    Board board = new Board();
+    List<BoardData> sets = Board.getBoardLocations();
+
     public static void setPlayersNum(int number) {
         players_num = number;
     }
@@ -25,14 +34,14 @@ public class Main {
     
     public static void createAndShowGUI() {
 
-        Deadwood deadwood = new Deadwood();
-        List<Player> gamePlayers = new ArrayList<Player>();
-        Day day = new Day();
-        BoardData boardData = new BoardData();
-        SceneCards sceneCards = new SceneCards();
-        WrappingUp wrapUp = new WrappingUp();
-        Board board = new Board();
-        List<BoardData> sets = Board.getBoardLocations();
+        // Deadwood deadwood = new Deadwood();
+        // List<Player> gamePlayers = new ArrayList<Player>();
+        // Day day = new Day();
+        // BoardData boardData = new BoardData();
+        // SceneCards sceneCards = new SceneCards();
+        // WrappingUp wrapUp = new WrappingUp();
+        // Board board = new Board();
+        // List<BoardData> sets = Board.getBoardLocations();
 
         JFrame frame = new JFrame("HelloWorldSwing");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -200,6 +209,10 @@ public class Main {
             }
         });
         numPlayers.add(player8);
+
+        // for (int i = 0; i < players_num; i++) {
+        //         Player player1 = new Player();
+        //         gamePlayers.add(player1);
         
         
         JLabel menuTitle = new JLabel("MENU");
@@ -324,19 +337,13 @@ public class Main {
         frame.setSize(1300, 825);
     }
     
-    public void Move() {
+    
 
-        Deadwood deadwood = new Deadwood();
-        List<Player> gamePlayers = new ArrayList<Player>();
-        Day day = new Day();
-        BoardData boardData = new BoardData();
-        SceneCards sceneCards = new SceneCards();
-        WrappingUp wrapUp = new WrappingUp();
-        Board board = new Board();
-        List<BoardData> sets = Board.getBoardLocations();
-        
+
+    public void Move(Player player) {
+
         System.out.println("\nWhich neighbor will you move to? (Enter neighbor's number (1,2,3,etc.)");
-                        int neighborMove = input.nextInt();
+                        int neighborMove = 0;//change later!
                         int moveSuccess = 0;
 
                         //MoveCheck if the player is trying to move from the trailer.
@@ -458,15 +465,14 @@ public class Main {
                             }
                             
                         }
-                        if (moveSuccess == 1) {
-                            break;
-                        }
+                        //if (moveSuccess == 1) {
+                            //break;
+                        //}
 
-                        else {
-                            System.out.println("Sorry, that move is invalid. Choose a different neighbor.");
-                        }
+                        // else {
+                        //     System.out.println("Sorry, that move is invalid. Choose a different neighbor.");
+                        // }
                     }
-    }
     
     public void Act() {
 
