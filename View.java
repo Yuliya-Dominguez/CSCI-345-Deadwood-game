@@ -66,32 +66,31 @@ public class View extends JPanel{
         //board = getScaledImage(board, 900, 655);
 
         cards = new ArrayList<>();
-        //draw.scenes
 
-        for (int i = 1; i <= 10; i++) {
-            if (i < 10) {
-                ImageIcon crd = new ImageIcon("Images/cards/0" + i + ".png");
+        Day day = new Day();
+        int[] scenesDrawn = day.getScenesDrawn();
+
+        for (int i = 0; i < scenesDrawn.length; i++) {
+            int sceneNum = scenesDrawn[i];
+            if (sceneNum < 10) {
+                ImageIcon crd = new ImageIcon("Images/cards/0" + sceneNum + ".png");
                 card = crd.getImage();
-                //card = getScaledImage(card, 154, 86);
                 cards.add(card);
             }
             else {
-                ImageIcon crd = new ImageIcon("Images/cards/10.png");
+                ImageIcon crd = new ImageIcon("Images/cards/" + sceneNum + ".png");
                 card = crd.getImage();
-                //card = getScaledImage(card, 154, 86);
                 cards.add(card);
             }
         }
     }
 
     public void paintComponent(Graphics g){
+        
         super.paintComponent(g);
         g.drawImage(board, 0, 0, this);
-
-        Day day = new Day();
-        int[] scenesDrawn = day.getScenesDrawn();
         
-        for (int i = 0; i < scenesDrawn.length; i++) {
+        for (int i = 0; i < 10; i++) {
 
             //get area of the set to place a card at
             int x = BoardData.getSetArea(i).getX();
