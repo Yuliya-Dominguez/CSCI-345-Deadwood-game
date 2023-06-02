@@ -10,6 +10,7 @@ import java.util.*;
 public class View extends JPanel{
 
     private Image board;
+    private Image face;
     private Image card;
     private ArrayList<Image> cards;
     private Image playerIc;
@@ -69,6 +70,9 @@ public class View extends JPanel{
         board = brd.getImage();
         //board = getScaledImage(board, 900, 655);
 
+        ImageIcon faceIm = new ImageIcon("Images/CardBack-small.jpeg");
+        face = faceIm.getImage();
+
         cards = new ArrayList<>();
 
         Day day = new Day();
@@ -90,6 +94,7 @@ public class View extends JPanel{
 
         diceImg = new ArrayList<>();
 
+        //change j's to the player's rank
         for (int j = 1; j <= 4; j++){
 
             ImageIcon pIcon = new ImageIcon("Images/dice/" + diceIc[j-1] + j + ".png");
@@ -97,6 +102,9 @@ public class View extends JPanel{
             playerIc = pIcon.getImage();
             diceImg.add(playerIc);
         }
+
+
+        //deal with face cards
     }
 
     public void paintComponent(Graphics g){
@@ -114,14 +122,24 @@ public class View extends JPanel{
             g.drawImage(crd, x, y, this);
         }
 
+        /*
         //Player player = new Player();
-        //int loc = player.getPlayerLocation;
+        //int x = player.playerCoordinates[0];
+        //int y = player.playerCoordinates[1];
+        //int plnums = Main.getPlayersNum();
+        //List<Player> players = Main.gamePlayers;
+        for (Player player:players) {
+            for (int j = 0; j < plnums; j++){
+                Image dice = diceImg.get(j);
+                g.drawImage(dice, x, y, this);
+            }
+        }*/
 
         //need to implement a way to track player's location
         int[] x = new int[]{51, 49, 1111, 637}; //this is temporary player's location
         int[] y = new int[]{261, 356, 469, 22}; //this is temporary player's location
 
-        for (int j = 0; j < x.length; j++){
+        for (int j = 0; j < 4; j++){
             Image dice = diceImg.get(j);
             g.drawImage(dice, x[j], y[j], this);
         }
