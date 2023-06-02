@@ -10,8 +10,20 @@ import java.awt.event.*;
 
 public class Main {
     
+    static int players_num;
+    static int DAY_MAX = 1;
     
     public static void createAndShowGUI() {
+
+        Deadwood deadwood = new Deadwood();
+        List<Player> gamePlayers = new ArrayList<Player>();
+        Day day = new Day();
+        BoardData boardData = new BoardData();
+        SceneCards sceneCards = new SceneCards();
+        WrappingUp wrapUp = new WrappingUp();
+        Board board = new Board();
+        List<BoardData> sets = Board.getBoardLocations();
+
         JFrame frame = new JFrame("HelloWorldSwing");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -66,13 +78,17 @@ public class Main {
         playerSelect.setBounds(0, 20, 300, 30);
         numPlayers.add(playerSelect, 0);
 
+        
+
         JButton player2 = new JButton("2 Players");
         player2.setBounds(20, 60, 100, 30);
         player2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                players_num = 2;
+                DAY_MAX = 3;
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: 2");
+                sampleText.setText("Player count: " + players_num);
             }
         });
         numPlayers.add(player2);
@@ -81,9 +97,11 @@ public class Main {
         player3.setBounds(20, 95, 100, 30);
         player3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                players_num = 3;
+                DAY_MAX = 3;
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: 3");
+                sampleText.setText("Player count: " + players_num);
             }
         });
         numPlayers.add(player3);
@@ -92,9 +110,11 @@ public class Main {
         player4.setBounds(20, 130, 100, 30);
         player4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                DAY_MAX = 4;
+                players_num = 4;
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: 4");
+                sampleText.setText("Player count: " + players_num);
             }
         });
         numPlayers.add(player4);
@@ -103,9 +123,11 @@ public class Main {
         player5.setBounds(20, 165, 100, 30);
         player5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                DAY_MAX = 4;
+                players_num = 5;
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: 5");
+                sampleText.setText("Player count: "+ players_num);
             }
         });
         numPlayers.add(player5);
@@ -114,9 +136,11 @@ public class Main {
         player6.setBounds(20, 200, 100, 30);
         player6.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                DAY_MAX = 4;
+                players_num = 6;
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: 6");
+                sampleText.setText("Player count: " + players_num);
             }
         });
         numPlayers.add(player6);
@@ -125,9 +149,11 @@ public class Main {
         player7.setBounds(20, 235, 100, 30);
         player7.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                DAY_MAX = 4;
+                players_num = 7;
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: 7");
+                sampleText.setText("Player count: " + players_num);
             }
         });
         numPlayers.add(player7);
@@ -136,12 +162,19 @@ public class Main {
         player8.setBounds(20, 270, 100, 30);
         player8.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                DAY_MAX = 4;
+                players_num = 8;
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: 8");
+                sampleText.setText("Player count: " + players_num);
             }
         });
         numPlayers.add(player8);
+
+        
+        for (int i = 0; i < players_num; i++) {
+            
+        }
 
         JLabel menuTitle = new JLabel("MENU");
         menuTitle.setBounds(75, 0, 50, 30);
@@ -213,7 +246,7 @@ public class Main {
     //Acting acting = new Acting();
     
     
-    static int DAY_MAX = 1;
+    
 
 public static void main(String[] args) {
 
@@ -236,6 +269,7 @@ public static void main(String[] args) {
     /*
      * Beginning of game. Prompt player for input to ender number of players to create player classes and set DAY_MAX.
      */
+    
     Scanner input = new Scanner(System.in);
         System.out.println("Welcome to Deadwood! Please enter the number of players: ");
         int playerNum = input.nextInt();
