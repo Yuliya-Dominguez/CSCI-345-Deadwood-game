@@ -2,16 +2,26 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.*;
 import java.util.List;
+
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
 
 
+
 public class Main {
     
     static int players_num;
     static int DAY_MAX = 1;
+
+    public static void setPlayersNum(int number) {
+        players_num = number;
+    }
+
+    public static int getPlayersNum() {
+        return players_num;
+    }
     
     public static void createAndShowGUI() {
 
@@ -84,11 +94,11 @@ public class Main {
         player2.setBounds(20, 60, 100, 30);
         player2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                players_num = 2;
+                setPlayersNum(2);
                 DAY_MAX = 3;
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: " + players_num);
+                sampleText.setText("Player count: " + getPlayersNum());
             }
         });
         numPlayers.add(player2);
@@ -97,11 +107,32 @@ public class Main {
         player3.setBounds(20, 95, 100, 30);
         player3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                players_num = 3;
+                setPlayersNum(3);
                 DAY_MAX = 3;
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: " + players_num);
+                sampleText.setText("Player count: " + getPlayersNum());
+
+                // int player_x = 100;
+                // int player_y = 30;
+                // for (int i = 0; i < players_num; i++) {
+                //     Player player1 = new Player();
+                //     gamePlayers.add(player1);
+        
+                    
+                //     if (i % 2 == 1) {
+                //         JLabel player_stats = new JLabel("Player" + i);
+                //         player_stats.setBounds(player_x,(370 + (player_y * i)),100, 30);
+                //         menu.add(player_stats, 3);
+                //         i++;
+                //     }
+                //     else {
+                //         JLabel player_stats = new JLabel("Player" + i);
+                //         player_stats.setBounds(0,(370 + (player_y * i)),100, 30);
+                //         menu.add(player_stats, 3);
+                //         i++;
+                //     }
+                // }
             }
         });
         numPlayers.add(player3);
@@ -111,10 +142,10 @@ public class Main {
         player4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 DAY_MAX = 4;
-                players_num = 4;
+                setPlayersNum(4);
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: " + players_num);
+                sampleText.setText("Player count: " + getPlayersNum());
             }
         });
         numPlayers.add(player4);
@@ -124,10 +155,10 @@ public class Main {
         player5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 DAY_MAX = 4;
-                players_num = 5;
+                setPlayersNum(5);
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: "+ players_num);
+                sampleText.setText("Player count: "+ getPlayersNum());
             }
         });
         numPlayers.add(player5);
@@ -137,10 +168,10 @@ public class Main {
         player6.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 DAY_MAX = 4;
-                players_num = 6;
+                setPlayersNum(6);
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: " + players_num);
+                sampleText.setText("Player count: " + getPlayersNum());
             }
         });
         numPlayers.add(player6);
@@ -150,10 +181,10 @@ public class Main {
         player7.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 DAY_MAX = 4;
-                players_num = 7;
+                setPlayersNum(7);
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: " + players_num);
+                sampleText.setText("Player count: " + getPlayersNum());
             }
         });
         numPlayers.add(player7);
@@ -163,19 +194,15 @@ public class Main {
         player8.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 DAY_MAX = 4;
-                players_num = 8;
+                setPlayersNum(8);
                 numPlayers.setVisible(false);
                 menu.setVisible(true);
-                sampleText.setText("Player count: " + players_num);
+                sampleText.setText("Player count: " + getPlayersNum());
             }
         });
         numPlayers.add(player8);
-
         
-        for (int i = 0; i < players_num; i++) {
-            
-        }
-
+        
         JLabel menuTitle = new JLabel("MENU");
         menuTitle.setBounds(75, 0, 50, 30);
         menu.add(menuTitle, 0);
@@ -202,10 +229,22 @@ public class Main {
         });
         window.add(disButton, 2);
 
+        String[] neighbors = {"Saloon", "Main Street", "Bank"};
+        JComboBox moveNeighbors = new JComboBox(neighbors);
+        moveNeighbors.setBounds(0, 300, 90, 20);
+        moveNeighbors.setVisible(false);
+        menu.add(moveNeighbors, 3);
+
         JButton move = new JButton("move");
         move.setBackground(Color.white);
         move.setBounds(0, 70, 80, 50);
-        menu.add(move);
+        move.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                moveNeighbors.setVisible(true);
+                sampleText.setText("Move to where?");
+            }
+        });
+        menu.add(move, 3);
 
         JButton role = new JButton("Take Role");
         role.setBackground(Color.white);
@@ -227,7 +266,13 @@ public class Main {
         endturn.setBounds(0, 180, 80, 50);
         menu.add(endturn, 5);
 
-
+        
+        // moveNeighbors.setSelectedIndex(0);
+        // moveNeighbors.addActionListener(new ActionListener() {
+        //     public void actionPerformed(ActionEvent e) {
+        //         String neighborName = moveNeighbors.getItemAt(moveNeighbors.getSelectedIndex());
+        //     }
+        // });
 
         frame.getContentPane().add(window);
         
