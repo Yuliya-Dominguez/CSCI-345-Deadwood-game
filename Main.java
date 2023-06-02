@@ -36,7 +36,7 @@ public class Main {
     public static void createAndShowGUI() {
 
         // Deadwood deadwood = new Deadwood();
-        // List<Player> gamePlayers = new ArrayList<Player>();
+         List<Player> gamePlayers = new ArrayList<Player>();
         // Day day = new Day();
         // BoardData boardData = new BoardData();
         // SceneCards sceneCards = new SceneCards();
@@ -211,9 +211,11 @@ public class Main {
         });
         numPlayers.add(player8);
 
-        // for (int i = 0; i < players_num; i++) {
-        //         Player player1 = new Player();
-        //         gamePlayers.add(player1);
+        for (int i = 0; i < getPlayersNum(); i++) {
+                Player player1 = new Player();
+                gamePlayers.add(player1);
+        }
+        
         
         
         JLabel menuTitle = new JLabel("MENU");
@@ -237,7 +239,8 @@ public class Main {
         disButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 menu.setVisible(false);
-                sampleText.setText("The menu gone?!");
+                sampleText.setText("The menu gone?! ");
+                
             }
         });
         window.add(disButton, 2);
