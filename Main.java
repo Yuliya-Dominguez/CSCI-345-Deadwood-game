@@ -215,7 +215,9 @@ public class Main {
                 Player player1 = new Player();
                 gamePlayers.add(player1);
         }
-        
+        for (Player player: gamePlayers) {
+
+        }
         
         
         JLabel menuTitle = new JLabel("MENU");
@@ -248,12 +250,26 @@ public class Main {
         String[] neighbors = {"Saloon", "Main Street", "Bank"};
         JComboBox moveNeighbors = new JComboBox(neighbors);
         moveNeighbors.setBounds(0, 300, 90, 20);
+        moveNeighbors.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getSource() == moveNeighbors) {
+                    sampleText.setText("Moved to " + moveNeighbors.getSelectedItem());
+                }
+            }
+        });
         moveNeighbors.setVisible(false);
         menu.add(moveNeighbors, 3);
 
         String[] acts = {"card role 1", "Card role 2", "card role 3", "Board role 1", "Board role 2", "Board role 3", "Board role 4"};
         JComboBox roles =  new JComboBox<>(acts);
         roles.setBounds(0, 300, 150, 20);
+        roles.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getSource() == roles) {
+                    sampleText.setText("Role " + roles.getSelectedItem() + " Chosen.");
+                }
+            }
+        });
         roles.setVisible(false);
         menu.add(roles, 3);
 
@@ -262,6 +278,51 @@ public class Main {
         "Rank 4: 15 credits", "Rank 5: 20 credits", "Rank 6: 25 credits"};
         JComboBox upgrades = new JComboBox(currency);
         upgrades.setBounds(0, 300, 150, 20);
+        upgrades.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getSource() == upgrades) {
+                    if (upgrades.getSelectedIndex() == 0) {
+                        sampleText.setText("Upgraded to rank 2! 4 dollars lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 1) {
+                        sampleText.setText("Upgraded to rank 3! 10 dollars lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 2) {
+                        sampleText.setText("Upgraded to rank 4! 18 dollars lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 3) {
+                        sampleText.setText("Upgraded to rank 5! 28 dollars lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 4) {
+                        sampleText.setText("Upgraded to rank 6! 40 dollars lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 5) {
+                        sampleText.setText("Upgraded to rank 2! 5 credits lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 6) {
+                        sampleText.setText("Upgraded to rank 3! 10 credits lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 7) {
+                        sampleText.setText("Upgraded to rank 4! 15 credits lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 8) {
+                        sampleText.setText("Upgraded to rank 5! 20 credits lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 9) {
+                        sampleText.setText("Upgraded to rank 6! 25 credits lost.");
+                    }
+                }
+            }
+        });
         upgrades.setVisible(false);
         menu.add(upgrades, 3);
 
@@ -621,11 +682,7 @@ public static void main(String[] args) {
     List<BoardData> sets = Board.getBoardLocations();
 
 
-    javax.swing.SwingUtilities.invokeLater(new Runnable() {
-        public void run() {
-            createAndShowGUI();
-        }
-    });
+   
     /*
      * Beginning of game. Prompt player for input to ender number of players to create player classes and set DAY_MAX.
      */
@@ -689,6 +746,12 @@ public static void main(String[] args) {
 
             //Loop to iterate through every player's turn.
             for (Player player:gamePlayers) {
+
+                javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        createAndShowGUI();
+                    }
+                });
 
                 //Check to keep turn on player if action they take doesn't end their turn.
                 while(playerturn > 0){
