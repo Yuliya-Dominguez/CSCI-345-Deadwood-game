@@ -330,8 +330,33 @@ public class Main {
     //LocationManager locManager = new LocationManager();
     //Acting acting = new Acting();
     
+    public void Move() {
+
+    }
     
-    
+    public void Act() {
+
+    }
+
+    public void Rehearse() {
+
+    }
+
+    public void Winner() {
+
+    }
+
+    public void Upgrade() {
+
+    }
+
+    public void Endturn() {
+
+    }
+
+    public void TakeRole() {
+        
+    }
 
 public static void main(String[] args) {
 
