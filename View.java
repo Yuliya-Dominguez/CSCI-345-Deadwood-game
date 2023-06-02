@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.*;
 import java.util.*;
  
 public class View extends JPanel{
@@ -49,9 +50,17 @@ public class View extends JPanel{
             userFunctionsPanel.setBackground(Color.white);
             userFunctionsPanel.setLayout(new FlowLayout());
 
-            JButton button1 = new JButton("Button 1");//replace with any player actions buttons
+            //JButton button1 = new JButton("Button 1");//replace with any player actions buttons
+            JButton testButton = new JButton("MOVE!");
+            testButton.setBounds(400, 70, 80, 50);
+            testButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                   
+                }
+            });
+            userFunctionsPanel.add(testButton);
             JButton button2 = new JButton("Button 2");
-            userFunctionsPanel.add(button1);
+            //userFunctionsPanel.add(button1);
             userFunctionsPanel.add(button2);
 
             frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
