@@ -466,6 +466,9 @@ public static void main(String[] args) {
                                 System.out.println("Moved to Main Street.");
                                 player.isInTrailer = false;
                                 moveSuccess = 1;
+
+                                player.playerCoordinates[0] = BoardData.getSetArea(4).getX();
+                                player.playerCoordinates[1] = BoardData.getSetArea(4).getY();
                             }
                             //Move player location to Saloon if they choose 2.
                             else if (BoardData.getTrailNeighbor(neighborMove-1).equals("Saloon")) {
@@ -473,6 +476,9 @@ public static void main(String[] args) {
                                 System.out.println("Moved to Saloon.");
                                 player.isInTrailer =false;
                                 moveSuccess = 1;
+
+                                player.playerCoordinates[0] = BoardData.getSetArea(9).getX();
+                                player.playerCoordinates[1] = BoardData.getSetArea(9).getY();
                             }
                             //Move player location to Hotel if they choose 3.
                             else if (BoardData.getTrailNeighbor(neighborMove-1).equals("Hotel")) {
@@ -480,6 +486,9 @@ public static void main(String[] args) {
                                 System.out.println("Moved to Hotel.");
                                 player.isInTrailer = false;
                                 moveSuccess = 1;
+
+                                player.playerCoordinates[0] = BoardData.getSetArea(3).getX();
+                                player.playerCoordinates[1] = BoardData.getSetArea(3).getY();
                             }
                         }
 
@@ -492,6 +501,9 @@ public static void main(String[] args) {
                                 System.out.println("Moved to Train Station.");
                                 player.isInOffice = false;
                                 moveSuccess = 1;
+
+                                player.playerCoordinates[0] = BoardData.getSetArea(0).getX();
+                                player.playerCoordinates[1] = BoardData.getSetArea(0).getY();
                             }
 
                             //Move player location to Ranch if they choose 2.
@@ -500,6 +512,9 @@ public static void main(String[] args) {
                                 System.out.println("Moved to Ranch.");
                                 player.isInOffice =false;
                                 moveSuccess = 1;
+
+                                player.playerCoordinates[0] = BoardData.getSetArea(7).getX();
+                                player.playerCoordinates[1] = BoardData.getSetArea(7).getY();
                             }
 
                             //Move player location to Secret Hideout if they choose 3.
@@ -508,6 +523,9 @@ public static void main(String[] args) {
                                 System.out.println("Moved to Secret Hideout.");
                                 player.isInOffice = false;
                                 moveSuccess = 1;
+
+                                player.playerCoordinates[0] = BoardData.getSetArea(1).getX();
+                                player.playerCoordinates[1] = BoardData.getSetArea(1).getY();
                             }
                         }
 
