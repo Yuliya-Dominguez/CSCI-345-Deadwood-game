@@ -339,7 +339,6 @@ public class Main {
     
     
 
-
     public void Move(Player player) {
 
         System.out.println("\nWhich neighbor will you move to? (Enter neighbor's number (1,2,3,etc.)");
