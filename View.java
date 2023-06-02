@@ -66,6 +66,7 @@ public class View extends JPanel{
         //board = getScaledImage(board, 900, 655);
 
         cards = new ArrayList<>();
+        //draw.scenes
 
         for (int i = 1; i <= 10; i++) {
             if (i < 10) {
