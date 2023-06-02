@@ -343,136 +343,136 @@ public class Main {
     public void Move(Player player) {
 
         System.out.println("\nWhich neighbor will you move to? (Enter neighbor's number (1,2,3,etc.)");
-                        int neighborMove = 0;//change later!
-                        int moveSuccess = 0;
+        int neighborMove = 0;//change later!
+        int moveSuccess = 0;
 
-                        //MoveCheck if the player is trying to move from the trailer.
-                        if (player.isInTrailer == true) {
+        //MoveCheck if the player is trying to move from the trailer.
+        if (player.isInTrailer == true) {
 
-                            //Move player location to Main Street if they choose 1.
-                            if (BoardData.getTrailNeighbor(neighborMove-1).equals("Main Street")) {
-                                player.move(4);
-                                System.out.println("Moved to Main Street.");
-                                player.isInTrailer = false;
-                                moveSuccess = 1;
+            //Move player location to Main Street if they choose 1.
+            if (BoardData.getTrailNeighbor(neighborMove-1).equals("Main Street")) {
+                player.move(4);
+                System.out.println("Moved to Main Street.");
+                player.isInTrailer = false;
+                moveSuccess = 1;
 
-                                player.playerCoordinates[0] = BoardData.getSetArea(4).getX();
-                                player.playerCoordinates[1] = BoardData.getSetArea(4).getY();
-                            }
-                            //Move player location to Saloon if they choose 2.
-                            else if (BoardData.getTrailNeighbor(neighborMove-1).equals("Saloon")) {
-                                player.move(9);
-                                System.out.println("Moved to Saloon.");
-                                player.isInTrailer =false;
-                                moveSuccess = 1;
+                player.playerCoordinates[0] = BoardData.getSetArea(4).getX();
+                player.playerCoordinates[1] = BoardData.getSetArea(4).getY();
+            }
+            //Move player location to Saloon if they choose 2.
+            else if (BoardData.getTrailNeighbor(neighborMove-1).equals("Saloon")) {
+                player.move(9);
+                System.out.println("Moved to Saloon.");
+                player.isInTrailer =false;
+                moveSuccess = 1;
 
-                                player.playerCoordinates[0] = BoardData.getSetArea(9).getX();
-                                player.playerCoordinates[1] = BoardData.getSetArea(9).getY();
-                            }
-                            //Move player location to Hotel if they choose 3.
-                            else if (BoardData.getTrailNeighbor(neighborMove-1).equals("Hotel")) {
-                                player.move(3);
-                                System.out.println("Moved to Hotel.");
-                                player.isInTrailer = false;
-                                moveSuccess = 1;
+                player.playerCoordinates[0] = BoardData.getSetArea(9).getX();
+                player.playerCoordinates[1] = BoardData.getSetArea(9).getY();
+            }
+            //Move player location to Hotel if they choose 3.
+            else if (BoardData.getTrailNeighbor(neighborMove-1).equals("Hotel")) {
+                player.move(3);
+                System.out.println("Moved to Hotel.");
+                player.isInTrailer = false;
+                moveSuccess = 1;
 
-                                player.playerCoordinates[0] = BoardData.getSetArea(3).getX();
-                                player.playerCoordinates[1] = BoardData.getSetArea(3).getY();
-                            }
-                        }
+                player.playerCoordinates[0] = BoardData.getSetArea(3).getX();
+                player.playerCoordinates[1] = BoardData.getSetArea(3).getY();
+            }
+        }
 
-                        //MoveCheck if the player is trying to move from the casting office.
-                        else if (player.isInOffice == true) {
+        //MoveCheck if the player is trying to move from the casting office.
+        else if (player.isInOffice == true) {
 
-                            //Move player location to Train Station if they choose 1.
-                            if (BoardData.getOffNeighbor(neighborMove-1).equals("Train Station")) {
-                                player.move(0);
-                                System.out.println("Moved to Train Station.");
-                                player.isInOffice = false;
-                                moveSuccess = 1;
+            //Move player location to Train Station if they choose 1.
+            if (BoardData.getOffNeighbor(neighborMove-1).equals("Train Station")) {
+                player.move(0);
+                System.out.println("Moved to Train Station.");
+                player.isInOffice = false;
+                moveSuccess = 1;
 
-                                player.playerCoordinates[0] = BoardData.getSetArea(0).getX();
-                                player.playerCoordinates[1] = BoardData.getSetArea(0).getY();
-                            }
+                player.playerCoordinates[0] = BoardData.getSetArea(0).getX();
+                player.playerCoordinates[1] = BoardData.getSetArea(0).getY();
+            }
 
-                            //Move player location to Ranch if they choose 2.
-                            else if (BoardData.getOffNeighbor(neighborMove-1).equals("Ranch")) {
-                                player.move(7);
-                                System.out.println("Moved to Ranch.");
-                                player.isInOffice =false;
-                                moveSuccess = 1;
+            //Move player location to Ranch if they choose 2.
+            else if (BoardData.getOffNeighbor(neighborMove-1).equals("Ranch")) {
+                player.move(7);
+                System.out.println("Moved to Ranch.");
+                player.isInOffice =false;
+                moveSuccess = 1;
 
-                                player.playerCoordinates[0] = BoardData.getSetArea(7).getX();
-                                player.playerCoordinates[1] = BoardData.getSetArea(7).getY();
-                            }
+                player.playerCoordinates[0] = BoardData.getSetArea(7).getX();
+                player.playerCoordinates[1] = BoardData.getSetArea(7).getY();
+            }
 
-                            //Move player location to Secret Hideout if they choose 3.
-                            else if (BoardData.getOffNeighbor(neighborMove-1).equals("Secret Hideout")) {
-                                player.move(1);
-                                System.out.println("Moved to Secret Hideout.");
-                                player.isInOffice = false;
-                                moveSuccess = 1;
+            //Move player location to Secret Hideout if they choose 3.
+            else if (BoardData.getOffNeighbor(neighborMove-1).equals("Secret Hideout")) {
+                player.move(1);
+                System.out.println("Moved to Secret Hideout.");
+                player.isInOffice = false;
+                moveSuccess = 1;
 
-                                player.playerCoordinates[0] = BoardData.getSetArea(1).getX();
-                                player.playerCoordinates[1] = BoardData.getSetArea(1).getY();
-                            }
-                        }
+                player.playerCoordinates[0] = BoardData.getSetArea(1).getX();
+                player.playerCoordinates[1] = BoardData.getSetArea(1).getY();
+            }
+        }
 
-                        //General check for loactions aside from trailer and casting
-                        else {
-                            for (int a = 0; a < (BoardData.getNeighborsList(player.playerLocation).size()+1); a++) {
+        //General check for loactions aside from trailer and casting
+        else {
+            for (int a = 0; a < (BoardData.getNeighborsList(player.playerLocation).size()+1); a++) {
 
-                                if (BoardData.getNeighborName(player.playerLocation, a).equals(BoardData.getNeighborName(player.playerLocation, neighborMove))){
-                                    int loactionToMove = 0;
+                if (BoardData.getNeighborName(player.playerLocation, a).equals(BoardData.getNeighborName(player.playerLocation, neighborMove))){
+                    int loactionToMove = 0;
 
-                                    //Check if player is moving to trailer from another location.
-                                    if (BoardData.getNeighborName(player.playerLocation, neighborMove).equals("trailer")) {
-                                        player.isInTrailer = true;
-                                        moveSuccess = 1;
+                    //Check if player is moving to trailer from another location.
+                    if (BoardData.getNeighborName(player.playerLocation, neighborMove).equals("trailer")) {
+                        player.isInTrailer = true;
+                        moveSuccess = 1;
 
-                                        //store player's x and y coordinates
-                                        player.playerCoordinates[0] = BoardData.getTrailerArea().getX();
-                                        player.playerCoordinates[1] = BoardData.getTrailerArea().getY();
-                                    }
-                                    
-                                    //Check if player is moving to office from another loaction.
-                                    else if (BoardData.getNeighborName(player.playerLocation, neighborMove).equals("office")) {
-                                        player.isInOffice = true;
-                                        moveSuccess = 1;
-
-                                        //store player's x and y coordinates
-                                        player.playerCoordinates[0] = BoardData.getOfficeArea().getX();
-                                        player.playerCoordinates[1] = BoardData.getOfficeArea().getY();
-                                    }
-
-                                    else {
-                                        //Check for index of location to move player properly!
-                                        for (int i = 0; i < 10; i++) {
-
-                                            if (BoardData.getNeighborName(player.playerLocation, neighborMove).equals(BoardData.getSetName(i))) {
-                                                loactionToMove = i;
-                                            }
-                                        }
-                                        player.move(loactionToMove);
-                                        System.out.println("Moved to " + BoardData.getSetName(player.playerLocation));
-                                        moveSuccess = 1;
-
-                                        //store player's x and y coordinates
-                                        player.playerCoordinates[0] = BoardData.getSetArea(player.playerLocation).getX();
-                                        player.playerCoordinates[1] = BoardData.getSetArea(player.playerLocation).getY();
-                                    }
-                                }
-                            }
-                            
-                        }
-                        //if (moveSuccess == 1) {
-                            //break;
-                        //}
-
-                        // else {
-                        //     System.out.println("Sorry, that move is invalid. Choose a different neighbor.");
-                        // }
+                        //store player's x and y coordinates
+                        player.playerCoordinates[0] = BoardData.getTrailerArea().getX();
+                        player.playerCoordinates[1] = BoardData.getTrailerArea().getY();
                     }
+                    
+                    //Check if player is moving to office from another loaction.
+                    else if (BoardData.getNeighborName(player.playerLocation, neighborMove).equals("office")) {
+                        player.isInOffice = true;
+                        moveSuccess = 1;
+
+                        //store player's x and y coordinates
+                        player.playerCoordinates[0] = BoardData.getOfficeArea().getX();
+                        player.playerCoordinates[1] = BoardData.getOfficeArea().getY();
+                    }
+
+                    else {
+                        //Check for index of location to move player properly!
+                        for (int i = 0; i < 10; i++) {
+
+                            if (BoardData.getNeighborName(player.playerLocation, neighborMove).equals(BoardData.getSetName(i))) {
+                                loactionToMove = i;
+                            }
+                        }
+                        player.move(loactionToMove);
+                        System.out.println("Moved to " + BoardData.getSetName(player.playerLocation));
+                        moveSuccess = 1;
+
+                        //store player's x and y coordinates
+                        player.playerCoordinates[0] = BoardData.getSetArea(player.playerLocation).getX();
+                        player.playerCoordinates[1] = BoardData.getSetArea(player.playerLocation).getY();
+                    }
+                }
+            }
+            
+        }
+        //if (moveSuccess == 1) {
+            //break;
+        //}
+
+        // else {
+        //     System.out.println("Sorry, that move is invalid. Choose a different neighbor.");
+        // }
+    }
     
     public void Act() {
 
