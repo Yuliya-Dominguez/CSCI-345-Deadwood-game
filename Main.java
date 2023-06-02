@@ -522,12 +522,20 @@ public static void main(String[] args) {
                                     if (BoardData.getNeighborName(player.playerLocation, neighborMove).equals("trailer")) {
                                         player.isInTrailer = true;
                                         moveSuccess = 1;
-                                    }
 
+                                        //store player's x and y coordinates
+                                        player.playerCoordinates[0] = BoardData.getTrailerArea().getX();
+                                        player.playerCoordinates[1] = BoardData.getTrailerArea().getY();
+                                    }
+                                    
                                     //Check if player is moving to office from another loaction.
                                     else if (BoardData.getNeighborName(player.playerLocation, neighborMove).equals("office")) {
                                         player.isInOffice = true;
                                         moveSuccess = 1;
+
+                                        //store player's x and y coordinates
+                                        player.playerCoordinates[0] = BoardData.getOfficeArea().getX();
+                                        player.playerCoordinates[1] = BoardData.getOfficeArea().getY();
                                     }
 
                                     else {
@@ -541,6 +549,10 @@ public static void main(String[] args) {
                                         player.move(loactionToMove);
                                         System.out.println("Moved to " + BoardData.getSetName(player.playerLocation));
                                         moveSuccess = 1;
+
+                                        //store player's x and y coordinates
+                                        player.playerCoordinates[0] = BoardData.getSetArea(player.playerLocation).getX();
+                                        player.playerCoordinates[1] = BoardData.getSetArea(player.playerLocation).getY();
                                     }
                                 }
                             }
@@ -650,10 +662,20 @@ public static void main(String[] args) {
                             if (success == 1) {
                                 System.out.println("Role "+ SceneCards.getPartName(player.sceneIndexNumber, (partToTake-1)) + " has been taken!");
                                 sets.get(player.playerLocation).fillMainRoll(1);
+
+                                //store player's x and y coordinates
+                                player.playerCoordinates[0] = SceneCards.getPartArea(player.sceneIndexNumber, player.playerRolePosition).getX();
+                                player.playerCoordinates[1] = SceneCards.getPartArea(player.sceneIndexNumber, player.playerRolePosition).getY();
+
                                 break;
                             }
                             else if (success == 2) {
                                 System.out.println("Role "+ SceneCards.getPartName(player.sceneIndexNumber, (partToTake-1)) + " has been taken!");
+
+                                //store player's x and y coordinates
+                                player.playerCoordinates[0] = BoardData.getPartArea(player.playerLocation, player.playerRolePosition).getX();
+                                player.playerCoordinates[1] = BoardData.getPartArea(player.playerLocation, player.playerRolePosition).getY();
+
                                 break;
                             }
 

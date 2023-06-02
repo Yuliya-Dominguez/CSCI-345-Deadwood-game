@@ -7,7 +7,7 @@ public class Player {
     public String playerRoleName;
     public int playerRolePosition;
     public int playerLocation;
-    public int[] playerCoordinates;
+    public int[] playerCoordinates = new int[2];
     public boolean isInTrailer;
     public boolean isInOffice;
     public int sceneIndexNumber;

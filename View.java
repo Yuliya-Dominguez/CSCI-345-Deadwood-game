@@ -117,8 +117,9 @@ public class View extends JPanel{
         //Player player = new Player();
         //int loc = player.getPlayerLocation;
 
-        int[] x = new int[]{51, 49, 1111, 637};
-        int[] y = new int[]{261, 356, 469, 22};
+        //need to implement a way to track player's location
+        int[] x = new int[]{51, 49, 1111, 637}; //this is temporary player's location
+        int[] y = new int[]{261, 356, 469, 22}; //this is temporary player's location
 
         for (int j = 0; j < x.length; j++){
             Image dice = diceImg.get(j);
