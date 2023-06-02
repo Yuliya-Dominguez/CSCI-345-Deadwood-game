@@ -35,6 +35,10 @@ public class Day {
         }
     }
 
+    public int[] getScenesDrawn() {
+        return scenesDrawn;
+    }
+
     //Inital day start, calls upon board to set up the scenes that drawScenes() pulled.
     public void setUp() {
         drawScenes();
