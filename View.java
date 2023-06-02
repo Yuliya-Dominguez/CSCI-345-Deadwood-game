@@ -10,6 +10,7 @@ import java.util.*;
 public class View extends JPanel{
 
     private Image board;
+    private Image face;
     private Image card;
     private ArrayList<Image> cards;
     private Image playerIc;
@@ -69,6 +70,9 @@ public class View extends JPanel{
         board = brd.getImage();
         //board = getScaledImage(board, 900, 655);
 
+        ImageIcon faceIm = new ImageIcon("Images/CardBack-small.jpeg");
+        face = faceIm.getImage();
+
         cards = new ArrayList<>();
 
         Day day = new Day();
@@ -90,6 +94,7 @@ public class View extends JPanel{
 
         diceImg = new ArrayList<>();
 
+        //change j's to the player's rank
         for (int j = 1; j <= 4; j++){
 
             ImageIcon pIcon = new ImageIcon("Images/dice/" + diceIc[j-1] + j + ".png");
@@ -97,6 +102,9 @@ public class View extends JPanel{
             playerIc = pIcon.getImage();
             diceImg.add(playerIc);
         }
+
+
+        //deal with face cards
     }
 
     public void paintComponent(Graphics g){
