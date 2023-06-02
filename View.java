@@ -12,6 +12,10 @@ public class View extends JPanel{
     private Image board;
     private Image card;
     private ArrayList<Image> cards;
+    private Image playerIc;
+    private String[] diceIc = new String[]{"b", "c", "g", "o", "p", "r", "v", "w", "y"};
+    private ArrayList<Image> diceImg;
+    Player player = new Player();
 
     @Override //Set new dimensions to make scroll bar work
     public Dimension getPreferredSize() {
@@ -83,10 +87,20 @@ public class View extends JPanel{
                 cards.add(card);
             }
         }
+
+        diceImg = new ArrayList<>();
+
+        for (int j = 1; j <= 4; j++){
+
+            ImageIcon pIcon = new ImageIcon("Images/dice/" + diceIc[j-1] + j + ".png");
+            //ImageIcon pIcon = new ImageIcon("Images/dice/r2.png");
+            playerIc = pIcon.getImage();
+            diceImg.add(playerIc);
+        }
     }
 
     public void paintComponent(Graphics g){
-        
+
         super.paintComponent(g);
         g.drawImage(board, 0, 0, this);
         
@@ -98,6 +112,17 @@ public class View extends JPanel{
 
             Image crd = cards.get(i);
             g.drawImage(crd, x, y, this);
+        }
+
+        //Player player = new Player();
+        //int loc = player.getPlayerLocation;
+
+        int[] x = new int[]{51, 49, 1111, 637};
+        int[] y = new int[]{261, 356, 469, 22};
+
+        for (int j = 0; j < x.length; j++){
+            Image dice = diceImg.get(j);
+            g.drawImage(dice, x[j], y[j], this);
         }
     }
 
