@@ -9,11 +9,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-
 public class Main {
     
     static int players_num;
     static int DAY_MAX = 1;
+    int playerturn = 1;
+    int scenesFinished = 0;
 
     Deadwood deadwood = new Deadwood();
     List<Player> gamePlayers = new ArrayList<Player>();
@@ -339,7 +340,7 @@ public class Main {
     
     
 
-    public void Move(Player player) {
+    public void move(Player player) {
 
         System.out.println("\nWhich neighbor will you move to? (Enter neighbor's number (1,2,3,etc.)");
         int neighborMove = 0;//change later!
@@ -473,28 +474,135 @@ public class Main {
         // }
     }
     
-    public void Act() {
+    public void act(Player player) {
 
+
+            //need a check in here to wrap up based on the shot counter.
+            if (player.playerRole != null) {
+                System.out.println("Rolling for acting...");
+                //int roll = dice.readDice();
+                int attempt = player.act();
+                if (attempt == 1){
+                    board.takesLeft++;
+                    if ((BoardData.getTakesList(player.playerLocation).size() - board.takesLeft) == 0) {
+                        Board.getBoardLocations().get(player.playerLocation).takeSceneIndex(-1);
+                        if (player.playerRole.equals("Main")) {
+                            wrapUp.playerMainBonus();
+                            player.playerRole = "None";
+                            scenesFinished++;
+                        }
+                        else {
+                            if (sets.get(player.playerLocation).isMainRoleFilled() == 1){
+                                wrapUp.mainActorRoleFilled = true;
+                            }
+                            wrapUp.playerExtraBonus();
+                            player.playerRole = "None";
+                            scenesFinished++;
+                        }
+                        //System.out.println("That's a wrap! Scene is over!");
+                    }
+                    //break;
+                }
+
+                // else {
+                //     break;
+                // }
+                
+            }
+
+            else {
+                System.out.println("Error. Player needs to have taken a role from a scene before they can act.");
+            }
     }
 
-    public void Rehearse() {
-
+    public void rehearse(Player player) {
+        if (player.playerRole != null){
+            player.rehearse();
+            //break;
+        }
+        else {
+            System.out.println("Error. Cannot take this action without a role chosen.");
+        }
     }
 
-    public void Winner() {
-
+    public void winner() {
+        int[] scores = new int[gamePlayers.size()];
+        int[] ranks = new int[gamePlayers.size()];
+        String[] names = new String[gamePlayers.size()];
+        int c = 0;
+        for (Player player:gamePlayers) {
+            scores[c] = deadwood.scoring(player);
+            ranks[c] = player.rank;
+            names[c] = player.name;
+            c++;
+        }
+        deadwood.decideWinner(scores, ranks, names);
     }
 
-    public void Upgrade() {
+    public void upgrade(Player player) {
+         //Code here to check if player's location is Casting Office.
+         if (player.isInOffice != true) {
+            System.out.println("There is no upgrade attached to this location. Move to Office to upgrade rank. \n");
+        }
+        else {
 
+           
+            System.out.println("\n" + "What rank would you like to upgrade to? (enter number between 2 and 6)\n");
+            int rankWanted = 2; //change later
+            System.out.println("What will you pay with? ('credit' or 'dollar')");
+
+            String payment = "credits"; //change later
+            player.upgrade(rankWanted, payment);
+
+            //break;
+        }
     }
 
-    public void Endturn() {
-
+    public void endTurn() {
+        //Set up later to use GUI to change what is visiable/ pass on control to next player's stats.
     }
 
-    public void TakeRole() {
+    public void takeRole(Player player) {
 
+
+        if ((player.isInTrailer == true) || (player.isInOffice == true)) {
+            System.out.println("There is no scene attached to this location. \n");
+        }
+        else {
+
+            System.out.println("\n" + "Will you take a scene part or board part? (Enter 'scene' or 'board') \n");
+            String roleSection = "scene"; //change to fit GUI
+            System.out.println("Which part number will you take? (Type in 1,2,3, or 4 depending on part number.) \n");
+            int partToTake = 2; //change later
+
+            //Code here to print success or failure message.
+            int success = player.takeRole(roleSection, (partToTake-1));
+            
+
+            if (success == 1) {
+                System.out.println("Role "+ SceneCards.getPartName(player.sceneIndexNumber, (partToTake-1)) + " has been taken!");
+                sets.get(player.playerLocation).fillMainRoll(1);
+
+                //store player's x and y coordinates
+                player.playerCoordinates[0] = SceneCards.getPartArea(player.sceneIndexNumber, player.playerRolePosition).getX();
+                player.playerCoordinates[1] = SceneCards.getPartArea(player.sceneIndexNumber, player.playerRolePosition).getY();
+
+                //break;
+            }
+            else if (success == 2) {
+                System.out.println("Role "+ SceneCards.getPartName(player.sceneIndexNumber, (partToTake-1)) + " has been taken!");
+
+                //store player's x and y coordinates
+                player.playerCoordinates[0] = BoardData.getPartArea(player.playerLocation, player.playerRolePosition).getX();
+                player.playerCoordinates[1] = BoardData.getPartArea(player.playerLocation, player.playerRolePosition).getY();
+
+                //break;
+            }
+
+            else if (success == -1){
+                System.out.println("Error. Invalid set type ('scene' or 'board') invalid part number. Please try again.");
+            }
+        }
     }
 
 public static void main(String[] args) {
@@ -587,34 +695,34 @@ public static void main(String[] args) {
                     String action = input.next(); 
 
                     //If 'options' was chosen, print out all possible actions player can take, what to type, and what each action does.
-                    if (action.equals("options")) {
+                    // if (action.equals("options")) {
 
-                        System.out.println("\n" + "'move': Moves player to desired location, if possible.");
+                    //     System.out.println("\n" + "'move': Moves player to desired location, if possible.");
 
-                        System.out.println("'stats': Shows current player's stats and info.");
+                    //     System.out.println("'stats': Shows current player's stats and info.");
 
-                        System.out.println("'scenestats': Shows scene card's information that player is currently on/next to. ");
+                    //     System.out.println("'scenestats': Shows scene card's information that player is currently on/next to. ");
 
-                        System.out.println("'boardstats': Shows location player is on, including available board roles and neighboring locations.");
+                    //     System.out.println("'boardstats': Shows location player is on, including available board roles and neighboring locations.");
                         
-                        System.out.println("'day': Shows current day in game.");
+                    //     System.out.println("'day': Shows current day in game.");
                         
-                        System.out.println("'takerole': Takes the role that you specify. Only works if your rank is equal to or higher than the role's rank.");
+                    //     System.out.println("'takerole': Takes the role that you specify. Only works if your rank is equal to or higher than the role's rank.");
                         
-                        System.out.println("'upgrade': Upgrade your rank level (only works if you are at location 'Casting Office').");
+                    //     System.out.println("'upgrade': Upgrade your rank level (only works if you are at location 'Casting Office').");
                         
-                        System.out.println("'act': Act your role (only works if you have taken a role in a scene).");
+                    //     System.out.println("'act': Act your role (only works if you have taken a role in a scene).");
                         
-                        System.out.println("'rehearse': Rehearse your role. Add a token to your acting roll.");
+                    //     System.out.println("'rehearse': Rehearse your role. Add a token to your acting roll.");
                         
-                        System.out.println("'endturn': Ends current Player's turn. ");
+                    //     System.out.println("'endturn': Ends current Player's turn. ");
                         
-                        System.out.println("'quit': Quits the game.\n");
-                    }
+                    //     System.out.println("'quit': Quits the game.\n");
+                    // }
 
 
                     //If 'move' was chosen, prompt the player for which neighbor location they want to move to.
-                    else if (action.equals("move")) {
+                    if (action.equals("move")) {
 
                         //Prompt user about which neighbor to move to.
                         System.out.println("\nWhich neighbor will you move to? (Enter neighbor's number (1,2,3,etc.)");
@@ -751,77 +859,77 @@ public static void main(String[] args) {
 
 
                     //If 'scenestats' was chosen, display information about the scene card on the location the player is at currently.
-                    else if (action.equals("scenestats")){
+                    // else if (action.equals("scenestats")){
 
-                        //Check if the player is in the trailer or office, where no scene is assigned.
-                        if ((player.isInTrailer == true) || (player.isInOffice == true)) {
-                            System.out.println("There is no scene attached to this location. \n");
-                        }
-                        //Check if the sceneIndex value is -1, meaning that the scene is completed.
-                        else if (Board.getBoardLocations().get(player.playerLocation).getSceneIndex() == -1) {
-                            System.out.println("The scene here is completed! Find an open scene on a different set. \n");
-                        }
-                        //Print out scene attached to the loaction player is at currently.
-                        else {
+                    //     //Check if the player is in the trailer or office, where no scene is assigned.
+                    //     if ((player.isInTrailer == true) || (player.isInOffice == true)) {
+                    //         System.out.println("There is no scene attached to this location. \n");
+                    //     }
+                    //     //Check if the sceneIndex value is -1, meaning that the scene is completed.
+                    //     else if (Board.getBoardLocations().get(player.playerLocation).getSceneIndex() == -1) {
+                    //         System.out.println("The scene here is completed! Find an open scene on a different set. \n");
+                    //     }
+                    //     //Print out scene attached to the loaction player is at currently.
+                    //     else {
 
-                            System.out.println("\n" + "Scene Name: " + SceneCards.getName(boardData.getSceneIndex()));
-                            System.out.println("Scene Number: " + sceneCards.getSceneNumber(boardData.getSceneIndex()));
-                            System.out.println("Scene Budget: " + sceneCards.getCardBudget(boardData.getSceneIndex()));
-                            System.out.println("Scene Description: " + sceneCards.getSceneDescription(boardData.getSceneIndex()));
+                    //         System.out.println("\n" + "Scene Name: " + SceneCards.getName(boardData.getSceneIndex()));
+                    //         System.out.println("Scene Number: " + sceneCards.getSceneNumber(boardData.getSceneIndex()));
+                    //         System.out.println("Scene Budget: " + sceneCards.getCardBudget(boardData.getSceneIndex()));
+                    //         System.out.println("Scene Description: " + sceneCards.getSceneDescription(boardData.getSceneIndex()));
                             
-                            //Iterates through all parts contained in the scene card.
-                            for (int i = 0; i < SceneCards.getPartsList(boardData.getSceneIndex()).size(); i++) {
-                                System.out.println("Scene Part " + (i + 1));
-                                System.out.println("\t Name: " + SceneCards.getPartName(boardData.getSceneIndex(), i));
-                                System.out.println("\t Level: " + SceneCards.getPartLevel(boardData.getSceneIndex(), i));
-                                System.out.println("\t Line: " + SceneCards.getPartLine(boardData.getSceneIndex(), i) + "\n");
-                            }
-                        }
-                    }
+                    //         //Iterates through all parts contained in the scene card.
+                    //         for (int i = 0; i < SceneCards.getPartsList(boardData.getSceneIndex()).size(); i++) {
+                    //             System.out.println("Scene Part " + (i + 1));
+                    //             System.out.println("\t Name: " + SceneCards.getPartName(boardData.getSceneIndex(), i));
+                    //             System.out.println("\t Level: " + SceneCards.getPartLevel(boardData.getSceneIndex(), i));
+                    //             System.out.println("\t Line: " + SceneCards.getPartLine(boardData.getSceneIndex(), i) + "\n");
+                    //         }
+                    //     }
+                    // }
 
 
                     //If 'boardstats' was chosen, display information about the board location the player is at currently.
-                    else if (action.equals("boardstats")){
+                    // else if (action.equals("boardstats")){
 
-                        if (player.isInTrailer == true) {
-                            System.out.println("\nBoard Name: Trailer");
-                            for (int x = 0; x < BoardData.getTrailerNeighbors().size(); x++){
-                                System.out.println("Neighbor " + (x+1) + "'s Name: " + BoardData.getTrailNeighbor(x));
-                            }
+                    //     if (player.isInTrailer == true) {
+                    //         System.out.println("\nBoard Name: Trailer");
+                    //         for (int x = 0; x < BoardData.getTrailerNeighbors().size(); x++){
+                    //             System.out.println("Neighbor " + (x+1) + "'s Name: " + BoardData.getTrailNeighbor(x));
+                    //         }
                             
-                        }
-                        else if (player.isInOffice == true) {
-                            System.out.println("\nBoard Name: Office");
-                            for (int x = 0; x < BoardData.getOfficeNeighbors().size(); x++){
-                                System.out.println("Neighbor " + (x+1) + "'s Name: " + BoardData.getOffNeighbor(x));
-                            }
+                    //     }
+                    //     else if (player.isInOffice == true) {
+                    //         System.out.println("\nBoard Name: Office");
+                    //         for (int x = 0; x < BoardData.getOfficeNeighbors().size(); x++){
+                    //             System.out.println("Neighbor " + (x+1) + "'s Name: " + BoardData.getOffNeighbor(x));
+                    //         }
                             
-                        }
-                        else {
+                    //     }
+                    //     else {
 
-                            System.out.println("\nBoard Name: " + BoardData.getSetName(player.playerLocation));
-                            System.out.println("Number of Board Takes Left: " + (BoardData.getTakesList(player.playerLocation).size() - board.takesLeft));
-                            if (boardData.getSceneIndex() == -1) {
-                                System.out.println("Scene: Finished ");
-                            }
-                            else {
-                                System.out.println("Scene: " + SceneCards.getName(boardData.getSceneIndex()) + "\tIndex: " + boardData.getSceneIndex());
-                            }
+                    //         System.out.println("\nBoard Name: " + BoardData.getSetName(player.playerLocation));
+                    //         System.out.println("Number of Board Takes Left: " + (BoardData.getTakesList(player.playerLocation).size() - board.takesLeft));
+                    //         if (boardData.getSceneIndex() == -1) {
+                    //             System.out.println("Scene: Finished ");
+                    //         }
+                    //         else {
+                    //             System.out.println("Scene: " + SceneCards.getName(boardData.getSceneIndex()) + "\tIndex: " + boardData.getSceneIndex());
+                    //         }
                 
-                            for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
-                                System.out.println("Board Neighbor " + (a+1) + "'s Name: " + BoardData.getNeighborName(player.playerLocation, a));
+                    //         for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
+                    //             System.out.println("Board Neighbor " + (a+1) + "'s Name: " + BoardData.getNeighborName(player.playerLocation, a));
                                 
-                            }
+                    //         }
 
-                            for (int i = 0; i < BoardData.getPartsList(player.playerLocation).size(); i++) {
-                                System.out.println("Board Part " + (i + 1));
-                                System.out.println("\t Name: " + BoardData.getPartName(player.playerLocation, i));
-                                System.out.println("\t Level: " + BoardData.getPartLevel(player.playerLocation, i));
-                                System.out.println("\t Line: " + BoardData.getPartLine(player.playerLocation, i) + "\n");
-                            }
-                        }
+                    //         for (int i = 0; i < BoardData.getPartsList(player.playerLocation).size(); i++) {
+                    //             System.out.println("Board Part " + (i + 1));
+                    //             System.out.println("\t Name: " + BoardData.getPartName(player.playerLocation, i));
+                    //             System.out.println("\t Level: " + BoardData.getPartLevel(player.playerLocation, i));
+                    //             System.out.println("\t Line: " + BoardData.getPartLine(player.playerLocation, i) + "\n");
+                    //         }
+                    //     }
 
-                    }
+                    // }
 
 
                     //If 'takerole' was chosen, have player choose their role from the scene they are on or board they are on.
