@@ -8,20 +8,13 @@ Then run the program, and it should ask to enter the number of players. Enter a 
 
 Then enter in the names of each player in a row to set up the game.
 
-After that, it will start with player 1 and start the game!
--type in 'options' in order to see a list of all the available actions a player can take.
--typing in actions must be lowercase with no spaces.
+After that, it will open up a new window that displays the game!
 
+We unfortunately were not able to fully finish our code, but hitting fullscreen will show the whole board (and the scroll panel to move the
+    board image up and down).
 
--When moving, the game will ask for the number of the neighbor to travel to. This can be found by looking up the list of neighbors of the location the player is on by typing 'boardstats'.
+The move button when pressed will show some text asking where to move, and a drop-down list that when a location is selected, the text will change. The player image will not however.
 
+The upgrade button when pressed will show some text asking what rank to upgrade to with what currency, and a drop-down list that when a rank is selected, the text will change. The player image will not however.
 
--When taking a role, the game will ask if the player is taking a role from the scene card or board as an extra. After you type in your lowercase answer, it will ask for a number to represent whcih part you are taking. You can see the number attached to each part by looking at the 'boardstats' or 'scenestats' depending on which one you're taking an acting part from.
-
--When upgrading, the game will ask the rank you would like to upgrade to. Enter a number between 2 and 6, depending on what you want to upgrade to. Then the game will ask for your payment type, credit or dollar. Type in the name of which one you would like to use. The game will compute and give your result back.
-
--When acting, the game will automatically roll and print out your success or failure. If all the takes in a set are done, then it will print a message saying the scene is over.
-
--When trying to quit the game, the system will prompt the user to make sure they want to quit. They can enter y/n or yes/no to give an answer, and the game will react accordingly.
-
-Once 9 scenes are finished, a day will pass and scenes will be drawn again. After 3 (or 4) days, the game will calculate the score and declare the winner!
+The takerole button when pressed will show some text asking which role to take, and a drop-down list that when a role is selected, the text will change. The player image will not however.
