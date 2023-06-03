@@ -32,7 +32,7 @@ public class View extends JPanel{
         addImage();
     }
 
-    public void createGUI() {
+    public static void createGUI() {
         JFrame frame = new JFrame("Deadwood");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1500,900);
