@@ -154,7 +154,10 @@ public class View extends JPanel{
         testButton.setBounds(400, 70, 80, 50);
         testButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+                upgrades.setVisible(false);
+                roles.setVisible(false);
+                moveNeighbors.setVisible(true);
+                sampleText.setText("Where are you moving to?");
             }
         });
         constraints.gridy++;
