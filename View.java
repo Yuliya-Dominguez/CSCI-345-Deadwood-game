@@ -304,8 +304,8 @@ public class View extends JPanel{
         //change j's to the player's rank
         for (int j = 1; j < pllist.size()+1; j++){
 
-            //int r = pllist.get(j-1).rank;
-            ImageIcon pIcon = new ImageIcon("Images/dice/" + diceIc[j-1] + 1 + ".png");
+            int r = pllist.get(j).rank;
+            ImageIcon pIcon = new ImageIcon("Images/dice/" + diceIc[j] + r + ".png");
             //ImageIcon pIcon = new ImageIcon("Images/dice/r2.png");
             playerIc = pIcon.getImage();
             diceImg.add(playerIc);
@@ -340,18 +340,22 @@ public class View extends JPanel{
             if ((player.isInTrailer) || (player.isInOffice)) {
                 int x = player.playerCoordinates[0] + (index*5);
                 int y = player.playerCoordinates[1] + (index*2);
+<<<<<<< Updated upstream
                 
+=======
+>>>>>>> Stashed changes
 
                 Image dice = diceImg.get(index);
                 index++;
                 g.drawImage(dice, x, y, this);
+                index++;
             } else {
                 int x = player.playerCoordinates[0];
                 int y = player.playerCoordinates[1];
-                index++;
 
                 Image dice = diceImg.get(index);
                 g.drawImage(dice, x, y, this);
+                index++;
             }
         }
 
