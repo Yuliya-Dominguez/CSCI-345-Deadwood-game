@@ -21,7 +21,6 @@ public class View extends JPanel{
     private String[] diceIc = new String[]{"b", "c", "g", "o", "p", "r", "v", "w", "y"};
     private ArrayList<Image> diceImg;
     static Player player = new Player();
-    //static List<Player> players = Main.gamePlayers;
     int plnums = Main.getPlayersNum();
     static PlayersList players = new PlayersList();
     static List<Player> pllist = new ArrayList<Player>();
@@ -57,10 +56,10 @@ public class View extends JPanel{
         userFunctionsPanel.setLayout(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx = 0; // Column index
-        constraints.gridy = 0; // Starting row index
-        constraints.anchor = GridBagConstraints.NORTHWEST; // Align components to the top-left corner
-        constraints.fill = GridBagConstraints.NONE; // Do not expand
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.anchor = GridBagConstraints.NORTHWEST;
+        constraints.fill = GridBagConstraints.NONE;
 
         TextField sampleText = new TextField(null, 20);
         sampleText.setBounds(300, 150, 275, 25);
@@ -102,6 +101,9 @@ public class View extends JPanel{
         upgrades.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getSource() == upgrades) {
+                    pllist.get(0).rank = 5;
+                    images.repaint();
+
                     if (upgrades.getSelectedIndex() == 0) {
                         sampleText.setText("Upgraded to rank 2! 4 dollars lost.");
                     }
@@ -128,6 +130,8 @@ public class View extends JPanel{
 
                     else if (upgrades.getSelectedIndex() == 6) {
                         sampleText.setText("Upgraded to rank 3! 10 credits lost.");
+                        pllist.get(0).rank = 6;
+                        images.repaint();
                     }
 
                     else if (upgrades.getSelectedIndex() == 7) {
@@ -302,13 +306,14 @@ public class View extends JPanel{
         diceImg = new ArrayList<>();
 
         //change j's to the player's rank
-        for (int j = 1; j < pllist.size()+1; j++){
+        for (int j = 0; j < pllist.size(); j++){
 
             int r = pllist.get(j).rank;
             ImageIcon pIcon = new ImageIcon("Images/dice/" + diceIc[j] + r + ".png");
             //ImageIcon pIcon = new ImageIcon("Images/dice/r2.png");
             playerIc = pIcon.getImage();
             diceImg.add(playerIc);
+
         }
 
 
@@ -338,10 +343,15 @@ public class View extends JPanel{
 
         for (Player player:pllist) {
             if ((player.isInTrailer) || (player.isInOffice)) {
+<<<<<<< Updated upstream
                 int x = player.playerCoordinates[0] + (index*5);
                 int y = player.playerCoordinates[1] + (index*2);
+=======
+                int x = player.playerCoordinates[0] + (index*40);
+                int y = player.playerCoordinates[1] + (index*20);
+
+>>>>>>> Stashed changes
                 Image dice = diceImg.get(index);
-                index++;
                 g.drawImage(dice, x, y, this);
                 index++;
             } else {
