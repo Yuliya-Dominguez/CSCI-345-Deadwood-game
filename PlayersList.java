@@ -5,7 +5,7 @@ import java.util.*;
 public class PlayersList {
     
     Player player = new Player();
-    List<Player> gamePlayers = new ArrayList<Player>(null);
+    List<Player> gamePlayers = new ArrayList<Player>();
 
 
 

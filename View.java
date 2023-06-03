@@ -18,9 +18,11 @@ public class View extends JPanel{
     private Image playerIc;
     private String[] diceIc = new String[]{"b", "c", "g", "o", "p", "r", "v", "w", "y"};
     private ArrayList<Image> diceImg;
-    Player player = new Player();
-    static List<Player> players = Main.gamePlayers;
+    static Player player = new Player();
+    //static List<Player> players = Main.gamePlayers;
     int plnums = Main.getPlayersNum();
+    static PlayersList players = new PlayersList();
+    static List<Player> pllist = new ArrayList();
 
     @Override //Set new dimensions to make scroll bar work
     public Dimension getPreferredSize() {
@@ -33,7 +35,7 @@ public class View extends JPanel{
         addImage();
     }
 
-    public static void createGUI() {
+    public static void createGUI(List<Player> list) {
         JFrame frame = new JFrame("Deadwood");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1500,900);
@@ -63,10 +65,12 @@ public class View extends JPanel{
         //userFunctionsPanel.add(button1);
         userFunctionsPanel.add(button2);
 
-        int plx = players.get(0).playerCoordinates[0];
-        int ply = players.get(0).playerCoordinates[1];
+        int plx = list.get(0).playerCoordinates[0];
+        int ply = list.get(0).playerCoordinates[1];
+        player = list.get(0);
+        pllist = list;
 
-        TextField sampleText = new TextField("Player 1: x coordinate = "+plx+", y = "+ply, 20);
+        TextField sampleText = new TextField("x = " + plx + ", y = " +ply, 20);
         //sampleText.setBounds(300, 150, 275, 25);
         userFunctionsPanel.add(sampleText, 1);
 
@@ -176,18 +180,28 @@ public class View extends JPanel{
             g.drawImage(crd, x, y, this);
         }
         
-        //int x = player.playerCoordinates[0];
-        //int y = player.playerCoordinates[1];
+        /*int x2 = player.playerCoordinates[0];
+        int y2 = player.playerCoordinates[1];
+        Image dice2 = diceImg.get(0);
+        g.drawImage(dice2, x2, y2, this);*/
         int index = 0;
-        for (Player player:players) {
-            int x = player.playerCoordinates[0];
-            int y = player.playerCoordinates[1];
-            index++;
 
-            //for (int j = 0; j < plnums; j++){
+        for (Player player:pllist) {
+            if ((player.isInTrailer) || (player.isInOffice)) {
+                int x = player.playerCoordinates[0] + (index*5);
+                int y = player.playerCoordinates[1] + (index*2);
+                index++;
+
                 Image dice = diceImg.get(index);
                 g.drawImage(dice, x, y, this);
-            //}
+            } else {
+                int x = player.playerCoordinates[0];
+                int y = player.playerCoordinates[1];
+                index++;
+
+                Image dice = diceImg.get(index);
+                g.drawImage(dice, x, y, this);
+            }
         }
 
         //need to implement a way to track player's location

@@ -677,7 +677,7 @@ public static void main(String[] args) {
     WrappingUp wrapUp = new WrappingUp();
     Board board = new Board();
     List<BoardData> sets = Board.getBoardLocations();
-
+    PlayersList plrs = new PlayersList();
 
    
     /*
@@ -701,6 +701,8 @@ public static void main(String[] args) {
                 DAY_MAX = 4;
             }
 
+            plrs.createPlayerList(playerNum);
+            
             //Create player classes to go into List gamePlayers.
             for(int a = 0; a < playerNum; a++) {
                 Player player1 = new Player();
@@ -710,7 +712,7 @@ public static void main(String[] args) {
             int i = 0;
             
             //
-            for (Player player: gamePlayers) {
+            for (Player player: plrs.getPlayerList()) {
                 System.out.println(("What is Player ") + (i + 1) + (" name? \n"));
                 String inputName = input.next();
                 player.name = inputName;
@@ -746,10 +748,10 @@ public static void main(String[] args) {
         while (day.dayCount <= DAY_MAX) {
 
             //Loop to iterate through every player's turn.
-            for (Player player:gamePlayers) {
+            for (Player player: plrs.getPlayerList()) {
 
 
-                View.createGUI();
+                View.createGUI(plrs.getPlayerList());
 
                 //Check to keep turn on player if action they take doesn't end their turn.
                 while(playerturn > 0){
