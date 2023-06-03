@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.TextField;
 import java.awt.event.*;
 import java.util.*;
  
@@ -18,7 +19,7 @@ public class View extends JPanel{
     private String[] diceIc = new String[]{"b", "c", "g", "o", "p", "r", "v", "w", "y"};
     private ArrayList<Image> diceImg;
     Player player = new Player();
-    List<Player> players = Main.gamePlayers;
+    static List<Player> players = Main.gamePlayers;
     int plnums = Main.getPlayersNum();
 
     @Override //Set new dimensions to make scroll bar work
@@ -61,6 +62,13 @@ public class View extends JPanel{
         JButton button2 = new JButton("Button 2");
         //userFunctionsPanel.add(button1);
         userFunctionsPanel.add(button2);
+
+        int plx = players.get(0).playerCoordinates[0];
+        int ply = players.get(0).playerCoordinates[1];
+
+        TextField sampleText = new TextField("Player 1: x coordinate = "+plx+", y = "+ply, 20);
+        //sampleText.setBounds(300, 150, 275, 25);
+        userFunctionsPanel.add(sampleText, 1);
 
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
         frame.getContentPane().add(userFunctionsPanel, BorderLayout.EAST);
@@ -167,24 +175,29 @@ public class View extends JPanel{
             Image crd = cards.get(i);
             g.drawImage(crd, x, y, this);
         }
-        /*
-        int x = player.playerCoordinates[0];
-        int y = player.playerCoordinates[1];
+        
+        //int x = player.playerCoordinates[0];
+        //int y = player.playerCoordinates[1];
+        int index = 0;
         for (Player player:players) {
-            for (int j = 0; j < plnums; j++){
-                Image dice = diceImg.get(j);
+            int x = player.playerCoordinates[0];
+            int y = player.playerCoordinates[1];
+            index++;
+
+            //for (int j = 0; j < plnums; j++){
+                Image dice = diceImg.get(index);
                 g.drawImage(dice, x, y, this);
-            }
-        }*/
+            //}
+        }
 
         //need to implement a way to track player's location
-        int[] x1 = new int[]{51, 49, 1111, 637}; //this is temporary player's location
+        /*int[] x1 = new int[]{51, 49, 1111, 637}; //this is temporary player's location
         int[] y1 = new int[]{261, 356, 469, 22}; //this is temporary player's location
 
         for (int j = 0; j < 4; j++){
             Image dice = diceImg.get(j);
             g.drawImage(dice, x1[j], y1[j], this);
-        }
+        }*/
     }
 
 }

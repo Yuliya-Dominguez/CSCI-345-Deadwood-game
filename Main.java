@@ -716,6 +716,10 @@ public static void main(String[] args) {
                 player.name = inputName;
                 player.isInTrailer = true;
                 i++;
+
+                player.playerCoordinates[0] = BoardData.getTrailerArea().getX();
+                player.playerCoordinates[1] = BoardData.getTrailerArea().getY();
+                
                 //Below is index number for all locations excluding Trailer and Office.
                 //0 = Train Station
                 //1 = Secret Hideout
