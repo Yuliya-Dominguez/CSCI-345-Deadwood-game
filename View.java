@@ -302,8 +302,9 @@ public class View extends JPanel{
         diceImg = new ArrayList<>();
 
         //change j's to the player's rank
-        for (int j = 1; j <= pllist.size()+1; j++){
+        for (int j = 0; j <= pllist.size(); j++){
 
+            //int r = pllist.get(j-1).rank;
             ImageIcon pIcon = new ImageIcon("Images/dice/" + diceIc[j-1] + 1 + ".png");
             //ImageIcon pIcon = new ImageIcon("Images/dice/r2.png");
             playerIc = pIcon.getImage();
