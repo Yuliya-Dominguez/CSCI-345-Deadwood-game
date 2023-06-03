@@ -1,12 +1,6 @@
-import java.awt.Color;
-import java.awt.Dimension;
+
 import java.util.*;
 import java.util.List;
-
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.*;
 
 
 public class Main {
@@ -33,374 +27,8 @@ public class Main {
         return players_num;
     }
     
-    public static void createAndShowGUI() {
 
-        // Deadwood deadwood = new Deadwood();
-         List<Player> gamePlayers = new ArrayList<Player>();
-        // Day day = new Day();
-        // BoardData boardData = new BoardData();
-        // SceneCards sceneCards = new SceneCards();
-        // WrappingUp wrapUp = new WrappingUp();
-        // Board board = new Board();
-        // List<BoardData> sets = Board.getBoardLocations();
-
-        JFrame frame = new JFrame("HelloWorldSwing");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
-        //JLabel label = new JLabel("Deadwood", JLabel.CENTER);
-        //label.setVerticalAlignment(JLabel.TOP);
-        //frame.getContentPane().add(label);
-
-        JLayeredPane window = new JLayeredPane();
-        window.setPreferredSize(new Dimension(700, 400));
-        window.setBorder(BorderFactory.createTitledBorder("Deadwood"));
-
-        ImageIcon backgroundImage = new ImageIcon("Images/board.jpeg");
-        JLabel backgroundLabel = new JLabel();
-        backgroundLabel.setIcon(backgroundImage);
-        backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
-        //backgroundLabel.setBounds(0, 0, 10, 600);
-
-        window.add(backgroundLabel, -1);
-
-        ImageIcon imageIcon1 = new ImageIcon("Images/cards/01.png");
-        ImageIcon imageIcon2 = new ImageIcon("Images/cards/02.png");
-
-        JLabel imageLabel1 = new JLabel(imageIcon1);
-        JLabel imageLabel2 = new JLabel(imageIcon2);
-
-        //imagePanel.setLayout(null);
-        imageLabel1.setBounds(21, 69, 205, 115);
-        //imageLabel1.setBounds(19, 63, 205, 115);
-        //imageLabel2.setBounds(22, 685, 205, 115);
-        //imageLabel2.setBounds(27, 732, 205, 115);
-        imageLabel2.setBounds(27, 500, 205, 115);
-
-        window.add(imageLabel1, 0);
-        window.add(imageLabel2, 1);
-
-        JLayeredPane menu = new JLayeredPane();
-        menu.setBounds(1025, 20, 200, 700);
-        window.add(menu, 0);
-        menu.setVisible(false);
-
-        JLayeredPane numPlayers = new JLayeredPane();
-        numPlayers.setBounds(1025, 20, 200, 700);
-        numPlayers.setBackground(Color.white);
-        window.add(numPlayers, 1);
-
-        TextField sampleText = new TextField(null, 20);
-        sampleText.setBounds(300, 150, 275, 25);
-        window.add(sampleText, 1);
-
-        JLabel playerSelect = new JLabel("Select Number of Players:");
-        playerSelect.setBounds(0, 20, 300, 30);
-        numPlayers.add(playerSelect, 0);
-
-
-        JButton player2 = new JButton("2 Players");
-        player2.setBounds(20, 60, 100, 30);
-        player2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                setPlayersNum(2);
-                DAY_MAX = 3;
-                numPlayers.setVisible(false);
-                menu.setVisible(true);
-                sampleText.setText("Player count: " + getPlayersNum());
-            }
-        });
-        numPlayers.add(player2);
-
-        JButton player3 = new JButton("3 Players");
-        player3.setBounds(20, 95, 100, 30);
-        player3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                setPlayersNum(3);
-                DAY_MAX = 3;
-                numPlayers.setVisible(false);
-                menu.setVisible(true);
-                sampleText.setText("Player count: " + getPlayersNum());
-
-                // int player_x = 100;
-                // int player_y = 30;
-                // for (int i = 0; i < players_num; i++) {
-                //     Player player1 = new Player();
-                //     gamePlayers.add(player1);
-        
-                    
-                //     if (i % 2 == 1) {
-                //         JLabel player_stats = new JLabel("Player" + i);
-                //         player_stats.setBounds(player_x,(370 + (player_y * i)),100, 30);
-                //         menu.add(player_stats, 3);
-                //         i++;
-                //     }
-                //     else {
-                //         JLabel player_stats = new JLabel("Player" + i);
-                //         player_stats.setBounds(0,(370 + (player_y * i)),100, 30);
-                //         menu.add(player_stats, 3);
-                //         i++;
-                //     }
-                // }
-            }
-        });
-        numPlayers.add(player3);
-
-        JButton player4 = new JButton("4 Players");
-        player4.setBounds(20, 130, 100, 30);
-        player4.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                DAY_MAX = 4;
-                setPlayersNum(4);
-                numPlayers.setVisible(false);
-                menu.setVisible(true);
-                sampleText.setText("Player count: " + getPlayersNum());
-            }
-        });
-        numPlayers.add(player4);
-
-        JButton player5 = new JButton("5 Players");
-        player5.setBounds(20, 165, 100, 30);
-        player5.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                DAY_MAX = 4;
-                setPlayersNum(5);
-                numPlayers.setVisible(false);
-                menu.setVisible(true);
-                sampleText.setText("Player count: "+ getPlayersNum());
-            }
-        });
-        numPlayers.add(player5);
-
-        JButton player6 = new JButton("6 Players");
-        player6.setBounds(20, 200, 100, 30);
-        player6.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                DAY_MAX = 4;
-                setPlayersNum(6);
-                numPlayers.setVisible(false);
-                menu.setVisible(true);
-                sampleText.setText("Player count: " + getPlayersNum());
-            }
-        });
-        numPlayers.add(player6);
-
-        JButton player7 = new JButton("7 Players");
-        player7.setBounds(20, 235, 100, 30);
-        player7.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                DAY_MAX = 4;
-                setPlayersNum(7);
-                numPlayers.setVisible(false);
-                menu.setVisible(true);
-                sampleText.setText("Player count: " + getPlayersNum());
-            }
-        });
-        numPlayers.add(player7);
-
-        JButton player8 = new JButton("8 Players");
-        player8.setBounds(20, 270, 100, 30);
-        player8.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                DAY_MAX = 4;
-                setPlayersNum(8);
-                numPlayers.setVisible(false);
-                menu.setVisible(true);
-                sampleText.setText("Player count: " + getPlayersNum());
-            }
-        });
-        numPlayers.add(player8);
-
-        for (int i = 0; i < getPlayersNum(); i++) {
-                Player player1 = new Player();
-                gamePlayers.add(player1);
-        }
-        for (Player player: gamePlayers) {
-
-        }
-        
-        
-        JLabel menuTitle = new JLabel("MENU");
-        menuTitle.setBounds(75, 0, 50, 30);
-        menu.add(menuTitle, 0);
-        
-        //ActionListener showText = new ActionListener();
-        
-        JButton testButton = new JButton("Click!");
-        testButton.setBounds(400, 70, 80, 50);
-        testButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                menu.setVisible(true);
-                sampleText.setText("AYOoo Puss in Boots x Death x Kitty Softpaws?!?!");
-            }
-        });
-        window.add(testButton, 2);
-
-        JButton disButton = new JButton("Disappear!");
-        disButton.setBounds(400, 200, 80, 50);
-        disButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                menu.setVisible(false);
-                sampleText.setText("The menu gone?! ");
-                
-            }
-        });
-        window.add(disButton, 2);
-
-        String[] neighbors = {"Saloon", "Main Street", "Bank"};
-        JComboBox moveNeighbors = new JComboBox(neighbors);
-        moveNeighbors.setBounds(0, 300, 90, 20);
-        moveNeighbors.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getSource() == moveNeighbors) {
-                    sampleText.setText("Moved to " + moveNeighbors.getSelectedItem());
-                }
-            }
-        });
-        moveNeighbors.setVisible(false);
-        menu.add(moveNeighbors, 3);
-
-        String[] acts = {"card role 1", "Card role 2", "card role 3", "Board role 1", "Board role 2", "Board role 3", "Board role 4"};
-        JComboBox roles =  new JComboBox<>(acts);
-        roles.setBounds(0, 300, 150, 20);
-        roles.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getSource() == roles) {
-                    sampleText.setText("Role " + roles.getSelectedItem() + " Chosen.");
-                }
-            }
-        });
-        roles.setVisible(false);
-        menu.add(roles, 3);
-
-        String[] currency = {"Rank 2: 4 dollars", "Rank 3: 10 dollars", "Rank 4: 18 dollars", 
-        "Rank 5: 28 dollars", "Rank 6: 40 dollars", "Rank 2: 5 credits", "Rank 3: 10 credits", 
-        "Rank 4: 15 credits", "Rank 5: 20 credits", "Rank 6: 25 credits"};
-        JComboBox upgrades = new JComboBox(currency);
-        upgrades.setBounds(0, 300, 150, 20);
-        upgrades.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getSource() == upgrades) {
-                    if (upgrades.getSelectedIndex() == 0) {
-                        sampleText.setText("Upgraded to rank 2! 4 dollars lost.");
-                    }
-
-                    else if (upgrades.getSelectedIndex() == 1) {
-                        sampleText.setText("Upgraded to rank 3! 10 dollars lost.");
-                    }
-
-                    else if (upgrades.getSelectedIndex() == 2) {
-                        sampleText.setText("Upgraded to rank 4! 18 dollars lost.");
-                    }
-
-                    else if (upgrades.getSelectedIndex() == 3) {
-                        sampleText.setText("Upgraded to rank 5! 28 dollars lost.");
-                    }
-
-                    else if (upgrades.getSelectedIndex() == 4) {
-                        sampleText.setText("Upgraded to rank 6! 40 dollars lost.");
-                    }
-
-                    else if (upgrades.getSelectedIndex() == 5) {
-                        sampleText.setText("Upgraded to rank 2! 5 credits lost.");
-                    }
-
-                    else if (upgrades.getSelectedIndex() == 6) {
-                        sampleText.setText("Upgraded to rank 3! 10 credits lost.");
-                    }
-
-                    else if (upgrades.getSelectedIndex() == 7) {
-                        sampleText.setText("Upgraded to rank 4! 15 credits lost.");
-                    }
-
-                    else if (upgrades.getSelectedIndex() == 8) {
-                        sampleText.setText("Upgraded to rank 5! 20 credits lost.");
-                    }
-
-                    else if (upgrades.getSelectedIndex() == 9) {
-                        sampleText.setText("Upgraded to rank 6! 25 credits lost.");
-                    }
-                }
-            }
-        });
-        upgrades.setVisible(false);
-        menu.add(upgrades, 3);
-
-        JButton move = new JButton("move");
-        move.setBackground(Color.white);
-        move.setBounds(0, 70, 80, 50);
-        move.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                upgrades.setVisible(false);
-                roles.setVisible(false);
-                moveNeighbors.setVisible(true);
-                sampleText.setText("Move to where?");
-            }
-        });
-        menu.add(move, 3);
-
-        
-
-        JButton role = new JButton("Take Role");
-        role.setBackground(Color.white);
-        role.setBounds(100, 70, 95, 50);
-        role.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                upgrades.setVisible(false);
-                roles.setVisible(true);
-                moveNeighbors.setVisible(false);
-                sampleText.setText("What role do you want?");
-            }
-        });
-        menu.add(role, 3);
-
-        JButton act = new JButton("Act");
-        act.setBackground(Color.white);
-        act.setBounds(0, 120, 95, 50);
-        menu.add(act, 4);
-
-        JButton rehearse = new JButton("Rehearse");
-        rehearse.setBackground(Color.white);
-        rehearse.setBounds(90, 180, 95, 50);
-        menu.add(rehearse, 4);
-
-        
-
-        JButton upgrade = new JButton("Upgrade");
-        upgrade.setBackground(Color.white);
-        upgrade.setBounds(100, 120, 95, 50);
-        upgrade.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                upgrades.setVisible(true);
-                roles.setVisible(false);
-                moveNeighbors.setVisible(false);
-                sampleText.setText("What rank do you want?");
-            }
-        });
-        menu.add(upgrade, 4);
-
-        JRadioButton endturn = new JRadioButton("End Turn", false);
-        endturn.setBackground(Color.white);
-        endturn.setBounds(0, 180, 80, 50);
-        menu.add(endturn, 5);
-
-        
-        // moveNeighbors.setSelectedIndex(0);
-        // moveNeighbors.addActionListener(new ActionListener() {
-        //     public void actionPerformed(ActionEvent e) {
-        //         String neighborName = moveNeighbors.getItemAt(moveNeighbors.getSelectedIndex());
-        //     }
-        // });
-
-        frame.getContentPane().add(window);
-
-        frame.pack();
-        frame.setVisible(true);
-        frame.setSize(1300, 825);
-    }
-    
-    
-
+    //Planned to use method for action listeners and buttons.
     public void move(Player player) {
 
         System.out.println("\nWhich neighbor will you move to? (Enter neighbor's number (1,2,3,etc.)");
@@ -535,6 +163,7 @@ public class Main {
         // }
     }
     
+    //Planned to use method for action listeners and buttons.
     public void act(Player player) {
 
 
@@ -576,6 +205,7 @@ public class Main {
             }
     }
 
+    //Planned to use method for action listeners and buttons.
     public void rehearse(Player player) {
         if (player.playerRole != null){
             player.rehearse();
@@ -586,6 +216,7 @@ public class Main {
         }
     }
 
+    //Planned to use method for action listeners and buttons.
     public void winner() {
         int[] scores = new int[gamePlayers.size()];
         int[] ranks = new int[gamePlayers.size()];
@@ -623,6 +254,7 @@ public class Main {
         //Set up later to use GUI to change what is visiable/ pass on control to next player's stats.
     }
 
+    //Planned to use method for action listeners and buttons.
     public void takeRole(Player player) {
 
 
@@ -672,8 +304,8 @@ public static void main(String[] args) {
     Deadwood deadwood = new Deadwood();
     List<Player> gamePlayers = new ArrayList<Player>();
     Day day = new Day();
-    BoardData boardData = new BoardData();
-    SceneCards sceneCards = new SceneCards();
+    //BoardData boardData = new BoardData();
+    //SceneCards sceneCards = new SceneCards();
     WrappingUp wrapUp = new WrappingUp();
     Board board = new Board();
     List<BoardData> sets = Board.getBoardLocations();
@@ -760,31 +392,6 @@ public static void main(String[] args) {
                     System.out.println("Your turn Player " + player.name + "! " + "Please type in your command, or 'options' for a list of available commands.\n");
                     String action = input.next(); 
 
-                    //If 'options' was chosen, print out all possible actions player can take, what to type, and what each action does.
-                    // if (action.equals("options")) {
-
-                    //     System.out.println("\n" + "'move': Moves player to desired location, if possible.");
-
-                    //     System.out.println("'stats': Shows current player's stats and info.");
-
-                    //     System.out.println("'scenestats': Shows scene card's information that player is currently on/next to. ");
-
-                    //     System.out.println("'boardstats': Shows location player is on, including available board roles and neighboring locations.");
-                        
-                    //     System.out.println("'day': Shows current day in game.");
-                        
-                    //     System.out.println("'takerole': Takes the role that you specify. Only works if your rank is equal to or higher than the role's rank.");
-                        
-                    //     System.out.println("'upgrade': Upgrade your rank level (only works if you are at location 'Casting Office').");
-                        
-                    //     System.out.println("'act': Act your role (only works if you have taken a role in a scene).");
-                        
-                    //     System.out.println("'rehearse': Rehearse your role. Add a token to your acting roll.");
-                        
-                    //     System.out.println("'endturn': Ends current Player's turn. ");
-                        
-                    //     System.out.println("'quit': Quits the game.\n");
-                    // }
 
 
                     //If 'move' was chosen, prompt the player for which neighbor location they want to move to.
@@ -923,79 +530,6 @@ public static void main(String[] args) {
                         }
                     }
 
-
-                    //If 'scenestats' was chosen, display information about the scene card on the location the player is at currently.
-                    // else if (action.equals("scenestats")){
-
-                    //     //Check if the player is in the trailer or office, where no scene is assigned.
-                    //     if ((player.isInTrailer == true) || (player.isInOffice == true)) {
-                    //         System.out.println("There is no scene attached to this location. \n");
-                    //     }
-                    //     //Check if the sceneIndex value is -1, meaning that the scene is completed.
-                    //     else if (Board.getBoardLocations().get(player.playerLocation).getSceneIndex() == -1) {
-                    //         System.out.println("The scene here is completed! Find an open scene on a different set. \n");
-                    //     }
-                    //     //Print out scene attached to the loaction player is at currently.
-                    //     else {
-
-                    //         System.out.println("\n" + "Scene Name: " + SceneCards.getName(boardData.getSceneIndex()));
-                    //         System.out.println("Scene Number: " + sceneCards.getSceneNumber(boardData.getSceneIndex()));
-                    //         System.out.println("Scene Budget: " + sceneCards.getCardBudget(boardData.getSceneIndex()));
-                    //         System.out.println("Scene Description: " + sceneCards.getSceneDescription(boardData.getSceneIndex()));
-                            
-                    //         //Iterates through all parts contained in the scene card.
-                    //         for (int i = 0; i < SceneCards.getPartsList(boardData.getSceneIndex()).size(); i++) {
-                    //             System.out.println("Scene Part " + (i + 1));
-                    //             System.out.println("\t Name: " + SceneCards.getPartName(boardData.getSceneIndex(), i));
-                    //             System.out.println("\t Level: " + SceneCards.getPartLevel(boardData.getSceneIndex(), i));
-                    //             System.out.println("\t Line: " + SceneCards.getPartLine(boardData.getSceneIndex(), i) + "\n");
-                    //         }
-                    //     }
-                    // }
-
-
-                    //If 'boardstats' was chosen, display information about the board location the player is at currently.
-                    // else if (action.equals("boardstats")){
-
-                    //     if (player.isInTrailer == true) {
-                    //         System.out.println("\nBoard Name: Trailer");
-                    //         for (int x = 0; x < BoardData.getTrailerNeighbors().size(); x++){
-                    //             System.out.println("Neighbor " + (x+1) + "'s Name: " + BoardData.getTrailNeighbor(x));
-                    //         }
-                            
-                    //     }
-                    //     else if (player.isInOffice == true) {
-                    //         System.out.println("\nBoard Name: Office");
-                    //         for (int x = 0; x < BoardData.getOfficeNeighbors().size(); x++){
-                    //             System.out.println("Neighbor " + (x+1) + "'s Name: " + BoardData.getOffNeighbor(x));
-                    //         }
-                            
-                    //     }
-                    //     else {
-
-                    //         System.out.println("\nBoard Name: " + BoardData.getSetName(player.playerLocation));
-                    //         System.out.println("Number of Board Takes Left: " + (BoardData.getTakesList(player.playerLocation).size() - board.takesLeft));
-                    //         if (boardData.getSceneIndex() == -1) {
-                    //             System.out.println("Scene: Finished ");
-                    //         }
-                    //         else {
-                    //             System.out.println("Scene: " + SceneCards.getName(boardData.getSceneIndex()) + "\tIndex: " + boardData.getSceneIndex());
-                    //         }
-                
-                    //         for (int a = 0; a < BoardData.getNeighborsList(player.playerLocation).size(); a++) {
-                    //             System.out.println("Board Neighbor " + (a+1) + "'s Name: " + BoardData.getNeighborName(player.playerLocation, a));
-                                
-                    //         }
-
-                    //         for (int i = 0; i < BoardData.getPartsList(player.playerLocation).size(); i++) {
-                    //             System.out.println("Board Part " + (i + 1));
-                    //             System.out.println("\t Name: " + BoardData.getPartName(player.playerLocation, i));
-                    //             System.out.println("\t Level: " + BoardData.getPartLevel(player.playerLocation, i));
-                    //             System.out.println("\t Line: " + BoardData.getPartLine(player.playerLocation, i) + "\n");
-                    //         }
-                    //     }
-
-                    // }
 
 
                     //If 'takerole' was chosen, have player choose their role from the scene they are on or board they are on.
