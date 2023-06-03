@@ -393,9 +393,6 @@ public class Main {
         // });
 
         frame.getContentPane().add(window);
-        
-        //move.setBounds();
-        //frame.getContentPane().add(move);
 
         frame.pack();
         frame.setVisible(true);
@@ -749,7 +746,9 @@ public static void main(String[] args) {
 
                 javax.swing.SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        createAndShowGUI();
+                        View view = new View();
+
+                        //createAndShowGUI();
                     }
                 });
 
