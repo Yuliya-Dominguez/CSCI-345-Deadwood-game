@@ -208,10 +208,10 @@ public class View extends JPanel{
         userFunctionsPanel.add(endturn, constraints);
 
 
-        JButton button2 = new JButton("Button 2");
+        //JButton button2 = new JButton("Button 2");
         //userFunctionsPanel.add(button1);
-        constraints.gridy++;
-        userFunctionsPanel.add(button2, constraints);
+        //constraints.gridy++;
+        //userFunctionsPanel.add(button2, constraints);
 
         int plx = list.get(0).playerCoordinates[0];
         int ply = list.get(0).playerCoordinates[1];
@@ -302,7 +302,7 @@ public class View extends JPanel{
         diceImg = new ArrayList<>();
 
         //change j's to the player's rank
-        for (int j = 0; j <= pllist.size(); j++){
+        for (int j = 1; j < pllist.size()+1; j++){
 
             //int r = pllist.get(j-1).rank;
             ImageIcon pIcon = new ImageIcon("Images/dice/" + diceIc[j-1] + 1 + ".png");
@@ -340,9 +340,10 @@ public class View extends JPanel{
             if ((player.isInTrailer) || (player.isInOffice)) {
                 int x = player.playerCoordinates[0] + (index*5);
                 int y = player.playerCoordinates[1] + (index*2);
-                index++;
+                
 
                 Image dice = diceImg.get(index);
+                index++;
                 g.drawImage(dice, x, y, this);
             } else {
                 int x = player.playerCoordinates[0];
