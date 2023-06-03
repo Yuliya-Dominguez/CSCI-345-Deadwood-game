@@ -22,16 +22,17 @@ public class View extends JPanel{
     //static List<Player> players = Main.gamePlayers;
     int plnums = Main.getPlayersNum();
     static PlayersList players = new PlayersList();
-    static List<Player> pllist = new ArrayList();
+    static List<Player> pllist = new ArrayList<Player>();
 
     @Override //Set new dimensions to make scroll bar work
     public Dimension getPreferredSize() {
         return new Dimension(1200, 900);
     }
 
-    public View() { //Constructor
+    public View(List<Player> playerlList) { //Constructor
         super();
         setBackground(Color.WHITE);
+        pllist = playerlList;
         addImage();
     }
 
@@ -40,7 +41,7 @@ public class View extends JPanel{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1500,900);
 
-        View images = new View();
+        View images = new View(list);
 
         //add horizontal and vertical scroll bars (for small screens)
         JScrollPane scrollPane = new JScrollPane(images);
@@ -153,7 +154,7 @@ public class View extends JPanel{
         diceImg = new ArrayList<>();
 
         //change j's to the player's rank
-        for (int j = 1; j <= 4; j++){
+        for (int j = 1; j <= pllist.size()+1; j++){
 
             ImageIcon pIcon = new ImageIcon("Images/dice/" + diceIc[j-1] + j + ".png");
             //ImageIcon pIcon = new ImageIcon("Images/dice/r2.png");
