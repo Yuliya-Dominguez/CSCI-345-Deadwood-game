@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -52,7 +51,6 @@ public class View extends JPanel{
         //add user functions panel for the player's actions
         JPanel userFunctionsPanel = new JPanel();
         userFunctionsPanel.setBackground(Color.white);
-        //userFunctionsPanel.setLayout(new FlowLayout());
         userFunctionsPanel.setLayout(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();
@@ -152,7 +150,6 @@ public class View extends JPanel{
         constraints.gridy++;
         userFunctionsPanel.add(upgrades, constraints);
 
-        //JButton button1 = new JButton("Button 1");//replace with any player actions buttons
         JButton testButton = new JButton("MOVE!");
         testButton.setBounds(400, 70, 80, 50);
         testButton.addActionListener(new ActionListener() {
@@ -189,8 +186,6 @@ public class View extends JPanel{
         constraints.gridy++;
         userFunctionsPanel.add(rehearse, constraints);
 
-        
-
         JButton upgrade = new JButton("Upgrade");
         upgrade.setBackground(Color.white);
         upgrade.setBounds(100, 120, 95, 50);
@@ -211,19 +206,9 @@ public class View extends JPanel{
         constraints.gridy++;
         userFunctionsPanel.add(endturn, constraints);
 
-
-        //JButton button2 = new JButton("Button 2");
-        //userFunctionsPanel.add(button1);
-        //constraints.gridy++;
-        //userFunctionsPanel.add(button2, constraints);
-
-        int plx = list.get(0).playerCoordinates[0];
-        int ply = list.get(0).playerCoordinates[1];
-        player = list.get(0);
         pllist = list;
 
-        TextField coordinates = new TextField("x = " + plx + ", y = " +ply, 20);
-        //sampleText.setBounds(300, 150, 275, 25);
+        TextField coordinates = new TextField("Select an action.", 20);
         constraints.gridy++;
         userFunctionsPanel.add(coordinates, constraints);
 
@@ -232,54 +217,12 @@ public class View extends JPanel{
 
         frame.setVisible(true);
     }
-    /*public static void main(String[] args) {
-
-        SwingUtilities.invokeLater(() -> {
-
-            JFrame frame = new JFrame("Deadwood");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(1500,900);
-
-            View images = new View();
-
-            //add horizontal and vertical scroll bars (for small screens)
-            JScrollPane scrollPane = new JScrollPane(images);
-            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-            //add user functions panel for the player's actions
-            JPanel userFunctionsPanel = new JPanel();
-            userFunctionsPanel.setBackground(Color.white);
-            userFunctionsPanel.setLayout(new FlowLayout());
-
-            //JButton button1 = new JButton("Button 1");//replace with any player actions buttons
-            JButton testButton = new JButton("MOVE!");
-            testButton.setBounds(400, 70, 80, 50);
-            testButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                   
-                }
-            });
-            userFunctionsPanel.add(testButton);
-            JButton button2 = new JButton("Button 2");
-            //userFunctionsPanel.add(button1);
-            userFunctionsPanel.add(button2);
-
-            frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-            frame.getContentPane().add(userFunctionsPanel, BorderLayout.EAST);
-
-            frame.setVisible(true);
-        });
-    }*/
-
-    // Gotta randomize image selection
 
     //Add images to the array list for drawing with paintComponent()
     private void addImage() {
 
         ImageIcon brd = new ImageIcon("Images/board.jpeg");
         board = brd.getImage();
-        //board = getScaledImage(board, 900, 655);
 
         ImageIcon faceIm = new ImageIcon("Images/CardBack-small.jpeg");
         face = faceIm.getImage();
@@ -289,6 +232,7 @@ public class View extends JPanel{
         Day day = new Day();
         int[] scenesDrawn = day.getScenesDrawn();
 
+        //Create card images
         for (int i = 0; i < scenesDrawn.length; i++) {
             int sceneNum = scenesDrawn[i];
             if (sceneNum < 10) {
@@ -305,21 +249,19 @@ public class View extends JPanel{
 
         diceImg = new ArrayList<>();
 
-        //change j's to the player's rank
+        //Create dice images with corresponding rank
         for (int j = 0; j < pllist.size(); j++){
 
             int r = pllist.get(j).rank;
             ImageIcon pIcon = new ImageIcon("Images/dice/" + diceIc[j] + r + ".png");
-            //ImageIcon pIcon = new ImageIcon("Images/dice/r2.png");
             playerIc = pIcon.getImage();
             diceImg.add(playerIc);
 
         }
-
-
         //deal with face cards
     }
 
+    //Paint all images
     public void paintComponent(Graphics g){
 
         super.paintComponent(g);
@@ -335,16 +277,12 @@ public class View extends JPanel{
             g.drawImage(crd, x, y, this);
         }
         
-        /*int x2 = player.playerCoordinates[0];
-        int y2 = player.playerCoordinates[1];
-        Image dice2 = diceImg.get(0);
-        g.drawImage(dice2, x2, y2, this);*/
         int index = 0;
 
         for (Player player:pllist) {
             if ((player.isInTrailer) || (player.isInOffice)) {
-                int x = player.playerCoordinates[0] + (index*40);
-                int y = player.playerCoordinates[1] + (index*20);
+                int x = player.playerCoordinates[0] + (index*20);
+                int y = player.playerCoordinates[1] + (index*10);
 
                 Image dice = diceImg.get(index);
                 g.drawImage(dice, x, y, this);
@@ -358,15 +296,6 @@ public class View extends JPanel{
                 index++;
             }
         }
-
-        //need to implement a way to track player's location
-        /*int[] x1 = new int[]{51, 49, 1111, 637}; //this is temporary player's location
-        int[] y1 = new int[]{261, 356, 469, 22}; //this is temporary player's location
-
-        for (int j = 0; j < 4; j++){
-            Image dice = diceImg.get(j);
-            g.drawImage(dice, x1[j], y1[j], this);
-        }*/
     }
 
 }
