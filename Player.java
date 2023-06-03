@@ -15,6 +15,7 @@ public class Player {
     public int dollarCount;
     public int creditCount;
     public int rehearseCounter;
+    public int gamePlayersListIndex;
 
     //Board board = new Board();
     SceneCards scene = new SceneCards();

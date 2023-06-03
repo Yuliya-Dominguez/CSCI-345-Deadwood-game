@@ -744,13 +744,8 @@ public static void main(String[] args) {
             //Loop to iterate through every player's turn.
             for (Player player:gamePlayers) {
 
-                javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        //View view = new View();
-                        View.createGUI();
-                        //createAndShowGUI();
-                    }
-                });
+
+                View.createGUI();
 
                 //Check to keep turn on player if action they take doesn't end their turn.
                 while(playerturn > 0){
