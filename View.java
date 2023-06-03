@@ -53,6 +53,89 @@ public class View extends JPanel{
         userFunctionsPanel.setBackground(Color.white);
         userFunctionsPanel.setLayout(new FlowLayout());
 
+        TextField sampleText = new TextField(null, 20);
+        sampleText.setBounds(300, 150, 275, 25);
+        userFunctionsPanel.add(sampleText);
+
+        String[] neighbors = {"Saloon", "Main Street", "Bank"};
+        JComboBox moveNeighbors = new JComboBox(neighbors);
+        moveNeighbors.setBounds(0, 300, 90, 20);
+        moveNeighbors.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getSource() == moveNeighbors) {
+                    sampleText.setText("Moved to " + moveNeighbors.getSelectedItem());
+                }
+            }
+        });
+        moveNeighbors.setVisible(false);
+        userFunctionsPanel.add(moveNeighbors);
+
+        String[] acts = {"card role 1", "Card role 2", "card role 3", "Board role 1", "Board role 2", "Board role 3", "Board role 4"};
+        JComboBox roles =  new JComboBox<>(acts);
+        roles.setBounds(0, 300, 150, 20);
+        roles.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getSource() == roles) {
+                    sampleText.setText("Role " + roles.getSelectedItem() + " Chosen.");
+                }
+            }
+        });
+        roles.setVisible(false);
+        userFunctionsPanel.add(roles);
+
+        String[] currency = {"Rank 2: 4 dollars", "Rank 3: 10 dollars", "Rank 4: 18 dollars", 
+        "Rank 5: 28 dollars", "Rank 6: 40 dollars", "Rank 2: 5 credits", "Rank 3: 10 credits", 
+        "Rank 4: 15 credits", "Rank 5: 20 credits", "Rank 6: 25 credits"};
+        JComboBox upgrades = new JComboBox(currency);
+        upgrades.setBounds(0, 300, 150, 20);
+        upgrades.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getSource() == upgrades) {
+                    if (upgrades.getSelectedIndex() == 0) {
+                        sampleText.setText("Upgraded to rank 2! 4 dollars lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 1) {
+                        sampleText.setText("Upgraded to rank 3! 10 dollars lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 2) {
+                        sampleText.setText("Upgraded to rank 4! 18 dollars lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 3) {
+                        sampleText.setText("Upgraded to rank 5! 28 dollars lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 4) {
+                        sampleText.setText("Upgraded to rank 6! 40 dollars lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 5) {
+                        sampleText.setText("Upgraded to rank 2! 5 credits lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 6) {
+                        sampleText.setText("Upgraded to rank 3! 10 credits lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 7) {
+                        sampleText.setText("Upgraded to rank 4! 15 credits lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 8) {
+                        sampleText.setText("Upgraded to rank 5! 20 credits lost.");
+                    }
+
+                    else if (upgrades.getSelectedIndex() == 9) {
+                        sampleText.setText("Upgraded to rank 6! 25 credits lost.");
+                    }
+                }
+            }
+        });
+        upgrades.setVisible(false);
+        userFunctionsPanel.add(upgrades);
+
         //JButton button1 = new JButton("Button 1");//replace with any player actions buttons
         JButton testButton = new JButton("MOVE!");
         testButton.setBounds(400, 70, 80, 50);
@@ -62,6 +145,51 @@ public class View extends JPanel{
             }
         });
         userFunctionsPanel.add(testButton);
+
+        JButton role = new JButton("Take Role");
+        role.setBackground(Color.white);
+        role.setBounds(100, 70, 95, 50);
+        role.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                upgrades.setVisible(false);
+                roles.setVisible(true);
+                moveNeighbors.setVisible(false);
+                sampleText.setText("What role do you want?");
+            }
+        });
+        userFunctionsPanel.add(role);
+
+        JButton act = new JButton("Act");
+        act.setBackground(Color.white);
+        act.setBounds(0, 120, 95, 50);
+        userFunctionsPanel.add(act);
+
+        JButton rehearse = new JButton("Rehearse");
+        rehearse.setBackground(Color.white);
+        rehearse.setBounds(90, 180, 95, 50);
+        userFunctionsPanel.add(rehearse);
+
+        
+
+        JButton upgrade = new JButton("Upgrade");
+        upgrade.setBackground(Color.white);
+        upgrade.setBounds(100, 120, 95, 50);
+        upgrade.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                upgrades.setVisible(true);
+                roles.setVisible(false);
+                moveNeighbors.setVisible(false);
+                sampleText.setText("What rank do you want?");
+            }
+        });
+        userFunctionsPanel.add(upgrade);
+
+        JRadioButton endturn = new JRadioButton("End Turn", false);
+        endturn.setBackground(Color.white);
+        endturn.setBounds(0, 180, 80, 50);
+        userFunctionsPanel.add(endturn);
+
+
         JButton button2 = new JButton("Button 2");
         //userFunctionsPanel.add(button1);
         userFunctionsPanel.add(button2);
@@ -71,9 +199,9 @@ public class View extends JPanel{
         player = list.get(0);
         pllist = list;
 
-        TextField sampleText = new TextField("x = " + plx + ", y = " +ply, 20);
+        TextField coordinates = new TextField("x = " + plx + ", y = " +ply, 20);
         //sampleText.setBounds(300, 150, 275, 25);
-        userFunctionsPanel.add(sampleText, 1);
+        userFunctionsPanel.add(coordinates);
 
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
         frame.getContentPane().add(userFunctionsPanel, BorderLayout.EAST);
@@ -156,7 +284,7 @@ public class View extends JPanel{
         //change j's to the player's rank
         for (int j = 1; j <= pllist.size()+1; j++){
 
-            ImageIcon pIcon = new ImageIcon("Images/dice/" + diceIc[j-1] + j + ".png");
+            ImageIcon pIcon = new ImageIcon("Images/dice/" + diceIc[j-1] + 1 + ".png");
             //ImageIcon pIcon = new ImageIcon("Images/dice/r2.png");
             playerIc = pIcon.getImage();
             diceImg.add(playerIc);
