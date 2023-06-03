@@ -340,11 +340,6 @@ public class View extends JPanel{
             if ((player.isInTrailer) || (player.isInOffice)) {
                 int x = player.playerCoordinates[0] + (index*5);
                 int y = player.playerCoordinates[1] + (index*2);
-<<<<<<< Updated upstream
-                
-=======
->>>>>>> Stashed changes
-
                 Image dice = diceImg.get(index);
                 index++;
                 g.drawImage(dice, x, y, this);
