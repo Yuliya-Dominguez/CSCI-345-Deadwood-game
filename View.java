@@ -51,7 +51,8 @@ public class View extends JPanel{
         //add user functions panel for the player's actions
         JPanel userFunctionsPanel = new JPanel();
         userFunctionsPanel.setBackground(Color.white);
-        userFunctionsPanel.setLayout(new FlowLayout());
+        //userFunctionsPanel.setLayout(new FlowLayout());
+        userFunctionsPanel.setLayout(new BoxLayout(userFunctionsPanel, BoxLayout.Y_AXIS));
 
         TextField sampleText = new TextField(null, 20);
         sampleText.setBounds(300, 150, 275, 25);
@@ -72,7 +73,7 @@ public class View extends JPanel{
 
         String[] acts = {"card role 1", "Card role 2", "card role 3", "Board role 1", "Board role 2", "Board role 3", "Board role 4"};
         JComboBox roles =  new JComboBox<>(acts);
-        roles.setBounds(0, 300, 150, 20);
+        roles.setBounds(0, 500, 150, 20);
         roles.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getSource() == roles) {
@@ -87,7 +88,7 @@ public class View extends JPanel{
         "Rank 5: 28 dollars", "Rank 6: 40 dollars", "Rank 2: 5 credits", "Rank 3: 10 credits", 
         "Rank 4: 15 credits", "Rank 5: 20 credits", "Rank 6: 25 credits"};
         JComboBox upgrades = new JComboBox(currency);
-        upgrades.setBounds(0, 300, 150, 20);
+        upgrades.setBounds(0, 700, 150, 20);
         upgrades.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getSource() == upgrades) {
