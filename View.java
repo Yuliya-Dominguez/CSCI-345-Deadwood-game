@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.TextField;
 import java.awt.event.*;
@@ -39,7 +41,7 @@ public class View extends JPanel{
     public static void createGUI(List<Player> list) {
         JFrame frame = new JFrame("Deadwood");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1500,900);
+        frame.setSize(1600,900);
 
         View images = new View(list);
 
@@ -52,11 +54,17 @@ public class View extends JPanel{
         JPanel userFunctionsPanel = new JPanel();
         userFunctionsPanel.setBackground(Color.white);
         //userFunctionsPanel.setLayout(new FlowLayout());
-        userFunctionsPanel.setLayout(new BoxLayout(userFunctionsPanel, BoxLayout.Y_AXIS));
+        userFunctionsPanel.setLayout(new GridBagLayout());
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0; // Column index
+        constraints.gridy = 0; // Starting row index
+        constraints.anchor = GridBagConstraints.NORTHWEST; // Align components to the top-left corner
+        constraints.fill = GridBagConstraints.NONE; // Do not expand
 
         TextField sampleText = new TextField(null, 20);
         sampleText.setBounds(300, 150, 275, 25);
-        userFunctionsPanel.add(sampleText);
+        userFunctionsPanel.add(sampleText, constraints);
 
         String[] neighbors = {"Saloon", "Main Street", "Bank"};
         JComboBox moveNeighbors = new JComboBox(neighbors);
@@ -69,7 +77,8 @@ public class View extends JPanel{
             }
         });
         moveNeighbors.setVisible(false);
-        userFunctionsPanel.add(moveNeighbors);
+        constraints.gridy++;
+        userFunctionsPanel.add(moveNeighbors, constraints);
 
         String[] acts = {"card role 1", "Card role 2", "card role 3", "Board role 1", "Board role 2", "Board role 3", "Board role 4"};
         JComboBox roles =  new JComboBox<>(acts);
@@ -82,7 +91,8 @@ public class View extends JPanel{
             }
         });
         roles.setVisible(false);
-        userFunctionsPanel.add(roles);
+        constraints.gridy++;
+        userFunctionsPanel.add(roles, constraints);
 
         String[] currency = {"Rank 2: 4 dollars", "Rank 3: 10 dollars", "Rank 4: 18 dollars", 
         "Rank 5: 28 dollars", "Rank 6: 40 dollars", "Rank 2: 5 credits", "Rank 3: 10 credits", 
@@ -135,7 +145,8 @@ public class View extends JPanel{
             }
         });
         upgrades.setVisible(false);
-        userFunctionsPanel.add(upgrades);
+        constraints.gridy++;
+        userFunctionsPanel.add(upgrades, constraints);
 
         //JButton button1 = new JButton("Button 1");//replace with any player actions buttons
         JButton testButton = new JButton("MOVE!");
@@ -145,7 +156,8 @@ public class View extends JPanel{
                 
             }
         });
-        userFunctionsPanel.add(testButton);
+        constraints.gridy++;
+        userFunctionsPanel.add(testButton, constraints);
 
         JButton role = new JButton("Take Role");
         role.setBackground(Color.white);
@@ -158,17 +170,20 @@ public class View extends JPanel{
                 sampleText.setText("What role do you want?");
             }
         });
-        userFunctionsPanel.add(role);
+        constraints.gridy++;
+        userFunctionsPanel.add(role, constraints);
 
         JButton act = new JButton("Act");
         act.setBackground(Color.white);
         act.setBounds(0, 120, 95, 50);
-        userFunctionsPanel.add(act);
+        constraints.gridy++;
+        userFunctionsPanel.add(act, constraints);
 
         JButton rehearse = new JButton("Rehearse");
         rehearse.setBackground(Color.white);
         rehearse.setBounds(90, 180, 95, 50);
-        userFunctionsPanel.add(rehearse);
+        constraints.gridy++;
+        userFunctionsPanel.add(rehearse, constraints);
 
         
 
@@ -183,17 +198,20 @@ public class View extends JPanel{
                 sampleText.setText("What rank do you want?");
             }
         });
-        userFunctionsPanel.add(upgrade);
+        constraints.gridy++;
+        userFunctionsPanel.add(upgrade, constraints);
 
         JRadioButton endturn = new JRadioButton("End Turn", false);
         endturn.setBackground(Color.white);
         endturn.setBounds(0, 180, 80, 50);
-        userFunctionsPanel.add(endturn);
+        constraints.gridy++;
+        userFunctionsPanel.add(endturn, constraints);
 
 
         JButton button2 = new JButton("Button 2");
         //userFunctionsPanel.add(button1);
-        userFunctionsPanel.add(button2);
+        constraints.gridy++;
+        userFunctionsPanel.add(button2, constraints);
 
         int plx = list.get(0).playerCoordinates[0];
         int ply = list.get(0).playerCoordinates[1];
@@ -202,7 +220,8 @@ public class View extends JPanel{
 
         TextField coordinates = new TextField("x = " + plx + ", y = " +ply, 20);
         //sampleText.setBounds(300, 150, 275, 25);
-        userFunctionsPanel.add(coordinates);
+        constraints.gridy++;
+        userFunctionsPanel.add(coordinates, constraints);
 
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
         frame.getContentPane().add(userFunctionsPanel, BorderLayout.EAST);
