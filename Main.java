@@ -17,7 +17,7 @@ public class Main {
     int scenesFinished = 0;
 
     Deadwood deadwood = new Deadwood();
-    List<Player> gamePlayers = new ArrayList<Player>();
+    static List<Player> gamePlayers = new ArrayList<Player>();
     Day day = new Day();
     BoardData boardData = new BoardData();
     SceneCards sceneCards = new SceneCards();

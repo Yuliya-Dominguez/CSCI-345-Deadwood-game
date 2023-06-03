@@ -18,6 +18,8 @@ public class View extends JPanel{
     private String[] diceIc = new String[]{"b", "c", "g", "o", "p", "r", "v", "w", "y"};
     private ArrayList<Image> diceImg;
     Player player = new Player();
+    List<Player> players = Main.gamePlayers;
+    int plnums = Main.getPlayersNum();
 
     @Override //Set new dimensions to make scroll bar work
     public Dimension getPreferredSize() {
@@ -30,7 +32,42 @@ public class View extends JPanel{
         addImage();
     }
 
-    public static void main(String[] args) {
+    public void createGUI() {
+        JFrame frame = new JFrame("Deadwood");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1500,900);
+
+        View images = new View();
+
+        //add horizontal and vertical scroll bars (for small screens)
+        JScrollPane scrollPane = new JScrollPane(images);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+        //add user functions panel for the player's actions
+        JPanel userFunctionsPanel = new JPanel();
+        userFunctionsPanel.setBackground(Color.white);
+        userFunctionsPanel.setLayout(new FlowLayout());
+
+        //JButton button1 = new JButton("Button 1");//replace with any player actions buttons
+        JButton testButton = new JButton("MOVE!");
+        testButton.setBounds(400, 70, 80, 50);
+        testButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        userFunctionsPanel.add(testButton);
+        JButton button2 = new JButton("Button 2");
+        //userFunctionsPanel.add(button1);
+        userFunctionsPanel.add(button2);
+
+        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+        frame.getContentPane().add(userFunctionsPanel, BorderLayout.EAST);
+
+        frame.setVisible(true);
+    }
+    /*public static void main(String[] args) {
 
         SwingUtilities.invokeLater(() -> {
 
@@ -68,7 +105,7 @@ public class View extends JPanel{
 
             frame.setVisible(true);
         });
-    }
+    }*/
 
     // Gotta randomize image selection
 
@@ -130,13 +167,9 @@ public class View extends JPanel{
             Image crd = cards.get(i);
             g.drawImage(crd, x, y, this);
         }
-
         /*
-        //Player player = new Player();
-        //int x = player.playerCoordinates[0];
-        //int y = player.playerCoordinates[1];
-        //int plnums = Main.getPlayersNum();
-        //List<Player> players = Main.gamePlayers;
+        int x = player.playerCoordinates[0];
+        int y = player.playerCoordinates[1];
         for (Player player:players) {
             for (int j = 0; j < plnums; j++){
                 Image dice = diceImg.get(j);
@@ -145,12 +178,12 @@ public class View extends JPanel{
         }*/
 
         //need to implement a way to track player's location
-        int[] x = new int[]{51, 49, 1111, 637}; //this is temporary player's location
-        int[] y = new int[]{261, 356, 469, 22}; //this is temporary player's location
+        int[] x1 = new int[]{51, 49, 1111, 637}; //this is temporary player's location
+        int[] y1 = new int[]{261, 356, 469, 22}; //this is temporary player's location
 
         for (int j = 0; j < 4; j++){
             Image dice = diceImg.get(j);
-            g.drawImage(dice, x[j], y[j], this);
+            g.drawImage(dice, x1[j], y1[j], this);
         }
     }
 
